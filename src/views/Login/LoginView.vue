@@ -68,6 +68,8 @@ export default class LoginView extends Vue {
   async submitHandler () {
     try {
       await this.$auth.authenticate(this.form)
+
+      this.$router.push({ name: 'dashboard' })
     } catch (err) {
       this.$refs.errorBoundary.trigger(err.message)
     }
