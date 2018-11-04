@@ -1,6 +1,5 @@
 import '@babel/polyfill'
 import Vue from 'vue'
-import Component from 'vue-class-component'
 import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
@@ -8,8 +7,8 @@ import store from './store'
 import './registerServiceWorker'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import { httpService, authService } from './services'
 
+import { httpService, authService } from './services'
 import ErrorBoundary from './components/Utils/ErrorBoundary.vue'
 
 Vue.config.productionTip = false
