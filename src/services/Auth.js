@@ -12,7 +12,7 @@ export default class Auth {
    * Check if is logged in.
    */
   get check () {
-    return store.getters['LoggedUser/get'].id !== null
+    return typeof Cookies.get('accessToken') !== 'undefined'
   }
 
   /**
@@ -60,7 +60,7 @@ export default class Auth {
       throw new Error('Failed while fetching authenticated user')
     }
   }
-  
+
   /**
    * Refresh the user data.
    */
