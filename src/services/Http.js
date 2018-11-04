@@ -3,7 +3,7 @@ import axios from 'axios'
 export default class Http {
   _axios = null
 
-  construct () {
+  constructor () {
     this._axios = axios.create({
       baseURL: process.env.VUE_APP_API_URL
     })
