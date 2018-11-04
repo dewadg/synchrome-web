@@ -24,8 +24,15 @@ const mutations = {
   }
 }
 
+const getters = {
+  get (state) {
+    return state.user
+  }
+}
+
 export default {
   namespaced: true,
   state,
-  mutations
+  mutations,
+  getters
 }

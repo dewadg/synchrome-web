@@ -33,7 +33,7 @@ export default class Auth {
       throw new Error('Nama pengguna/kata sandi salah')
     }
   }
-  
+
   /**
    * Fetch current authenticated user from API.
    */
@@ -49,5 +49,12 @@ export default class Auth {
     } catch (err) {
       throw new Error('Failed while fetching authenticated user')
     }
+  }
+
+  /**
+   * Check if is logged in.
+   */
+  get check () {
+    return store.getters['LoggedUser/get'].id !== null
   }
 }
