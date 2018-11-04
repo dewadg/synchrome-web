@@ -23,6 +23,10 @@ new Vue({
   render: h => h(App),
 
   created () {
-    authService.refresh()
+    try {
+      authService.refresh()
+    } catch (err) {
+      // Do nothing :))
+    }
   }
 }).$mount('#app')

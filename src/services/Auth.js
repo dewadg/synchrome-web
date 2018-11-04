@@ -67,9 +67,11 @@ export default class Auth {
   async refresh () {
     const accessToken = Cookies.get('accessToken')
 
-    if (typeof accessToken !== 'undefined') {
-      this._http.authData = JSON.parse(accessToken)
-      store.commit('LoggedUser/set', await this.whoami())
+    if (typeof accessToken === 'undefined') {
+      throw new Error('Access token does not exist')
     }
+
+    this._http.authData = JSON.parse(accessToken)
+    store.commit('LoggedUser/set', await this.whoami())
   }
 }
