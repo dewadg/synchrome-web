@@ -74,5 +74,11 @@ export default class LoginView extends Vue {
       this.$refs.errorBoundary.trigger(err.message)
     }
   }
+
+  mounted () {
+    if (this.$auth.check) {
+      this.$router.push({ name: 'dashboard' })
+    }
+  }
 }
 </script>

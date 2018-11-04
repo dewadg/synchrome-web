@@ -1,10 +1,18 @@
 import store from '../store'
+import Cookies from 'js-cookie'
 
 export default class Auth {
   _http = null
 
   constructor (httpService) {
     this._http = httpService
+  }
+
+  /**
+   * Check if is logged in.
+   */
+  get check () {
+    return store.getters['LoggedUser/get'].id !== null
   }
 
   /**
@@ -22,11 +30,13 @@ export default class Auth {
         name,
         password
       })
-
-      this._http.authData = {
+      const accessToken = {
         username: resp.data.username,
         password: resp.data.password
       }
+
+      this._http.authData = accessToken
+      Cookies.set('accessToken', accessToken)
 
       store.commit('LoggedUser/set', await this.whoami())
     } catch (err) {
@@ -50,11 +60,16 @@ export default class Auth {
       throw new Error('Failed while fetching authenticated user')
     }
   }
-
+  
   /**
-   * Check if is logged in.
+   * Refresh the user data.
    */
-  get check () {
-    return store.getters['LoggedUser/get'].id !== null
+  async refresh () {
+    const accessToken = Cookies.get('accessToken')
+
+    if (typeof accessToken !== 'undefined') {
+      this._http.authData = JSON.parse(accessToken)
+      store.commit('LoggedUser/set', await this.whoami())
+    }
   }
 }

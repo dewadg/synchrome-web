@@ -1,3 +1,10 @@
+import Component from 'vue-class-component'
+
+Component.registerHooks([
+  'beforeRouteEnter',
+  'beforeRouteLeave'
+])
+
 import '@babel/polyfill'
 import Vue from 'vue'
 import './plugins/vuetify'
@@ -14,15 +21,20 @@ import Auth from './services/Auth'
 import ErrorBoundary from './components/Utils/ErrorBoundary.vue'
 
 const httpService = new Http()
+const authService = new Auth(httpService)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = httpService
-Vue.prototype.$auth = new Auth(httpService)
+Vue.prototype.$auth = authService
 
 Vue.component('ErrorBoundary', ErrorBoundary)
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+
+  created () {
+    authService.refresh()
+  }
 }).$mount('#app')
