@@ -27,6 +27,10 @@ const mutations = {
 const getters = {
   get (state) {
     return state.user
+  },
+
+  name (state) {
+    return state.user.name
   }
 }
 

@@ -11,6 +11,26 @@
       v-html="appName"
     />
     <VSpacer />
+    <VMenu
+      open-on-hover
+      bottom
+      offset-y
+    >
+      <VBtn
+        flat
+        slot="activator"
+      >
+        <VIcon class="mr-4">fa-user</VIcon>
+        {{ userName }}
+      </VBtn>
+      <VList>
+        <VListTile @click="logoutHandler">
+          <VListTileContent>
+            <VListTileTitle>Keluar</VListTileTitle>
+          </VListTileContent>
+        </VListTile>
+      </VList>
+    </VMenu>
   </VToolbar> 
 </template>
 
@@ -20,6 +40,7 @@ import {
   Component,
   Emit
 } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
 
 @Component({
   props: {
@@ -30,6 +51,8 @@ import {
   }
 })
 export default class AppTitleBar extends Vue {
+  @Getter('LoggedUser/name') userName
+
   get appName () {
     return process.env.VUE_APP_APP_NAME
   }
@@ -37,6 +60,10 @@ export default class AppTitleBar extends Vue {
   @Emit('input')
   toggleDrawer () {
     return !this.value
+  }
+
+  logoutHandler () {
+
   }
 }
 </script>
