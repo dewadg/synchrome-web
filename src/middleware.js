@@ -6,6 +6,7 @@ export function auth (to, from, next) {
   } else {
     try {
       authService.refresh()
+      next()
     } catch (err) {
       next({ name: 'login' })
     }
