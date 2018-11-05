@@ -5,10 +5,10 @@
       wrap
     >
       <VFlex
-        lg8
+        lg10
         md12
         xs12
-        offset-lg2
+        offset-lg1
       >
         <slot />
       </VFlex>
