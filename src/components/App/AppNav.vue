@@ -6,12 +6,20 @@
   >
     <VList>
       <template v-for="(menu, index) in menus">
-        <VListTile :key="index">
-          <VListTileAction>
+        <VDivider
+          v-if="menu.divider"
+          :key="index"
+        />
+        <VListTile
+          v-else
+          :key="index"
+          :to="{ name: menu.to }"
+        >
+          <VListTileAction class="grey--text text--darken-2">
             <VIcon v-html="menu.icon" />
           </VListTileAction>
           <VListTileContent>
-            <VListTileTitle>
+            <VListTileTitle class="grey--text text--darken-2">
               {{ menu.label }}
             </VListTileTitle>
           </VListTileContent>
