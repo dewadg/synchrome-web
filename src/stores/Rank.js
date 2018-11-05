@@ -17,9 +17,23 @@ const actions = {
 
       commit('setData', resp.data.data)
     } catch (err) {
-      console.log(err)
       throw new Error('Terjadi kesalahan ketika mengambil data golongan')
     }
+  },
+
+  async store (context, data) {
+    try {
+      await httpService.post('ranks', data)
+    } catch (err) {
+      throw new Error('Terjadi kesalahan ketika menyimpan data golongan')
+    }
+  }
+}
+
+export function emptyRank () {
+  return {
+    id: '',
+    name: ''
   }
 }
 

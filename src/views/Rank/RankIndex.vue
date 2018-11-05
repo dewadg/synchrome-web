@@ -7,17 +7,27 @@
         prominent
       >
         <VToolbarTitle>Daftar Golongan</VToolbarTitle>
+        <VBtn
+          @click="showModal"
+          small
+          color="primary"
+          class="ml-3"
+        >
+          Tambah Baru
+        </VBtn>
         <VSpacer />
         <VTextField
           prepend-icon="search"
           placeholder="Pencarian"
+          v-model="query"
         />
       </VToolbar>
-      <RankControl>
+      <RankControl ref="rankControl">
         <template slot-scope="{ items }">
           <VDataTable
             :headers="tableHeaders"
             :items="items"
+            :search="query"
           >
             <template
               slot="items"
@@ -34,19 +44,27 @@
         </template>
       </RankControl>
     </VCard>
+    <RankModal
+      ref="rankModal"
+      @submit="refreshTable"
+    />
   </PageWrapper>
 </template>
 
 <script>
 import { Vue, Component } from 'vue-property-decorator'
 import RankControl from '@/components/Renderless/RankControl'
+import RankModal from './RankModal'
 
 @Component({
   components: {
-    RankControl
+    RankControl,
+    RankModal
   }
 })
 export default class RankIndex extends Vue {
+  query = ''
+
   tableHeaders = [
     {
       value: 'id',
@@ -65,5 +83,13 @@ export default class RankIndex extends Vue {
       align: 'right'
     }
   ]
+
+  refreshTable () {
+    this.$refs.rankControl.fetchHandler()
+  }
+
+  showModal () {
+    this.$refs.rankModal.open()
+  }
 }
 </script>
