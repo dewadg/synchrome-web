@@ -14,8 +14,14 @@ const Plugin = {
       msgBox.$mount(this.$el)
       msgBox.show(title, description)
 
-      msgBox.$on('ok', okCallback)
-      msgBox.$on('cancel', cancelCallback)
+      msgBox.$on('ok', () => {
+        okCallback()
+        msgBox.$destroy()
+      })
+      msgBox.$on('cancel', () => {
+        cancelCallback()
+        msgBox.$destroy()
+      })
     }
   }
 }
