@@ -1,6 +1,13 @@
 <template>
   <VApp>
-    <AppNav v-if="!isLoginPage" />
+    <AppNav
+      v-if="!isLoginPage"
+      v-model="drawer"
+    />
+    <AppTitleBar
+      v-if="!isLoginPage"
+      v-model="drawer"
+    />
     <VContent>
       <router-view />
     </VContent>
@@ -12,13 +19,17 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import AppNav from '@/components/App/AppNav'
+import AppTitleBar from '@/components/App/AppTitleBar'
 
 @Component({
   components: {
-    AppNav
+    AppNav,
+    AppTitleBar
   }
 })
 export default class App extends Vue {
+  drawer = false
+
   get isLoginPage () {
     return this.$route.name === 'login'
   }

@@ -1,6 +1,6 @@
 <template>
   <VNavigationDrawer
-    v-model="drawer"
+    :value="value"
     fixed
     app
   >
@@ -25,10 +25,15 @@
 import Vue from 'vue';
 import Component from 'vue-class-component'
 
-@Component
+@Component({
+  props: {
+    value: {
+      type: Boolean,
+      default: true
+    }
+  }
+})
 export default class AppNav extends Vue {
-  drawer = null
-
   menus = [
     {
       to: 'dashboard',
