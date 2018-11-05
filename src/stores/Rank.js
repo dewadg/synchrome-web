@@ -31,6 +31,14 @@ const actions = {
 
       throw new Error('Terjadi kesalahan ketika menyimpan data golongan')
     }
+  },
+
+  async destroy (context, id) {
+    try {
+      await httpService.delete(`ranks/${id}`)
+    } catch (err) {
+      throw new Error('Terjadi kesalahan ketika menghapus data golongan')
+    }
   }
 }
 

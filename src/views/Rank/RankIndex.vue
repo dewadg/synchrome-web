@@ -37,7 +37,12 @@
               <td v-html="props.item.name" />
               <td class="text-xs-right">
                 <VBtn small>Sunting</VBtn>
-                <VBtn small>Hapus</VBtn>
+                <VBtn
+                  @click="deleteHandler(props.item.id)"
+                  small
+                >
+                  Hapus
+                </VBtn>
               </td>
             </template>
           </VDataTable>
@@ -55,6 +60,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from './RankModal'
+import { Action } from 'vuex-class';
 
 @Component({
   components: {
@@ -84,12 +90,25 @@ export default class RankIndex extends Vue {
     }
   ]
 
+  @Action('Rank/destroy') deleteRank
+
   refreshTable () {
     this.$refs.rankControl.fetchHandler()
   }
 
   showModal () {
     this.$refs.rankModal.open()
+  }
+
+  deleteHandler (id) {
+    this.$confirm(
+      'Hapus Golongan',
+      'Apakah anda yakin ingin menghapus data golongan ini?',
+      async () => {
+        await this.deleteRank(id)
+        await this.refreshTable()
+      }
+    )
   }
 }
 </script>
