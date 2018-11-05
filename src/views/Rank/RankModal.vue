@@ -10,7 +10,7 @@
         card
         prominent
       >
-        <VToolbarTitle>Tambah Golongan</VToolbarTitle>
+        <VToolbarTitle v-html="title" />
       </VToolbar>
       <VCardText>
         <ErrorBoundary ref="errorBoundary">
@@ -64,6 +64,14 @@ export default class RankModal extends Vue {
   formValid = false
 
   form = emptyRank()
+
+  get title () {
+    if (!this.editMode) {
+      return 'Tambah Golongan'
+    }
+
+    return 'Sunting Golongan'
+  }
 
   @Watch('showDialog')
   onShowDialogChange (val) {
