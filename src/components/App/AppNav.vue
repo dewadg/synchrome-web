@@ -9,7 +9,12 @@
         <VDivider
           v-if="menu.divider"
           :key="index"
-          class="my-3"
+          class="mb-2 mt-1"
+        />
+        <VSubheader
+          v-else-if="menu.subheader"
+          :key="index"
+          v-html="menu.subheader"
         />
         <VListTile
           v-else
