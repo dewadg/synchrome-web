@@ -9,6 +9,7 @@
         <VDivider
           v-if="menu.divider"
           :key="index"
+          class="my-3"
         />
         <VListTile
           v-else
@@ -53,6 +54,7 @@ export default class AppNav extends Vue {
       label: 'Pengguna',
       icon: 'fa-user'
     },
+    { divider: true }
   ]
 }
 </script>
