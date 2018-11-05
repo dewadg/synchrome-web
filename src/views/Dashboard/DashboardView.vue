@@ -83,14 +83,19 @@
         md12
         pr-2
       >
-        <AttendanceStats />
+        <AttendanceStats class="mb-3" />
       </VFlex>
       <VFlex
         lg6
         md12
         pl-2
       >
-        <TppStats />
+        <TppStats class="mb-3" />
+      </VFlex>
+      <VFlex
+        xs12
+      >
+        <SyncActivityStats class="mb-3" />
       </VFlex>
     </VLayout>
   </PageWrapper>
@@ -100,11 +105,13 @@
 import { Vue, Component } from 'vue-property-decorator'
 import AttendanceStats from './AttendanceStats'
 import TppStats from './TppStats'
+import SyncActivityStats from './SyncActivityStats'
 
 @Component({
   components: {
     AttendanceStats,
-    TppStats
+    TppStats,
+    SyncActivityStats
   }
 })
 export default class DashboardView extends Vue {

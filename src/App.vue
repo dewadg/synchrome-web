@@ -28,7 +28,7 @@ import AppTitleBar from '@/components/App/AppTitleBar'
   }
 })
 export default class App extends Vue {
-  drawer = false
+  drawer = true
 
   get isLoginPage () {
     return this.$route.name === 'login'

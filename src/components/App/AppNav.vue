@@ -54,12 +54,59 @@ export default class AppNav extends Vue {
       label: 'Dasbor',
       icon: 'fa-puzzle-piece'
     },
+    { divider: true },
+
+    // Master Data
+    { subheader: 'Data Utama' },
+    {
+      to: 'opd',
+      label: 'OPD',
+      icon: 'fa-building'
+    },
+    {
+      to: 'echelons',
+      label: 'Eselon',
+      icon: 'fa-users'
+    },
+    {
+      to: 'ranks',
+      label: 'Golongan',
+      icon: 'fa-users'
+    },
+    {
+      to: 'functional-positions',
+      label: 'Jabatan Fungsional',
+      icon: 'fa-level-up-alt'
+    },
+    {
+      to: 'asn',
+      label: 'ASN',
+      icon: 'fa-user'
+    },
+    {
+      to: 'calendars',
+      label: 'Kalender Kerja',
+      icon: 'fa-calendar-alt'
+    },
+    {
+      to: 'workshifts',
+      label: 'Shift Kerja',
+      icon: 'fa-clipboard'
+    },
+    { divider: true },
+
+    // App
+    { subheader: 'Pengaturan' },
     {
       to: 'users',
       label: 'Pengguna',
       icon: 'fa-user'
     },
-    { divider: true }
+    {
+      to: 'configs',
+      label: 'Konfigurasi',
+      icon: 'fa-cogs'
+    }
   ]
 }
 </script>
