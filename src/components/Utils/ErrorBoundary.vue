@@ -25,12 +25,12 @@ export default class ErrorBoundary extends Vue {
 
   errorCaptured (err, vm, info) {
     this.error = true
-    this.message = err
+    this.message = err.message
   }
 
-  trigger (message) {
+  trigger (err) {
     this.error = true
-    this.message = message
+    this.message = err.message
   }
 
   reset () {

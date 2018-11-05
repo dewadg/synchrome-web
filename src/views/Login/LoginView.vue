@@ -71,7 +71,7 @@ export default class LoginView extends Vue {
 
       this.$router.push({ name: 'dashboard' })
     } catch (err) {
-      this.$refs.errorBoundary.trigger(err.message)
+      this.$refs.errorBoundary.trigger(err)
     }
   }
 }
