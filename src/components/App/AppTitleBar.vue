@@ -41,6 +41,7 @@ import {
   Emit
 } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
+import { authService } from '@/services'
 
 @Component({
   props: {
@@ -63,7 +64,8 @@ export default class AppTitleBar extends Vue {
   }
 
   logoutHandler () {
-
+    authService.logout()
+    this.$router.push({ name: 'login' })
   }
 }
 </script>

@@ -74,4 +74,12 @@ export default class Auth {
     this._http.authData = JSON.parse(accessToken)
     store.commit('LoggedUser/set', await this.whoami())
   }
+
+  /**
+   * Log out the user.
+   */
+  logout () {
+    Cookies.remove('accessToken')
+    store.commit('LoggedUser/reset')
+  }
 }
