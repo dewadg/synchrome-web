@@ -25,6 +25,10 @@ const actions = {
     try {
       await httpService.post('ranks', data)
     } catch (err) {
+      if (err.response.status === 422 && err.response.data.id) {
+        throw new Error('Kode golongan sudah terdaftar')
+      }
+
       throw new Error('Terjadi kesalahan ketika menyimpan data golongan')
     }
   }

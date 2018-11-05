@@ -69,6 +69,7 @@ export default class RankModal extends Vue {
   onShowDialogChange (val) {
     if (!val) {
       this.$refs.form.reset()
+      this.$refs.errorBoundary.reset()
     }
   }
 
@@ -78,6 +79,7 @@ export default class RankModal extends Vue {
 
   close () {
     this.$refs.form.reset()
+    this.$refs.errorBoundary.reset()
     this.showDialog = false
   }
 
