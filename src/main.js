@@ -1,6 +1,7 @@
 import '@babel/polyfill'
 import Vue from 'vue'
 import './plugins/vuetify'
+import Vuelidate from 'vuelidate'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -13,6 +14,7 @@ import ErrorBoundary from './components/Utils/ErrorBoundary'
 import PageWrapper from './components/Utils/PageWrapper'
 
 Vue.config.productionTip = false
+Vue.use(Vuelidate)
 Vue.prototype.$http = httpService
 Vue.prototype.$auth = authService
 
