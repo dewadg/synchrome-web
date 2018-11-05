@@ -52,7 +52,7 @@ export default class AppNav extends Vue {
     {
       to: 'dashboard',
       label: 'Dasbor',
-      icon: 'fa-puzzle-piece'
+      icon: 'dashboard'
     },
     { divider: true },
 
@@ -61,37 +61,37 @@ export default class AppNav extends Vue {
     {
       to: 'opd',
       label: 'OPD',
-      icon: 'fa-building'
+      icon: 'home'
     },
     {
       to: 'echelons',
       label: 'Eselon',
-      icon: 'fa-users'
+      icon: 'group'
     },
     {
       to: 'ranks',
       label: 'Golongan',
-      icon: 'fa-users'
+      icon: 'group'
     },
     {
       to: 'functional-positions',
       label: 'Jabatan Fungsional',
-      icon: 'fa-level-up-alt'
+      icon: 'work'
     },
     {
       to: 'asn',
       label: 'ASN',
-      icon: 'fa-user'
+      icon: 'group'
     },
     {
       to: 'calendars',
       label: 'Kalender Kerja',
-      icon: 'fa-calendar-alt'
+      icon: 'event'
     },
     {
       to: 'workshifts',
       label: 'Shift Kerja',
-      icon: 'fa-clipboard'
+      icon: 'schedule'
     },
     { divider: true },
 
@@ -100,12 +100,12 @@ export default class AppNav extends Vue {
     {
       to: 'users',
       label: 'Pengguna',
-      icon: 'fa-user'
+      icon: 'group'
     },
     {
       to: 'configs',
       label: 'Konfigurasi',
-      icon: 'fa-cogs'
+      icon: 'settings'
     }
   ]
 }

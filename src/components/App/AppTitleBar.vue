@@ -5,7 +5,9 @@
     dark
     color="green darken-1"
   >
-    <VToolbarSideIcon @click.native="toggleDrawer" />
+    <VToolbarSideIcon @click.native="toggleDrawer">
+      <VIcon>menu</VIcon>
+    </VToolbarSideIcon>
     <span
       class="title ml-3 mr-5"
       v-html="appName"
@@ -20,7 +22,7 @@
         flat
         slot="activator"
       >
-        <VIcon class="mr-4">fa-user</VIcon>
+        <VIcon class="mr-2">account_circle</VIcon>
         {{ userName }}
       </VBtn>
       <VList>
