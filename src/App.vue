@@ -18,8 +18,8 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
-import AppNav from '@/components/App/AppNav'
-import AppTitleBar from '@/components/App/AppTitleBar'
+import AppNav from '@/components/AppNav'
+import AppTitleBar from '@/components/AppTitleBar'
 
 @Component({
   components: {

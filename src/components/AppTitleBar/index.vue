@@ -37,37 +37,36 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component,
-  Emit
-} from 'vue-property-decorator'
-import { Getter } from 'vuex-class'
+import { mapGetters } from 'vuex'
 import { authService } from '@/services'
 
-@Component({
+export default {
   props: {
     value: {
       type: Boolean,
       default: false
     }
-  }
-})
-export default class AppTitleBar extends Vue {
-  @Getter('LoggedUser/name') userName
+  },
 
-  get appName () {
-    return process.env.VUE_APP_APP_NAME
-  }
+  computed: {
+    ...mapGetters({
+      userName: 'LoggedUser/name'
+    }),
 
-  @Emit('input')
-  toggleDrawer () {
-    return !this.value
-  }
+    appName () {
+      return process.env.VUE_APP_APP_NAME
+    }
+  },
 
-  logoutHandler () {
-    authService.logout()
-    this.$router.push({ name: 'login' })
+  methods: {
+    toggleDrawer () {
+      this.$emit('input', !this.value)
+    },
+
+    logoutHandler () {
+      authService.logout()
+      this.$router.push({ name: 'login' })
+    }
   }
 }
 </script>

@@ -12,8 +12,8 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import { httpService, authService } from './services'
-import ErrorBoundary from './components/Utils/ErrorBoundary'
-import PageWrapper from './components/Utils/PageWrapper'
+import ErrorBoundary from './components/ErrorBoundary'
+import PageWrapper from './components/PageWrapper'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
