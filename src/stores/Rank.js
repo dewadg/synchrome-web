@@ -16,6 +16,7 @@ const actions = {
       const resp = await httpService.get('ranks')
 
       commit('setData', resp.data.data)
+      return resp.data.data
     } catch (err) {
       throw new Error('Terjadi kesalahan ketika mengambil data golongan')
     }
@@ -23,7 +24,9 @@ const actions = {
 
   async store (context, data) {
     try {
-      await httpService.post('ranks', data)
+      const resp = await httpService.post('ranks', data)
+
+      return resp.data.data
     } catch (err) {
       if (err.response.status === 422 && err.response.data.id) {
         throw new Error('Kode golongan sudah terdaftar')
