@@ -1,14 +1,14 @@
 module.exports = {
-  "presets": [
+  'presets': [
     [
-      "@vue/app",
+      '@vue/app',
       {
-        "useBuiltIns": "entry"
+        'useBuiltIns': 'entry'
       }
     ]
   ],
-  "plugins": [
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  'plugins': [
+    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
+    ['@babel/plugin-proposal-class-properties', { 'loose': true }]
   ]
 }

@@ -33,7 +33,7 @@
         </VListTile>
       </VList>
     </VMenu>
-  </VToolbar> 
+  </VToolbar>
 </template>
 
 <script>
