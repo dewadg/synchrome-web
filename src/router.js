@@ -36,6 +36,16 @@ export default new Router({
       beforeEnter: middleware([
         auth
       ])
+    },
+
+    // Calendars
+    {
+      path: '/calendars/new',
+      name: 'calendars.create',
+      component: () => import('@/views/Calendar/CalendarCreate'),
+      beforeEnter: middleware([
+        auth
+      ])
     }
   ]
 })
