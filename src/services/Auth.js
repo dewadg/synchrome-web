@@ -17,7 +17,7 @@ export default class Auth {
 
   /**
    * Authenticate user and set HTTP basic.
-   * 
+   *
    * @param  {object} data
    */
   async authenticate ({ name, password }) {

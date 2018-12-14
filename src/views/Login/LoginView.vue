@@ -51,7 +51,7 @@ import {
   Vue,
   Component,
   Watch
-} from 'vue-property-decorator';
+} from 'vue-property-decorator'
 
 @Component
 export default class LoginView extends Vue {

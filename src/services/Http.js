@@ -8,10 +8,10 @@ export default class Http {
       baseURL: process.env.VUE_APP_API_URL
     })
   }
-  
+
   /**
    * Set HTTP basic auth data.
-   * 
+   *
    * @param  {object} val
    */
   set authData (val) {
@@ -23,7 +23,7 @@ export default class Http {
 
   /**
    * Perform GET request.
-   * 
+   *
    * @param  {string} url
    */
   get (url) {
@@ -39,7 +39,7 @@ export default class Http {
 
   /**
    * Perform POST request.
-   * 
+   *
    * @param  {string} url
    * @param  {object} data
    */
@@ -57,7 +57,7 @@ export default class Http {
 
   /**
    * Perform PATCH request.
-   * 
+   *
    * @param  {string} url
    * @param  {object} data
    */
@@ -75,7 +75,7 @@ export default class Http {
 
   /**
    * Perform DELETE request.
-   * 
+   *
    * @param  {string} url
    */
   delete (url) {

@@ -35,7 +35,7 @@ export default {
     async fetchHandler () {
       this.loading = true
       await this.fetch()
-      this.loading = false  
+      this.loading = false
     }
   },
 

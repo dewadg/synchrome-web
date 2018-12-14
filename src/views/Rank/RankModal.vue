@@ -35,7 +35,7 @@
         </VBtn>
       </VCardActions>
     </VCard>
-  </VDialog>   
+  </VDialog>
 </template>
 
 <script>
@@ -47,7 +47,7 @@ import {
 } from 'vue-property-decorator'
 import RankForm from '@/components/Forms/RankForm'
 import { emptyRank } from '@/stores/Rank'
-import { Action } from 'vuex-class';
+import { Action } from 'vuex-class'
 
 @Component({
   components: {

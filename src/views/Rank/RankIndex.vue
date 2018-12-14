@@ -60,7 +60,7 @@
 import { Vue, Component } from 'vue-property-decorator'
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from './RankModal'
-import { Action } from 'vuex-class';
+import { Action } from 'vuex-class'
 
 @Component({
   components: {

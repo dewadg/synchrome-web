@@ -115,6 +115,6 @@ import SyncActivityStats from './SyncActivityStats'
   }
 })
 export default class DashboardView extends Vue {
-  
+
 }
 </script>
