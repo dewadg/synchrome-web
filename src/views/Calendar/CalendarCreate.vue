@@ -17,7 +17,7 @@
           Ubah
         </VBtn>
       </VToolbar>
-      <div class="pa-4">
+      <div class="pt-1 pr-4 pb-4 pl-4">
         <CalendarForm
           ref="calendarForm"
           v-model="form"
