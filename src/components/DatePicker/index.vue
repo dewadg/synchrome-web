@@ -27,16 +27,9 @@
       <VBtn
         flat
         color="primary"
-        @click="menu = false"
+        @click="clearHandler"
       >
-        Cancel
-      </VBtn>
-      <VBtn
-        flat
-        color="primary"
-        @click="updateHandler"
-      >
-        OK
+        Clear
       </VBtn>
     </VDatePicker>
   </VMenu>
@@ -87,6 +80,10 @@ export default {
   methods: {
     updateHandler () {
       this.$refs.menu.save(this.date)
+    },
+
+    clearHandler () {
+      this.date = null
     }
   }
 }
