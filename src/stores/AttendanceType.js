@@ -15,7 +15,7 @@ const actions = {
     try {
       const resp = await httpService.get('attendance-types')
 
-      commit.setData(resp.data.data)
+      commit('setData', resp.data.data)
       return resp.data.data
     } catch (err) {
       throw new Error('Terjadi kesalahan ketika mengambil data jenis presensi')

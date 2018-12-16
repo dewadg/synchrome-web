@@ -1,6 +1,7 @@
 <template>
   <VDialog
-    v-model="displayed"
+    :value="displayed"
+    persistent
     max-width="640px"
   >
     <div slot="activator" />
@@ -27,6 +28,7 @@
       </VCardText>
       <VCardActions>
         <VSpacer />
+        <VBtn @click="close">Batal</VBtn>
         <VBtn
           color="primary"
           @click="displayed = false"
@@ -76,6 +78,10 @@ export default {
   methods: {
     show () {
       this.displayed = true
+    },
+
+    close () {
+      this.displayed = false
     }
   }
 }

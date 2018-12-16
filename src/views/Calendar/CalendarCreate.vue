@@ -16,6 +16,15 @@
         >
           Ubah
         </VBtn>
+        <VBtn
+          @click="clearEvents"
+          dark
+          color="red"
+          small
+          class="ml-2"
+        >
+          Kosongkan Event
+        </VBtn>
       </VToolbar>
       <div class="pt-1 pr-4 pb-4 pl-4">
         <CalendarForm
@@ -23,6 +32,7 @@
           v-model="form"
         />
         <FullCalendar
+          v-model="form.events"
           :start="form.start"
           :end="form.end"
         />
@@ -50,7 +60,8 @@ export default class CalendarCreate extends Vue {
   form = {
     name: '',
     start: moment().startOf('year').format('YYYY-MM-DD'),
-    end: moment().endOf('year').format('YYYY-MM-DD')
+    end: moment().endOf('year').format('YYYY-MM-DD'),
+    events: []
   }
 
   get calendarName () {
@@ -67,6 +78,10 @@ export default class CalendarCreate extends Vue {
 
   showCalendarForm () {
     this.$refs.calendarForm.show()
+  }
+
+  clearEvents () {
+    this.form.events = []
   }
 }
 </script>

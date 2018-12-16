@@ -49,7 +49,6 @@ export default {
       default: null
     },
     value: {
-      type: String,
       default: null
     }
   },
