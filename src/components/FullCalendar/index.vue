@@ -99,10 +99,14 @@ export default {
     },
 
     selectHandler (start, end, jsEvent, view) {
+      const fixedEnd = moment(end).subtract(1, 'day')
+
       this.eventForm = {
         title: '',
         start: start.format('YYYY-MM-DD'),
-        end: end.format('YYYY-MM-DD'),
+        end: fixedEnd.format('YYYY-MM-DD') === start.format('YYYY-MM-DD')
+          ? null
+          : fixedEnd.format('YYYY-MM-DD'),
         attendanceTypeId: null
       }
 
