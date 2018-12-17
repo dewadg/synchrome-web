@@ -1,11 +1,11 @@
 import { authService } from './services'
 
-export function auth (to, from, next) {
+export async function auth (to, from, next) {
   if (!authService.check) {
     next({ name: 'login' })
   } else {
     try {
-      authService.refresh()
+      await authService.refresh()
       next()
     } catch (err) {
       next({ name: 'login' })
@@ -15,8 +15,8 @@ export function auth (to, from, next) {
 
 export default function middleware (guards) {
   return (to, from, next) => {
-    guards.forEach((guard) => {
-      guard(to, from, next)
+    guards.forEach(async (guard) => {
+      await guard(to, from, next)
     })
   }
 }
