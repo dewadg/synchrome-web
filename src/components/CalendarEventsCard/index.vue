@@ -5,6 +5,16 @@
       prominent
     >
       <VToolbarTitle>Daftar Event</VToolbarTitle>
+      <VSpacer />
+      <VBtn
+        @click="clearEvents"
+        dark
+        color="red"
+        small
+        class="ml-2"
+      >
+        Kosongkan Event
+      </VBtn>
     </VToolbar>
     <VList>
       <VListGroup
@@ -42,7 +52,7 @@ import moment from 'moment'
 
 export default {
   props: {
-    events: {
+    value: {
       type: Array,
       required: true
     }
@@ -63,7 +73,7 @@ export default {
           return carry
         }, {})
 
-      this.events.forEach((item) => {
+      this.value.forEach((item) => {
         const date = moment(item.start)
 
         events[date.format('MM')].data = [
@@ -82,6 +92,12 @@ export default {
       events.sort((a, b) => a.index - b.index)
 
       return events
+    }
+  },
+
+  methods: {
+    clearEvents () {
+      this.$emit('input', [])
     }
   }
 }

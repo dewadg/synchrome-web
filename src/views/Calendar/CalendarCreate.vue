@@ -27,15 +27,6 @@
             >
               Ubah
             </VBtn>
-            <VBtn
-              @click="clearEvents"
-              dark
-              color="red"
-              small
-              class="ml-2"
-            >
-              Kosongkan Event
-            </VBtn>
           </VToolbar>
           <div class="pt-1 pr-4 pb-4 pl-4">
             <CalendarForm
@@ -49,7 +40,7 @@
             />
           </div>
         </VCard>
-        <CalendarEventsCard :events="form.events" />
+        <CalendarEventsCard v-model="form.events" />
       </VFlex>
       <VFlex
         md3
