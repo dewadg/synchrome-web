@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import AttendanceTypeControl from '@/components/Renderless/AttendanceType'
+import AttendanceTypeControl from '@/components/Renderless/AttendanceTypeControl'
 
 export default {
   components: {
