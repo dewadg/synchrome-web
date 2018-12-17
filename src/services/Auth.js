@@ -1,4 +1,5 @@
 import store from '../store'
+import router from '../router'
 import Cookies from 'js-cookie'
 
 export default class Auth {
@@ -57,7 +58,11 @@ export default class Auth {
 
       return resp.data.data
     } catch (err) {
-      throw new Error('Failed while fetching authenticated user')
+      if (err.response.status === 401) {
+        router.push({ name: 'login' })
+      } else {
+        throw new Error('Failed while fetching authenticated user')
+      }
     }
   }
 
