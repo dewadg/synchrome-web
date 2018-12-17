@@ -13,7 +13,10 @@
             card
             prominent
           >
-            <VToolbarTitle v-html="calendarName" />
+            <VTextField
+              v-model="form.name"
+              class="pt-3"
+            />
             <VSpacer />
             {{ formattedStartDate }} - {{ formattedEndDate }}
             <VBtn
@@ -72,6 +75,7 @@
           </VCardText>
           <VCardActions>
             <VBtn
+              @click="submitHandler(payload)"
               color="primary"
               block
             >
@@ -102,6 +106,7 @@ import {
   Vue,
   Component
 } from 'vue-property-decorator'
+import { Action } from 'vuex-class'
 import FullCalendar from '@/components/FullCalendar'
 import moment from 'moment'
 import CalendarForm from '@/components/CalendarForm'
@@ -124,7 +129,7 @@ export default class CalendarCreate extends Vue {
   }
 
   get calendarName () {
-    return this.form.name === '' ? 'Tambah Kalender Kerja' : `Tambah Kalender Kerja: ${this.form.name}`
+    return this.form.name === '' ? 'Tambah Kalender Kerja' : this.form.name
   }
 
   get formattedStartDate () {
@@ -142,6 +147,20 @@ export default class CalendarCreate extends Vue {
     ]
   }
 
+  get payload () {
+    return {
+      ...this.form,
+      events: this.form.events.map(item => ({
+        title: item.title,
+        start: item.start,
+        end: item.end,
+        attendanceTypeId: item.attendanceTypeId
+      }))
+    }
+  }
+
+  @Action('Calendar/store') storeCalendar
+
   showCalendarForm () {
     this.$refs.calendarForm.show()
   }
@@ -149,9 +168,15 @@ export default class CalendarCreate extends Vue {
   clearEvents () {
     this.form.events = []
   }
+
+  async submitHandler (payload) {
+    try {
+      await this.storeCalendar(payload)
+
+      this.$router.push({ name: 'calendars.index' })
+    } catch (err) {
+      console.log(err)
+    }
+  }
 }
 </script>
-
-<style>
-
-</style>

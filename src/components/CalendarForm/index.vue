@@ -10,13 +10,9 @@
         card
         prominent
       >
-        <VToolbarTitle>Kalender</VToolbarTitle>
+        <VToolbarTitle>Tanggal Berlaku</VToolbarTitle>
       </VToolbar>
       <VCardText>
-        <VTextField
-          label="Nama Kalender"
-          v-model="value.name"
-        />
         <DatePicker
           label="Tanggal Mulai"
           v-model="value.start"
