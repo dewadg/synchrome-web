@@ -7,8 +7,9 @@
       <VToolbarTitle>Daftar Event</VToolbarTitle>
       <VSpacer />
       <VBtn
+        :disabled="value.length === 0"
         @click="clearEvents"
-        dark
+        :dark="value.length > 0"
         color="red"
         small
         class="ml-2"
