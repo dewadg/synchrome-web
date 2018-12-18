@@ -29,7 +29,7 @@
             </VBtn>
           </VToolbar>
           <div class="pt-1 pr-4 pb-4 pl-4">
-            <CalendarForm
+            <CalendarDetailsForm
               ref="calendarForm"
               v-model="form"
             />
@@ -66,6 +66,7 @@
           </VCardText>
           <VCardActions>
             <VBtn
+              :disabled="$v.$invalid"
               @click="submitHandler(payload)"
               color="primary"
               block
@@ -100,14 +101,18 @@ import {
 import { Action } from 'vuex-class'
 import FullCalendar from '@/components/FullCalendar'
 import moment from 'moment'
-import CalendarForm from '@/components/CalendarForm'
+import CalendarDetailsForm from '@/components/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
+import validator from './validator'
 
 @Component({
   components: {
     FullCalendar,
-    CalendarForm,
+    CalendarDetailsForm,
     CalendarEventsCard
+  },
+  validations: {
+    payload: validator
   }
 })
 export default class CalendarCreate extends Vue {
@@ -164,7 +169,7 @@ export default class CalendarCreate extends Vue {
     try {
       await this.storeCalendar(payload)
 
-      this.$router.push({ name: 'calendars.index' })
+      this.$router.push({ name: 'calendars' })
     } catch (err) {
       console.log(err)
     }

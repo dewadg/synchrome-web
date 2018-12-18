@@ -40,6 +40,14 @@ export default new Router({
 
     // Calendars
     {
+      path: '/calendars',
+      name: 'calendars',
+      component: () => import('@/views/Calendar/CalendarIndex'),
+      beforeEnter: middleware([
+        auth
+      ])
+    },
+    {
       path: '/calendars/new',
       name: 'calendars.create',
       component: () => import('@/views/Calendar/CalendarCreate'),

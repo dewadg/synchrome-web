@@ -26,6 +26,7 @@
         <VSpacer />
         <VBtn @click="close">Batal</VBtn>
         <VBtn
+          :disabled="$v.$invalid"
           color="primary"
           @click="displayed = false"
         >
@@ -38,6 +39,7 @@
 
 <script>
 import moment from 'moment'
+import validator from './validator'
 
 export default {
   props: {
@@ -51,6 +53,10 @@ export default {
     return {
       displayed: false
     }
+  },
+
+  validations: {
+    value: validator
   },
 
   watch: {

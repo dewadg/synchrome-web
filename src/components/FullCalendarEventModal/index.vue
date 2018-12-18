@@ -47,6 +47,7 @@
           Hapus
         </VBtn>
         <VBtn
+          :disabled="$v.$invalid"
           color="primary"
           @click="saveHandler"
         >
@@ -59,6 +60,7 @@
 
 <script>
 import AttendanceTypeControl from '@/components/Renderless/AttendanceTypeControl'
+import validator from './validator'
 
 export default {
   components: {
@@ -85,6 +87,10 @@ export default {
     }
   },
 
+  validations: {
+    value: validator
+  },
+
   methods: {
     show (editMode = false) {
       this.editMode = editMode
@@ -93,6 +99,13 @@ export default {
 
     close () {
       this.displayed = false
+
+      this.$emit('input', {
+        title: '',
+        start: null,
+        end: null,
+        attendanceTypeId: null
+      })
     },
 
     filterAttendanceTypes (items) {
