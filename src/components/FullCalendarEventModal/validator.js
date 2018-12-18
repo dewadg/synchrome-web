@@ -2,7 +2,7 @@ import { required } from 'vuelidate/lib/validators'
 import {
   isDateBefore,
   isDateAfter
-} from '@/helpers/validators'
+} from '@/helpers/validator'
 
 export default {
   title: { required },
