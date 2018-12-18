@@ -62,9 +62,9 @@ export default {
 
   computed: {
     formattedDate () {
-      return !this.date
-        ? !this.value ? '' : moment(this.value).format('D MMMM YYYY')
-        : moment(this.date).format('D MMMM YYYY')
+      if (!moment(this.value).isValid()) return ''
+
+      return moment(this.value).format('D MMMM YYYY')
     }
   },
 
