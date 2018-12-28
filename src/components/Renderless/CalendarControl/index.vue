@@ -23,9 +23,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      calendars: state => state.Calendar.data
-    }),
+    calendars () {
+      return this.$store.getters['Calendar/getData']
+    },
 
     items () {
       return this.calendars.map(item => ({

@@ -1,32 +1,44 @@
-import { httpService } from '../services'
-import store from '../store';
+import { calendarService } from '../services'
+import { schema, normalize, denormalize } from 'normalizr'
+import { attendanceTypeSchema } from './AttendanceType'
+
+export const eventSchema = new schema.Entity('events', {
+  attendanceType: attendanceTypeSchema
+})
+export const eventListSchema = [ eventSchema ]
+export const calendarSchema = new schema.Entity('calendars', {
+  events: eventListSchema
+})
+export const calendarListSchema = [ calendarSchema ]
 
 const state = {
-  data: []
+  data: {
+    entities: {},
+    result: []
+  }
+}
+
+const getters = {
+  getData (state) {
+    return denormalize(state.data.result, calendarListSchema, state.data.entities)
+  }
 }
 
 const mutations = {
   setData (state, data) {
-    state.data = data
+    state.data = normalize(data, calendarListSchema)
   }
 }
 
 const actions = {
-  async fetchAll ({ commit }) {
+  async fetchAll (context) {
     try {
-      const resp = await httpService.get('calendars')
+      const calendars = await calendarService.get()
+      context.commit('setData', calendars)
 
-      const data = resp.data.data.map(item => ({
-        ...item,
-        events: item.events.data.map(calendarEvent => ({
-          ...calendarEvent,
-          attendanceType: calendarEvent.attendanceType.data
-        }))
-      }))
-
-      commit('setData', data)
+      return context.getters.getData
     } catch (err) {
-      throw new Error('Terjadi kesalahan ketika mengambil data kalender')
+      throw err
     }
   },
 
@@ -44,6 +56,7 @@ const actions = {
 export default {
   namespaced: true,
   state,
+  getters,
   mutations,
   actions
 }
