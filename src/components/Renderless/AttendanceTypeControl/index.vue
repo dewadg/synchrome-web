@@ -22,9 +22,9 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      attendanceTypes: state => state.AttendanceType.data
-    })
+    attendanceTypes () {
+      return this.$store.getters['AttendanceType/getData']
+    }
   },
 
   methods: {
