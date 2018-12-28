@@ -74,6 +74,7 @@ export default class RankModal extends Vue {
   }
 
   async open (editMode = false, id = null) {
+    this.clearForm()
     this.editMode = editMode
     this.id = id
 
