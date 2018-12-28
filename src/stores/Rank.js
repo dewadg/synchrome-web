@@ -67,7 +67,7 @@ const actions = {
 
   async destroy (context, id) {
     try {
-      await httpService.delete(`ranks/${id}`)
+      await rankService.delete(id)
     } catch (err) {
       throw new Error('Terjadi kesalahan ketika menghapus data golongan')
     }
