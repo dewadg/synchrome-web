@@ -16,18 +16,46 @@ const state = {
   data: {
     entities: {},
     result: []
+  },
+
+  form: {
+    id: null,
+    name: '',
+    start: '',
+    end: '',
+    published: false,
+    events: []
   }
 }
 
 const getters = {
   getData (state) {
     return denormalize(state.data.result, calendarListSchema, state.data.entities)
+  },
+
+  getForm (state) {
+    return state.form
   }
 }
 
 const mutations = {
   setData (state, data) {
     state.data = normalize(data, calendarListSchema)
+  },
+
+  setForm (state, form) {
+    state.form = form
+  },
+
+  clearForm (state) {
+    state.form = {
+      id: null,
+      name: '',
+      start: '',
+      end: '',
+      published: false,
+      events: []
+    }
   }
 }
 
@@ -45,11 +73,11 @@ const actions = {
 
   async store (context, payload) {
     try {
-        const resp = await httpService.post('calendars', payload)
+      const newCalendar = await calendarService.create(payload)
 
-        return resp.data
+      return newCalendar
     } catch (err) {
-      throw new Error('Terjadi kesalahan ketika menyimpan data kalender')
+      throw err
     }
   }
 }
