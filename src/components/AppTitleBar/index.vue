@@ -3,7 +3,7 @@
     app
     fixed
     dark
-    color="green darken-1"
+    color="primary"
   >
     <VToolbarSideIcon @click.native="toggleDrawer">
       <VIcon>menu</VIcon>

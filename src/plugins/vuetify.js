@@ -4,5 +4,9 @@ import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify, {
   customProperties: true,
-  iconfont: 'md'
+  iconfont: 'md',
+  theme: {
+    primary: '#ad1457',
+    accent: '#e91e63'
+  }
 })
