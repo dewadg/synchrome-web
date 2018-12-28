@@ -3,11 +3,11 @@ import { removeDataNamespace } from '@/helpers/data'
 export default class AttendanceType {
   _http = null
 
-  constructor(httpService) {
+  constructor (httpService) {
     this._http = httpService
   }
 
-  async get() {
+  async get () {
     try {
       const res = await this._http.get('attendance-types')
 

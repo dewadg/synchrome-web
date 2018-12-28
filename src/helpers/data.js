@@ -1,4 +1,4 @@
-export function removeDataNamespace(data) {
+export function removeDataNamespace (data) {
   if (Array.isArray(data)) {
     return data.map((item) => {
       return removeDataNamespace(item)

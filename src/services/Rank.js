@@ -18,7 +18,7 @@ export default class Rank {
     }
   }
 
-  async create(payload) {
+  async create (payload) {
     try {
       const res = await this._http.post('ranks', payload)
 
@@ -54,7 +54,7 @@ export default class Rank {
 
   async delete (id) {
     try {
-      const res = await this._http.delete(`ranks/${id}`)
+      await this._http.delete(`ranks/${id}`)
     } catch (err) {
       throw new Error(`Gagal menghapus data golongan ${id}`)
     }
