@@ -39,7 +39,10 @@
               <td v-html="props.item.name" />
               <td v-html="props.item.dateRange" />
               <td class="text-xs-right">
-                <VBtn @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })">
+                <VBtn
+                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
+                  small
+                >
                   Sunting
                 </VBtn>
               </td>
