@@ -55,11 +55,31 @@ const actions = {
     }
   },
 
+  async fetch (context, id) {
+    try {
+      const rank = await rankService.find(id)
+
+      return rank
+    } catch (err) {
+      throw err
+    }
+  },
+
   async store (context, data) {
     try {
       const newRank = await rankService.create(data)
 
       return newRank
+    } catch (err) {
+      throw err
+    }
+  },
+
+  async update (context, { id, data }) {
+    try {
+      const updatedRank = await rankService.update(id, data)
+
+      return updatedRank
     } catch (err) {
       throw err
     }

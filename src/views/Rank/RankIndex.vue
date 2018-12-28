@@ -18,7 +18,7 @@
             <VIcon>more_vert</VIcon>
           </VBtn>
           <VList>
-            <VListTile @click="showModal">
+            <VListTile @click="showModal(false, null)">
               <VListTileTitle>Tambah Golongan</VListTileTitle>
             </VListTile>
           </VList>
@@ -38,7 +38,12 @@
               <td v-html="props.item.id" />
               <td v-html="props.item.name" />
               <td class="text-xs-right">
-                <VBtn small>Sunting</VBtn>
+                <VBtn
+                  @click="showModal(true, props.item.id)"
+                  small
+                >
+                  Sunting
+                </VBtn>
                 <VBtn
                   @click="deleteHandler(props.item.id)"
                   small
@@ -98,8 +103,8 @@ export default class RankIndex extends Vue {
     this.$refs.rankControl.fetch()
   }
 
-  showModal () {
-    this.$refs.rankModal.open()
+  showModal (editMode = false, id = null) {
+    this.$refs.rankModal.open(editMode, id)
   }
 
   deleteHandler (id) {

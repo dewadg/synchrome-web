@@ -41,6 +41,8 @@ import { Action, Mutation, Getter } from 'vuex-class'
 export default class RankModal extends Vue {
   editMode = false
 
+  id = null
+
   showDialog = false
 
   isFormValid = false
@@ -59,8 +61,11 @@ export default class RankModal extends Vue {
   }
 
   @Mutation('Rank/clearForm') clearForm
+  @Mutation('Rank/setForm') setForm
 
   @Action('Rank/store') storeRank
+  @Action('Rank/fetch') fetchRank
+  @Action('Rank/update') updateRank
 
   close () {
     this.clearForm()
@@ -68,9 +73,15 @@ export default class RankModal extends Vue {
     this.showDialog = false
   }
 
-  open (editMode = false, id = null) {
+  async open (editMode = false, id = null) {
     this.editMode = editMode
     this.id = id
+
+    if (this.editMode) {
+      const rank = await this.fetchRank(this.id)
+      this.setForm(rank)
+    }
+
     this.showDialog = true
   }
 
@@ -81,6 +92,11 @@ export default class RankModal extends Vue {
     try {
       if (!this.editMode) {
         await this.storeRank(this.form)
+      } else {
+        await this.updateRank({
+          id: this.id,
+          data: this.form
+        })
       }
 
       this.close()
