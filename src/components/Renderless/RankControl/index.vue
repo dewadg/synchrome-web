@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   data () {
@@ -22,25 +22,25 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      ranks: state => state.Rank.data
-    })
+    ranks () {
+      return this.$store.getters['Rank/getData']
+    }
   },
 
   methods: {
     ...mapActions({
-      fetch: 'Rank/fetchAll'
+      fetchRanks: 'Rank/fetchAll'
     }),
 
-    async fetchHandler () {
+    async fetch () {
       this.loading = true
-      await this.fetch()
+      await this.fetchRanks()
       this.loading = false
     }
   },
 
   async mounted () {
-    await this.fetchHandler()
+    await this.fetch()
   }
 }
 </script>
