@@ -1,6 +1,7 @@
 <template>
   <PageWrapper>
     <CalendarForm
+      edit
       v-model="isFormValid"
       @submit="submitHandler(payload)"
     />
@@ -10,10 +11,10 @@
 <script>
 import moment from 'moment'
 import CalendarForm from '@/components/Forms/CalendarForm'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
-  name: 'CalendarCreate',
+  name: 'CalendarEdit',
 
   components: {
     CalendarForm
@@ -44,19 +45,36 @@ export default {
   },
 
   methods: {
-    ...mapActions({
-      storeCalendar: 'Calendar/store'
+    ...mapMutations({
+      setCalendar: 'Calendar/setForm'
     }),
+
+    ...mapActions({
+      fetchCalendar: 'Calendar/fetch',
+      updateCalendar: 'Calendar/update'
+    }),
+
+    async fetchHandler () {
+      const calendar = await this.fetchCalendar(this.$route.params.id)
+      this.setCalendar(calendar)
+    },
 
     async submitHandler (payload) {
       try {
-        await this.storeCalendar(payload)
+        await this.updateCalendar({
+          id: this.$route.params.id,
+          data: this.payload
+        })
 
         this.$router.push({ name: 'calendars' })
       } catch (err) {
         console.log(err)
       }
     }
+  },
+
+  async mounted () {
+    await this.fetchHandler()
   }
 }
 </script>

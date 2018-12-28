@@ -54,6 +54,14 @@ export default new Router({
       beforeEnter: middleware([
         auth
       ])
+    },
+    {
+      path: '/calendars/:id',
+      name: 'calendars.edit',
+      component: () => import('@/views/Calendar/CalendarEdit'),
+      beforeEnter: middleware([
+        auth
+      ])
     }
   ]
 })

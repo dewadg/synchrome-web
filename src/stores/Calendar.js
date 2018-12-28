@@ -79,6 +79,26 @@ const actions = {
     } catch (err) {
       throw err
     }
+  },
+
+  async fetch (context, id) {
+    try {
+      const calendar = await calendarService.find(id)
+
+      return calendar
+    } catch (err) {
+      throw err
+    }
+  },
+
+  async update (context, { id, data }) {
+    try {
+      const updatedCalendar = await calendarService.update(id, data)
+
+      return updatedCalendar
+    } catch (err) {
+      throw err
+    }
   }
 }
 

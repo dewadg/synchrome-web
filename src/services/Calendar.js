@@ -36,12 +36,23 @@ export default class Calendar {
 
       calendar.events = calendar.events.map(item => ({
         ...item,
-        ...EVENT_COLORS[item.attendanceType.id]
+        ...EVENT_COLORS[item.attendanceType.id],
+        attendanceTypeId: item.attendanceType.id
       }))
 
       return calendar
     } catch (err) {
       throw new Error(`Gagal mengambil data kalender kerja ${id}`)
+    }
+  }
+
+  async update (id, payload) {
+    try {
+      const res = await this._http.patch(`calendars/${id}`, payload)
+
+      return removeDataNamespace(res.data)
+    } catch (err) {
+      throw new Error(`Gagal memperbarui data kalender kerja ${id}`)
     }
   }
 }
