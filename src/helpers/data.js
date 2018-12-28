@@ -15,7 +15,7 @@ export function removeDataNamespace(data) {
 
     keys.forEach((item) => {
       if (newData[item] !== null && typeof newData[item].data === 'object') {
-        newData[item] = newData[item].data
+        newData[item] = removeDataNamespace(newData[item].data)
       }
     })
 
