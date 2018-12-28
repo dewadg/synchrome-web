@@ -2,14 +2,14 @@
   <form>
     <VTextField
       label="Kode"
-      v-model="value.id"
-      @input="$v.value.id.$touch"
+      v-model="form.id"
+      @input="$v.form.id.$touch"
       :error-messages="idErrors"
     />
     <VTextField
       label="Golongan"
-      v-model="value.name"
-      @input="$v.value.name.$touch"
+      v-model="form.name"
+      @input="$v.form.name.$touch"
       :error-messages="nameErrors"
     />
   </form>
@@ -17,18 +17,17 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import { emptyRank } from '@/stores/Rank'
 
 export default {
   props: {
     value: {
-      type: Object,
-      default: emptyRank()
+      type: Boolean,
+      required: true
     }
   },
 
   validations: {
-    value: {
+    form: {
       id: {
         required
       },
@@ -39,12 +38,22 @@ export default {
   },
 
   computed: {
+    form: {
+      get () {
+        return this.$store.getters['Rank/getForm']
+      },
+
+      set (val) {
+        this.$store.commit('Rank/setForm', val)
+      }
+    },
+
     idErrors () {
       const err = []
 
-      if (!this.$v.value.id.$dirty) return err
+      if (!this.$v.form.id.$invalid) return err
 
-      if (!this.$v.value.id.required) {
+      if (this.$v.form.id.$dirty && !this.$v.form.id.required) {
         err.push('Kode golongan harus diisi')
       }
 
@@ -54,9 +63,9 @@ export default {
     nameErrors () {
       const err = []
 
-      if (!this.$v.value.name.$dirty) return err
+      if (!this.$v.form.name.$invalid) return err
 
-      if (!this.$v.value.name.required) {
+      if (this.$v.form.name.$dirty && !this.$v.form.name.required) {
         err.push('Kode golongan harus diisi')
       }
 
@@ -65,20 +74,11 @@ export default {
   },
 
   watch: {
-    value: {
+    form: {
       deep: true,
       handler () {
-        this.$emit('isValid', !this.$v.$invalid)
-
-        return this.value
+        this.$emit('input', !this.$v.$invalid)
       }
-    }
-  },
-
-  methods: {
-    reset () {
-      this.$v.$reset()
-      this.$emit('input', emptyRank())
     }
   }
 }

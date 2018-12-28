@@ -4,21 +4,10 @@
     max-width="640px"
     @close="close"
   >
-    <VCard>
-      <VToolbar
-        flat
-        card
-        prominent
-      >
-        <VToolbarTitle v-html="title" />
-      </VToolbar>
+    <UtilityCard :title="title">
       <VCardText>
         <ErrorBoundary ref="errorBoundary">
-          <RankForm
-            ref="form"
-            v-model="form"
-            @isValid="toggleValidation"
-          />
+          <RankForm v-model="isFormValid" />
         </ErrorBoundary>
       </VCardText>
       <VCardActions>
@@ -26,15 +15,11 @@
         <VBtn @click="close">
           Batal
         </VBtn>
-        <VBtn
-          :disabled="!formValid"
-          @click="submit"
-          color="primary"
-        >
+        <VBtn @click="submit">
           Simpan
         </VBtn>
       </VCardActions>
-    </VCard>
+    </UtilityCard>
   </VDialog>
 </template>
 
@@ -46,8 +31,7 @@ import {
   Watch
 } from 'vue-property-decorator'
 import RankForm from '@/components/Forms/RankForm'
-import { emptyRank } from '@/stores/Rank'
-import { Action } from 'vuex-class'
+import { Action, Mutation, Getter } from 'vuex-class'
 
 @Component({
   components: {
@@ -59,34 +43,27 @@ export default class RankModal extends Vue {
 
   showDialog = false
 
-  id = null
+  isFormValid = false
 
-  formValid = false
-
-  form = emptyRank()
+  @Getter('Rank/getForm') form
 
   get title () {
-    if (!this.editMode) {
-      return 'Tambah Golongan'
-    }
-
-    return 'Sunting Golongan'
+    return !this.editMode ? 'Tambah Golongan' : 'Edit Golongan'
   }
 
   @Watch('showDialog')
   onShowDialogChange (val) {
     if (!val) {
-      this.$refs.form.reset()
       this.$refs.errorBoundary.reset()
     }
   }
 
-  toggleValidation (val) {
-    this.formValid = val
-  }
+  @Mutation('Rank/clearForm') clearForm
+
+  @Action('Rank/store') storeRank
 
   close () {
-    this.$refs.form.reset()
+    this.clearForm()
     this.$refs.errorBoundary.reset()
     this.showDialog = false
   }
@@ -97,11 +74,9 @@ export default class RankModal extends Vue {
     this.showDialog = true
   }
 
-  @Action('Rank/store') storeRank
-
   @Emit()
   async submit () {
-    if (!this.formValid) return
+    if (!this.isFormValid) return
 
     try {
       if (!this.editMode) {
@@ -110,7 +85,7 @@ export default class RankModal extends Vue {
 
       this.close()
     } catch (err) {
-      this.$refs.errorBoundary.trigger(err.message)
+      this.$refs.errorBoundary.trigger(err)
     }
   }
 }
