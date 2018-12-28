@@ -6,6 +6,7 @@ export const eventSchema = new schema.Entity('events', {
   attendanceType: attendanceTypeSchema
 })
 export const eventListSchema = [ eventSchema ]
+
 export const calendarSchema = new schema.Entity('calendars', {
   events: eventListSchema
 })
