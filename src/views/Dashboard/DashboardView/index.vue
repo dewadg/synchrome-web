@@ -102,19 +102,15 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator'
-import AttendanceStats from './AttendanceStats'
-import TppStats from './TppStats'
-import SyncActivityStats from './SyncActivityStats'
+import AttendanceStats from '@/components/AttendanceStats'
+import TppStats from '@/components/TppStats'
+import SyncActivityStats from '@/components/SyncActivityStats'
 
-@Component({
+export default {
   components: {
     AttendanceStats,
     TppStats,
     SyncActivityStats
   }
-})
-export default class DashboardView extends Vue {
-
 }
 </script>

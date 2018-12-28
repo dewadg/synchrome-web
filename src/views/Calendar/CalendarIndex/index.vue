@@ -45,42 +45,41 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component
-} from 'vue-property-decorator'
 import CalendarControl from '@/components/Renderless/CalendarControl'
 
-@Component({
+export default {
+  name: 'CalendarIndex',
+
   components: {
     CalendarControl
-  }
-})
-export default class CalendarIndex extends Vue {
-  query = ''
+  },
 
-  get tableHeaders () {
-    return [
-      {
-        value: 'id',
-        text: 'Kode',
-        sortable: false
-      },
-      {
-        value: 'name',
-        text: 'Kalender',
-        sortable: true
-      },
-      {
-        value: 'dateRange',
-        text: 'Masa Berlaku',
-        sortable: false
-      }
-    ]
+  data () {
+    return {
+      query: ''
+    }
+  },
+
+  computed: {
+    tableHeaders () {
+      return [
+        {
+          value: 'id',
+          text: 'Kode',
+          sortable: false
+        },
+        {
+          value: 'name',
+          text: 'Kalender',
+          sortable: true
+        },
+        {
+          value: 'dateRange',
+          text: 'Masa Berlaku',
+          sortable: false
+        }
+      ]
+    }
   }
 }
 </script>
-
-<style>
-
-</style>

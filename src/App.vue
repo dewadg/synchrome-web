@@ -15,23 +15,25 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
-
 import AppNav from '@/components/AppNav'
 import AppTitleBar from '@/components/AppTitleBar'
 
-@Component({
+export default {
   components: {
     AppNav,
     AppTitleBar
-  }
-})
-export default class App extends Vue {
-  drawer = false
+  },
 
-  get isLoginPage () {
-    return this.$route.name === 'login'
+  data () {
+    return {
+      drawer: false
+    }
+  },
+
+  computed: {
+    isLoginPage () {
+      return this.$route.name === 'login'
+    }
   }
 }
 </script>

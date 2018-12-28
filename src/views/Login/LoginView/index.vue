@@ -47,31 +47,36 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component,
-  Watch
-} from 'vue-property-decorator'
+export default {
+  name: 'LoginView',
 
-@Component
-export default class LoginView extends Vue {
-  form = {
-    name: '',
-    password: ''
-  }
+  data () {
+    return {
+      form: {
+        name: '',
+        password: ''
+      }
+    }
+  },
 
-  @Watch('form', { deep: true })
-  formChangeHandler () {
-    this.$refs.errorBoundary.reset()
-  }
+  watch: {
+    form: {
+      deep: true,
+      handler (val) {
+        this.$refs.errorBoundary.reset()
+      }
+    }
+  },
 
-  async submitHandler () {
-    try {
-      await this.$auth.authenticate(this.form)
+  methods: {
+    async submitHandler () {
+      try {
+        await this.$auth.authenticate(this.form)
 
-      this.$router.push({ name: 'dashboard' })
-    } catch (err) {
-      this.$refs.errorBoundary.trigger(err)
+        this.$router.push({ name: 'dashboard' })
+      } catch (err) {
+        this.$refs.errorBoundary.trigger(err)
+      }
     }
   }
 }

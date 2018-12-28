@@ -64,58 +64,65 @@
 </template>
 
 <script>
-import { Vue, Component } from 'vue-property-decorator'
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from '@/components/Modals/RankModal'
-import { Action } from 'vuex-class'
+import { mapActions } from 'vuex'
 
-@Component({
+export default {
+  name: 'RankIndex',
+
   components: {
     RankControl,
     RankModal
-  }
-})
-export default class RankIndex extends Vue {
-  query = ''
+  },
 
-  tableHeaders = [
-    {
-      value: 'id',
-      text: 'Kode',
-      sortable: false
-    },
-    {
-      value: 'name',
-      text: 'Golongan',
-      sortable: false
-    },
-    {
-      value: null,
-      text: 'Tindakan',
-      sortable: false,
-      align: 'right'
+  data () {
+    return {
+      query: '',
+      tableHeaders: [
+        {
+          value: 'id',
+          text: 'Kode',
+          sortable: false
+        },
+        {
+          value: 'name',
+          text: 'Golongan',
+          sortable: false
+        },
+        {
+          value: null,
+          text: 'Tindakan',
+          sortable: false,
+          align: 'right'
+        }
+      ]
     }
-  ]
+  },
 
-  @Action('Rank/destroy') deleteRank
+  methods: {
+    ...mapActions({
+      deleteRank: 'Rank/delete'
+    }),
 
-  refreshTable () {
-    this.$refs.rankControl.fetch()
-  }
+    refreshTable () {
+      this.$refs.rankControl.fetch()
+    },
 
-  showModal (editMode = false, id = null) {
-    this.$refs.rankModal.open(editMode, id)
-  }
+    showModal (editMode = false, id = null) {
+      this.$refs.rankModal.open(editMode, id)
+    },
 
-  deleteHandler (id) {
-    this.$confirm(
-      'Hapus Golongan',
-      'Apakah anda yakin ingin menghapus data golongan ini?',
-      async () => {
-        await this.deleteRank(id)
-        await this.refreshTable()
-      }
-    )
+    deleteHandler (id) {
+      this.$confirm(
+        'Hapus Golongan',
+        'Apakah anda yakin ingin menghapus data golongan ini?',
+        async () => {
+          await this.deleteRank(id)
+          await this.refreshTable()
+        }
+      )
+    }
   }
 }
 </script>
