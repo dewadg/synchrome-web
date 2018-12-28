@@ -1,27 +1,29 @@
 <template>
   <PageWrapper>
-    <VCard>
-      <VToolbar
-        flat
-        card
-        prominent
-      >
-        <VToolbarTitle>Daftar Kalender Kerja</VToolbarTitle>
-        <VBtn
-          @click="$router.push({ name: 'calendars.create' })"
-          small
-          color="primary"
-          class="ml-3"
-        >
-          Tambah Baru
-        </VBtn>
-        <VSpacer />
+    <UtilityCard title="Daftar Kalender Kerja">
+      <template slot="toolbar">
         <VTextField
           prepend-icon="search"
           placeholder="Pencarian"
           v-model="query"
         />
-      </VToolbar>
+        <VMenu
+          bottom
+          left
+        >
+          <VBtn
+            slot="activator"
+            icon
+          >
+            <VIcon>more_vert</VIcon>
+          </VBtn>
+          <VList>
+            <VListTile :to="{ name: 'calendars.create' }">
+              <VListTileTitle>Tambah Kalender Kerja</VListTileTitle>
+            </VListTile>
+          </VList>
+        </VMenu>
+      </template>
       <CalendarControl ref="calendarControl">
         <template slot-scope="{ items }">
           <VDataTable
@@ -40,7 +42,7 @@
           </VDataTable>
         </template>
       </CalendarControl>
-    </VCard>
+    </UtilityCard>
   </PageWrapper>
 </template>
 
