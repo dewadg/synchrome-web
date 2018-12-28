@@ -16,6 +16,7 @@ import { httpService, authService } from './services'
 import ErrorBoundary from './components/ErrorBoundary'
 import PageWrapper from './components/PageWrapper'
 import DatePicker from './components/DatePicker'
+import UtilityCard from './components/UtilityCard'
 
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
@@ -25,6 +26,7 @@ Vue.prototype.$auth = authService
 Vue.component('ErrorBoundary', ErrorBoundary)
 Vue.component('PageWrapper', PageWrapper)
 Vue.component('DatePicker', DatePicker)
+Vue.component('UtilityCard', UtilityCard)
 
 moment.locale('id')
 
