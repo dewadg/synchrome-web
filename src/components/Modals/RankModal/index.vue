@@ -15,7 +15,11 @@
         <VBtn @click="close">
           Batal
         </VBtn>
-        <VBtn @click="submit">
+        <VBtn
+          :disabled="!isFormValid"
+          color="primary"
+          @click="submit"
+        >
           Simpan
         </VBtn>
       </VCardActions>
