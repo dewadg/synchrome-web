@@ -1,27 +1,29 @@
 <template>
   <PageWrapper>
-    <VCard>
-      <VToolbar
-        flat
-        card
-        prominent
-      >
-        <VToolbarTitle>Daftar Golongan</VToolbarTitle>
-        <VBtn
-          @click="showModal"
-          small
-          color="primary"
-          class="ml-3"
-        >
-          Tambah Baru
-        </VBtn>
-        <VSpacer />
+    <UtilityCard title="Daftar Golongan">
+      <template slot="toolbar">
         <VTextField
           prepend-icon="search"
           placeholder="Pencarian"
           v-model="query"
         />
-      </VToolbar>
+        <VMenu
+          bottom
+          left
+        >
+          <VBtn
+            slot="activator"
+            icon
+          >
+            <VIcon>more_vert</VIcon>
+          </VBtn>
+          <VList>
+            <VListTile @click="showModal">
+              <VListTileTitle>Tambah Golongan</VListTileTitle>
+            </VListTile>
+          </VList>
+        </VMenu>
+      </template>
       <RankControl ref="rankControl">
         <template slot-scope="{ items }">
           <VDataTable
@@ -48,7 +50,7 @@
           </VDataTable>
         </template>
       </RankControl>
-    </VCard>
+    </UtilityCard>
     <RankModal
       ref="rankModal"
       @submit="refreshTable"
@@ -93,7 +95,7 @@ export default class RankIndex extends Vue {
   @Action('Rank/destroy') deleteRank
 
   refreshTable () {
-    this.$refs.rankControl.fetchHandler()
+    this.$refs.rankControl.fetch()
   }
 
   showModal () {
