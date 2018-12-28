@@ -15,7 +15,10 @@
           >
             <VTextField
               v-model="form.name"
-              class="pt-3"
+              class="pt-2"
+              placeholder="Nama kalender"
+              solo
+              flat
             />
             <VSpacer />
             {{ formattedStartDate }} - {{ formattedEndDate }}
