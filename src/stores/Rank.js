@@ -51,7 +51,7 @@ const actions = {
 
       return context.getters.getData
     } catch (err) {
-      return err
+      throw err
     }
   },
 
