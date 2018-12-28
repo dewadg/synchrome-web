@@ -94,84 +94,100 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component
-} from 'vue-property-decorator'
-import { Action } from 'vuex-class'
-import FullCalendar from '@/components/FullCalendar'
 import moment from 'moment'
+import FullCalendar from '@/components/FullCalendar'
 import CalendarDetailsForm from '@/components/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
 import validator from './validator'
+import { mapActions } from 'vuex'
 
-@Component({
+export default {
+  name: 'CalendarCreate',
+
   components: {
     FullCalendar,
     CalendarDetailsForm,
     CalendarEventsCard
   },
-  validations: {
-    payload: validator
-  }
-})
-export default class CalendarCreate extends Vue {
-  form = {
-    name: '',
-    start: moment().startOf('year').format('YYYY-MM-DD'),
-    end: moment().endOf('year').format('YYYY-MM-DD'),
-    published: false,
-    events: []
-  }
 
-  get calendarName () {
-    return this.form.name === '' ? 'Tambah Kalender Kerja' : this.form.name
-  }
+  computed: {
+    form: {
+      get () {
+        return this.$store.getters['Calendar/getForm']
+      },
 
-  get formattedStartDate () {
-    return moment(this.form.start).format('LL')
-  }
+      set (val) {
+        this.$store.commit('Calendar/setForm', val)
+      }
+    },
 
-  get formattedEndDate () {
-    return moment(this.form.end).format('LL')
-  }
+    calendarName () {
+      return this.form.name === '' ? 'Tambah Kalender Kerja' : this.form.name
+    },
 
-  get publicationTypes () {
-    return [
-      { id: true, name: 'Publikasikan' },
-      { id: false, name: 'Draft' }
-    ]
-  }
+    formattedStartDate () {
+      return moment(this.form.start).format('LL')
+    },
 
-  get payload () {
-    return {
-      ...this.form,
-      events: this.form.events.map(item => ({
-        title: item.title,
-        start: item.start,
-        end: item.end,
-        attendanceTypeId: item.attendanceTypeId
-      }))
+    formattedEndDate () {
+      return moment(this.form.end).format('LL')
+    },
+
+    publicationTypes () {
+      return [
+        { id: true, name: 'Publikasikan' },
+        { id: false, name: 'Draft' }
+      ]
+    },
+
+    payload () {
+      return {
+        ...this.form,
+        events: this.form.events.map(item => ({
+          title: item.title,
+          start: item.start,
+          end: item.end,
+          attendanceTypeId: item.attendanceTypeId
+        }))
+      }
     }
-  }
+  },
 
-  @Action('Calendar/store') storeCalendar
+  validations: {
+    form: validator
+  },
 
-  showCalendarForm () {
-    this.$refs.calendarForm.show()
-  }
+  methods: {
+    ...mapActions({
+      storeCalendar: 'Calendar/store'
+    }),
 
-  clearEvents () {
-    this.form.events = []
-  }
+    showCalendarForm () {
+      this.$refs.calendarForm.show()
+    },
 
-  async submitHandler (payload) {
-    try {
-      await this.storeCalendar(payload)
+    clearEvents () {
+      this.form.events = []
+    },
 
-      this.$router.push({ name: 'calendars' })
-    } catch (err) {
-      console.log(err)
+    async submitHandler (payload) {
+      try {
+        await this.storeCalendar(payload)
+
+        this.$router.push({ name: 'calendars' })
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  },
+
+  created () {
+    this.form = {
+      name: '',
+      start: moment().startOf('year').format('YYYY-MM-DD'),
+      end: moment().endOf('year').format('YYYY-MM-DD'),
+      published: false,
+      events: []
     }
   }
 }
