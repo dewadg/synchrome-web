@@ -24,6 +24,10 @@ export default class Rank {
 
       return removeDataNamespace(res.data)
     } catch (err) {
+      if (err.response.status === 422 && err.response.data.id) {
+        throw new Error('Kode golongan sudah terdaftar')
+      }
+
       throw new Error('Gagal menyimpan data golongan')
     }
   }
