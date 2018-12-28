@@ -14,7 +14,6 @@ export default class Calendar {
 
       return removeDataNamespace(res.data)
     } catch (err) {
-      console.error(err)
       throw new Error('Gagal mengambil data kalender kerja')
     }
   }

@@ -13,7 +13,6 @@ export default class AttendanceType {
 
       return removeDataNamespace(res.data)
     } catch (err) {
-      console.error(err)
       throw new Error('Gagal mengambil data jenis absensi')
     }
   }
