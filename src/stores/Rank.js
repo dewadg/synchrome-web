@@ -8,18 +8,38 @@ const state = {
   data: {
     entities: {},
     result: []
+  },
+
+  form: {
+    id: null,
+    name: ''
   }
 }
 
 const mutations = {
   setData (state, data) {
     state.data = normalize(data, rankListSchema)
+  },
+
+  setForm (state, form) {
+    state.form = form
+  },
+
+  clearForm (state) {
+    state.form = {
+      id: null,
+      name: ''
+    }
   }
 }
 
 const getters = {
   getData (state) {
     return denormalize(state.data.result, rankListSchema, state.data.entities)
+  },
+
+  getForm (state) {
+    return state.form
   }
 }
 
@@ -37,15 +57,11 @@ const actions = {
 
   async store (context, data) {
     try {
-      const resp = await httpService.post('ranks', data)
+      const newRank = await rankService.create(data)
 
-      return resp.data.data
+      return newRank
     } catch (err) {
-      if (err.response.status === 422 && err.response.data.id) {
-        throw new Error('Kode golongan sudah terdaftar')
-      }
-
-      throw new Error('Terjadi kesalahan ketika menyimpan data golongan')
+      throw err
     }
   },
 
@@ -55,13 +71,6 @@ const actions = {
     } catch (err) {
       throw new Error('Terjadi kesalahan ketika menghapus data golongan')
     }
-  }
-}
-
-export function emptyRank () {
-  return {
-    id: '',
-    name: ''
   }
 }
 
