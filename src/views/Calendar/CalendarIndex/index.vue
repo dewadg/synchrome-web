@@ -39,6 +39,7 @@
               <td v-html="props.item.id" />
               <td v-html="props.item.name" />
               <td v-html="props.item.dateRange" />
+              <td v-html="props.item.published ? 'Publik' : 'Draft'" />
               <td class="text-xs-right">
                 <VBtn
                   @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
@@ -94,6 +95,11 @@ export default {
         {
           value: 'dateRange',
           text: 'Masa Berlaku',
+          sortable: false
+        },
+        {
+          value: 'published',
+          text: 'Status',
           sortable: false
         },
         {
