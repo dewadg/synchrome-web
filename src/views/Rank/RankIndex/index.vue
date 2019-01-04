@@ -18,6 +18,9 @@
             <VIcon>more_vert</VIcon>
           </VBtn>
           <VList>
+            <VListTile @click="refreshTable">
+              <VListTileTitle>Perbarui</VListTileTitle>
+            </VListTile>
             <VListTile @click="showModal(false, null)">
               <VListTileTitle>Tambah Golongan</VListTileTitle>
             </VListTile>
@@ -25,8 +28,18 @@
         </VMenu>
       </template>
       <RankControl ref="rankControl">
-        <template slot-scope="{ items }">
+        <template slot-scope="{ items, loading }">
+          <VCardText
+            v-if="loading"
+            class="text-xs-center"
+          >
+            <VProgressCircular
+              :size="62"
+              :indeterminate="true"
+            />
+          </VCardText>
           <VDataTable
+            v-if="!loading"
             :headers="tableHeaders"
             :items="items"
             :search="query"
