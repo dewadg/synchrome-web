@@ -5,9 +5,6 @@ import middleware, { auth } from './middleware'
 import LoginView from './views/Login/LoginView'
 import DashboardView from './views/Dashboard/DashboardView'
 
-// Ranks
-import RankIndex from './views/Rank/RankIndex'
-
 Vue.use(Router)
 
 export default new Router({
@@ -32,7 +29,7 @@ export default new Router({
     {
       path: '/ranks',
       name: 'ranks',
-      component: RankIndex,
+      component: () => import('@/views/Rank/RankIndex'),
       beforeEnter: middleware([
         auth
       ])
