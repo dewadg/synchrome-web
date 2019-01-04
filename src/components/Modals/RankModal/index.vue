@@ -28,85 +28,92 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component,
-  Emit,
-  Watch
-} from 'vue-property-decorator'
 import RankForm from '@/components/Forms/RankForm'
-import { Action, Mutation, Getter } from 'vuex-class'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
-@Component({
+export default {
   components: {
     RankForm
-  }
-})
-export default class RankModal extends Vue {
-  editMode = false
+  },
 
-  id = null
+  data () {
+    return {
+      editMode: false,
+      id: null,
+      showDialog: false,
+      isFormValid: false
+    }
+  },
 
-  showDialog = false
+  computed: {
+    ...mapGetters({
+      form: 'Rank/getForm'
+    }),
 
-  isFormValid = false
+    title () {
+      return !this.editMode ? 'Tambah Golongan' : 'Edit Golongan'
+    }
+  },
 
-  @Getter('Rank/getForm') form
+  watch: {
+    showDialog: {
+      handler (val) {
+        if (!val) {
+          this.$refs.errorBoundary.reset()
+        }
+      }
+    }
+  },
 
-  get title () {
-    return !this.editMode ? 'Tambah Golongan' : 'Edit Golongan'
-  }
+  methods: {
+    ...mapMutations({
+      clearForm: 'Rank/clearForm',
+      setForm: 'Rank/setForm'
+    }),
 
-  @Watch('showDialog')
-  onShowDialogChange (val) {
-    if (!val) {
+    ...mapActions({
+      storeRank: 'Rank/store',
+      fetchRank: 'Rank/fetch',
+      updateRank: 'Rank/update'
+    }),
+
+    close () {
+      this.clearForm()
       this.$refs.errorBoundary.reset()
-    }
-  }
+      this.showDialog = false
+    },
 
-  @Mutation('Rank/clearForm') clearForm
-  @Mutation('Rank/setForm') setForm
+    async open (editMode = false, id = null) {
+      this.clearForm()
+      this.editMode = editMode
+      this.id = id
 
-  @Action('Rank/store') storeRank
-  @Action('Rank/fetch') fetchRank
-  @Action('Rank/update') updateRank
-
-  close () {
-    this.clearForm()
-    this.$refs.errorBoundary.reset()
-    this.showDialog = false
-  }
-
-  async open (editMode = false, id = null) {
-    this.clearForm()
-    this.editMode = editMode
-    this.id = id
-
-    if (this.editMode) {
-      const rank = await this.fetchRank(this.id)
-      this.setForm(rank)
-    }
-
-    this.showDialog = true
-  }
-
-  @Emit()
-  async submit () {
-    if (!this.isFormValid) return
-
-    try {
-      if (!this.editMode) {
-        await this.storeRank(this.form)
-      } else {
-        await this.updateRank({
-          id: this.id,
-          data: this.form
-        })
+      if (this.editMode) {
+        const rank = await this.fetchRank(this.id)
+        this.setForm(rank)
       }
 
-      this.close()
-    } catch (err) {
-      this.$refs.errorBoundary.trigger(err)
+      this.showDialog = true
+    },
+
+    async submit () {
+      if (!this.isFormValid) return
+
+      try {
+        if (!this.editMode) {
+          await this.storeRank(this.form)
+        } else {
+          await this.updateRank({
+            id: this.id,
+            data: this.form
+          })
+        }
+
+        this.close()
+        this.$emit('submit')
+      } catch (err) {
+        this.$refs.errorBoundary.trigger(err)
+      }
     }
   }
 }

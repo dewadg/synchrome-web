@@ -32,34 +32,31 @@
 </template>
 
 <script>
-import {
-  Vue,
-  Component,
-  Emit
-} from 'vue-property-decorator'
+export default {
+  data () {
+    return {
+      showDialog: false,
+      title: '',
+      description: ''
+    }
+  },
 
-@Component
-export default class MessageBox extends Vue {
-  showDialog = false
+  methods: {
+    show (title, description) {
+      this.title = title
+      this.description = description
+      this.showDialog = true
+    },
 
-  title = ''
+    ok () {
+      this.showDialog = false
+      this.$emit('ok')
+    },
 
-  description = ''
-
-  show (title, description) {
-    this.title = title
-    this.description = description
-    this.showDialog = true
-  }
-
-  @Emit()
-  cancel () {
-    this.showDialog = false
-  }
-
-  @Emit()
-  ok () {
-    this.showDialog = false
+    cancel () {
+      this.showDialog = false
+      this.$emit('cancel')
+    }
   }
 }
 </script>
