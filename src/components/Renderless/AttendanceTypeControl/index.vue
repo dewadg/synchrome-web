@@ -1,12 +1,9 @@
 <template>
   <div>
-    <VProgressLinear
-      v-if="loading"
-      :indeterminate="loading"
-    />
     <slot
-      v-if="!loading"
-      :items="attendanceTypes"
+      :items="items"
+      :loading="loading"
+      :fetch="fetch"
     />
   </div>
 </template>
@@ -22,25 +19,25 @@ export default {
   },
 
   computed: {
-    attendanceTypes () {
+    items () {
       return this.$store.getters['AttendanceType/getData']
     }
   },
 
   methods: {
     ...mapActions({
-      fetch: 'AttendanceType/fetchAll'
+      fetchAttendanceTypes: 'AttendanceType/fetchAll'
     }),
 
-    async fetchHandler () {
+    async fetch () {
       this.loading = true
-      await this.fetch()
+      await this.fetchAttendanceTypes()
       this.loading = false
     }
   },
 
   async mounted () {
-    await this.fetchHandler()
+    await this.fetch()
   }
 }
 </script>
