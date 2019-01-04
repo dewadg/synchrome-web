@@ -25,8 +25,13 @@
           v-model="value.end"
         />
         <AttendanceTypeControl>
-          <template slot-scope="{ items }">
+          <template slot-scope="{ items, loading }">
+            <VProgressLinear
+              v-if="loading"
+              :indeterminate="true"
+            />
             <VSelect
+              v-if="!loading"
               label="Jenis Absensi/Presensi"
               v-model="value.attendanceTypeId"
               :items="filterAttendanceTypes(items)"
