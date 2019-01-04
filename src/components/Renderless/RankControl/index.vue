@@ -1,12 +1,9 @@
 <template>
   <div>
-    <VProgressLinear
-      v-if="loading"
-      :indeterminate="loading"
-    />
     <slot
-      v-if="!loading"
-      :items="ranks"
+      :items="items"
+      :loading="loading"
+      :fetch="fetch"
     />
   </div>
 </template>
@@ -22,7 +19,7 @@ export default {
   },
 
   computed: {
-    ranks () {
+    items () {
       return this.$store.getters['Rank/getData']
     }
   },
