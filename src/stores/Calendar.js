@@ -99,6 +99,14 @@ const actions = {
     } catch (err) {
       throw err
     }
+  },
+
+  async delete (context, id) {
+    try {
+      await calendarService.delete(id)
+    } catch (err) {
+      throw err
+    }
   }
 }
 

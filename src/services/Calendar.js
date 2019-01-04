@@ -54,4 +54,12 @@ export default class Calendar {
       throw new Error(`Gagal memperbarui data kalender kerja ${id}`)
     }
   }
+
+  async delete (id) {
+    try {
+      await this._http.delete(`calendars/${id}`)
+    } catch (err) {
+      throw new Error(`Gagal menghapus data kalender kerja ${id}`)
+    }
+  }
 }
