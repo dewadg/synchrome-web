@@ -40,6 +40,8 @@ new Vue({
   render: h => h(App),
 
   created () {
+    document.title = process.env.VUE_APP_APP_NAME
+
     try {
       authService.refresh()
     } catch (err) {
