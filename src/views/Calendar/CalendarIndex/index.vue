@@ -18,6 +18,9 @@
             <VIcon>more_vert</VIcon>
           </VBtn>
           <VList>
+            <VListTile @click="refreshTable">
+              <VListTileTitle>Perbarui</VListTileTitle>
+            </VListTile>
             <VListTile :to="{ name: 'calendars.create' }">
               <VListTileTitle>Tambah Kalender Kerja</VListTileTitle>
             </VListTile>
@@ -25,8 +28,18 @@
         </VMenu>
       </template>
       <CalendarControl ref="calendarControl">
-        <template slot-scope="{ items }">
+        <template slot-scope="{ items, loading }">
+          <VCardText
+            v-if="loading"
+            class="text-xs-center"
+          >
+            <VProgressCircular
+              :size="64"
+              :indeterminate="true"
+            />
+          </VCardText>
           <VDataTable
+            v-if="!loading"
             :headers="tableHeaders"
             :items="items"
             :search="query"
@@ -45,6 +58,12 @@
                 >
                   Sunting
                 </VBtn>
+                <VBtn
+                  @click="deleteHandler(props.item.id)"
+                  small
+                >
+                  Hapus
+                </VBtn>
               </td>
             </template>
           </VDataTable>
@@ -56,6 +75,7 @@
 
 <script>
 import CalendarControl from '@/components/Renderless/CalendarControl'
+import { mapActions } from 'vuex';
 
 export default {
   name: 'CalendarIndex',
@@ -95,6 +115,27 @@ export default {
           align: 'right'
         }
       ]
+    }
+  },
+
+  methods: {
+    ...mapActions({
+      deleteCalendar: 'Calendar/delete'
+    }),
+
+    refreshTable () {
+      this.$refs.calendarControl.fetch()
+    },
+
+    deleteHandler (id) {
+      this.$confirm(
+        'Hapus Kalender Kerja',
+        'Apakah anda yakin ingin menghapus data kalender kerja ini ini?',
+        async () => {
+          await this.deleteCalendar(id)
+          await this.$refs.calendarControl.fetch()
+        }
+      )
     }
   }
 }
