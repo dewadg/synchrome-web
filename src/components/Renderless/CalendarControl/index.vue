@@ -1,12 +1,9 @@
 <template>
   <div>
-    <VProgressLinear
-      v-if="loading"
-      :indeterminate="loading"
-    />
     <slot
-      v-if="!loading"
       :items="items"
+      :loading="loading"
+      :fetch="fetch"
     />
   </div>
 </template>
@@ -37,18 +34,18 @@ export default {
 
   methods: {
     ...mapActions({
-      fetch: 'Calendar/fetchAll'
+      fetchCalendars: 'Calendar/fetchAll'
     }),
 
-    async fetchHandler () {
+    async fetch () {
       this.loading = true
-      await this.fetch()
+      await this.fetchCalendars()
       this.loading = false
     }
   },
 
   async mounted () {
-    await this.fetchHandler()
+    await this.fetch()
   }
 }
 </script>
