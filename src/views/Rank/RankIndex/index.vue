@@ -2,30 +2,18 @@
   <PageWrapper>
     <UtilityCard title="Daftar Golongan">
       <template slot="toolbar">
-        <VTextField
-          prepend-icon="search"
+        <UtilityCardSearchBar
           placeholder="Pencarian"
           v-model="query"
         />
-        <VMenu
-          bottom
-          left
-        >
-          <VBtn
-            slot="activator"
-            icon
-          >
-            <VIcon>more_vert</VIcon>
-          </VBtn>
-          <VList>
-            <VListTile @click="refreshTable">
-              <VListTileTitle>Perbarui</VListTileTitle>
-            </VListTile>
-            <VListTile @click="showModal(false, null)">
-              <VListTileTitle>Tambah Golongan</VListTileTitle>
-            </VListTile>
-          </VList>
-        </VMenu>
+        <UtilityCardMenu>
+          <VListTile @click="refreshTable">
+            <VListTileTitle>Perbarui</VListTileTitle>
+          </VListTile>
+          <VListTile @click="showModal(false, null)">
+            <VListTileTitle>Tambah Golongan</VListTileTitle>
+          </VListTile>
+        </UtilityCardMenu>
       </template>
       <RankControl ref="rankControl">
         <template slot-scope="{ items, loading }">
