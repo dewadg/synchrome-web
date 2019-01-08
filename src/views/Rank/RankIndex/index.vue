@@ -2,14 +2,17 @@
   <PageWrapper>
     <UtilityCard title="Daftar Golongan">
       <template slot="toolbar">
+        <VBtn
+          icon
+          @click="refreshTable"
+        >
+          <VIcon>refresh</VIcon>
+        </VBtn>
         <UtilityCardSearchBar
           placeholder="Pencarian"
           v-model="query"
         />
         <UtilityCardMenu>
-          <VListTile @click="refreshTable">
-            <VListTileTitle>Perbarui</VListTileTitle>
-          </VListTile>
           <VListTile @click="showModal(false, null)">
             <VListTileTitle>Tambah Golongan</VListTileTitle>
           </VListTile>

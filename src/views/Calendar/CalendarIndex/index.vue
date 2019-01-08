@@ -2,14 +2,17 @@
   <PageWrapper>
     <UtilityCard title="Daftar Kalender Kerja">
       <template slot="toolbar">
+        <VBtn
+          icon
+          @click="refreshTable"
+        >
+          <VIcon>refresh</VIcon>
+        </VBtn>
         <UtilityCardSearchBar
           placeholder="Pencarian"
           v-model="query"
         />
         <UtilityCardMenu>
-          <VListTile @click="refreshTable">
-            <VListTileTitle>Perbarui</VListTileTitle>
-          </VListTile>
           <VListTile :to="{ name: 'calendars.create' }">
             <VListTileTitle>Tambah Kalender Kerja</VListTileTitle>
           </VListTile>
