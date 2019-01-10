@@ -150,7 +150,7 @@ export default {
         { id: true, name: 'Publikasikan' },
         { id: false, name: 'Draft' }
       ]
-    },
+    }
   },
 
   validations: {

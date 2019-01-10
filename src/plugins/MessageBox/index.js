@@ -10,7 +10,7 @@ const Plugin = {
       cancelCallback = () => {}
     ) => {
       const Component = Vue.extend(MessageBox)
-      const msgBox = new Component
+      const msgBox = new Component()
 
       msgBox.$mount(this.$el)
       msgBox.show(title, description)

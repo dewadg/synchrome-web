@@ -67,7 +67,7 @@
 
 <script>
 import CalendarControl from '@/components/Renderless/CalendarControl'
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'CalendarIndex',

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import CalendarForm from '@/components/Forms/CalendarForm'
 import { mapGetters, mapActions } from 'vuex'
 
