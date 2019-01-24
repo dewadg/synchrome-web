@@ -39,6 +39,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { authService } from '@/services'
+import { GET_LOGGED_USER_NAME } from '@/stores/types/loggedUser'
 
 export default {
   props: {
@@ -50,7 +51,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      userName: 'LoggedUser/name'
+      userName: GET_LOGGED_USER_NAME
     }),
 
     appName () {

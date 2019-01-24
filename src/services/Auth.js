@@ -1,6 +1,10 @@
 import store from '../store'
 import router from '../router'
 import Cookies from 'js-cookie'
+import {
+  SET_LOGGED_USER,
+  RESET_LOGGED_USER
+} from '@/stores/types/loggedUser'
 
 export default class Auth {
   _http = null
@@ -39,7 +43,7 @@ export default class Auth {
       this._http.authData = accessToken
       Cookies.set('accessToken', accessToken)
 
-      store.commit('LoggedUser/set', await this.whoami())
+      store.commit(SET_LOGGED_USER, await this.whoami())
     } catch (err) {
       throw new Error('Nama pengguna/kata sandi salah')
     }
@@ -77,7 +81,7 @@ export default class Auth {
     }
 
     this._http.authData = JSON.parse(accessToken)
-    store.commit('LoggedUser/set', await this.whoami())
+    store.commit(SET_LOGGED_USER, await this.whoami())
   }
 
   /**
@@ -85,6 +89,6 @@ export default class Auth {
    */
   logout () {
     Cookies.remove('accessToken')
-    store.commit('LoggedUser/reset')
+    store.commit(RESET_LOGGED_USER)
   }
 }
