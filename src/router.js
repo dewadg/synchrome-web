@@ -59,6 +59,15 @@ export default new Router({
       beforeEnter: middleware([
         auth
       ])
+    },
+
+    {
+      path: '/workshifts',
+      name: 'workshifts.index',
+      component: () => import('@/views/Workshift/WorkshiftIndex'),
+      beforeEnter: middleware([
+        auth
+      ])
     }
   ]
 })
