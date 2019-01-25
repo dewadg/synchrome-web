@@ -1,4 +1,4 @@
-import { FETCH_ALL_RANKS, FETCH_ALL_RANKS_SUCCESS, FETCH_ALL_RANKS_ERROR } from '../types/rank'
+import { FETCH_ALL_RANKS, FETCH_ALL_RANKS_SUCCESS, FETCH_ALL_RANKS_ERROR, FETCH_ONE_RANK, FETCH_ONE_RANK_SUCCESS } from '../types/rank'
 import { rankService } from '@/services'
 
 export default {
@@ -9,6 +9,19 @@ export default {
       commit(FETCH_ALL_RANKS_SUCCESS, await rankService.get())
     } catch (err) {
       commit(FETCH_ALL_RANKS_ERROR, err)
+    }
+  },
+
+  async [FETCH_ONE_RANK] ({ commit }, id) {
+    commit(FETCH_ONE_RANK)
+
+    try {
+      const rank = await rankService.find(id)
+      commit(FETCH_ONE_RANK_SUCCESS)
+
+      return rank
+    } catch (err) {
+      commit(FETCH_ALL_RANKS_ERROR, )
     }
   }
 }
