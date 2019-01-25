@@ -8,7 +8,6 @@ export default {
     try {
       commit(FETCH_ALL_RANKS_SUCCESS, await rankService.get())
     } catch (err) {
-      console.log(err)
       commit(FETCH_ALL_RANKS_ERROR, err)
     }
   }
