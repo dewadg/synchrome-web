@@ -1,12 +1,16 @@
 import actions from '@/stores/actions/rank'
+import sinon, { assert } from 'sinon'
+import { authService } from '@/services'
 import {
   FETCH_ALL_RANKS,
   FETCH_ALL_RANKS_SUCCESS,
   FETCH_ONE_RANK,
-  FETCH_ONE_RANK_SUCCESS
-} from '@/stores/types/rank'
-import sinon, { assert } from 'sinon'
-import { authService } from '@/services'
+  FETCH_ONE_RANK_SUCCESS,
+  STORE_RANK,
+  STORE_RANK_SUCCESS,
+  STORE_RANK_ERROR
+} from '../../../src/stores/types/rank';
+import faker from 'faker'
 
 describe('Rank Store', () => {
   before(async () => {
@@ -25,12 +29,15 @@ describe('Rank Store', () => {
     assert.match(commit.getCall(1).args[0], FETCH_ALL_RANKS_SUCCESS)
   })
 
-  it(`should dispatch ${FETCH_ONE_RANK} successfully`, async () => {
+  it(`should dispatch ${STORE_RANK} successfully`, async () => {
     const commit = sinon.spy()
 
-    await actions[FETCH_ONE_RANK]({ commit }, '1A')
+    await actions[STORE_RANK]({ commit }, {
+      id: faker.lorem.word(),
+      name: faker.lorem.word()
+    })
 
-    assert.match(commit.getCall(0).args[0], FETCH_ONE_RANK)
-    assert.match(commit.getCall(1).args[0], FETCH_ONE_RANK_SUCCESS)
+    assert.match(commit.getCall(0).args[0], STORE_RANK)
+    assert.match(commit.getCall(1).args[0], STORE_RANK_SUCCESS)
   })
 })
