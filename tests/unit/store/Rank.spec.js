@@ -7,8 +7,7 @@ import {
   FETCH_ONE_RANK,
   FETCH_ONE_RANK_SUCCESS,
   STORE_RANK,
-  STORE_RANK_SUCCESS,
-  STORE_RANK_ERROR
+  STORE_RANK_SUCCESS
 } from '../../../src/stores/types/rank';
 import faker from 'faker'
 
@@ -39,5 +38,14 @@ describe('Rank Store', () => {
 
     assert.match(commit.getCall(0).args[0], STORE_RANK)
     assert.match(commit.getCall(1).args[0], STORE_RANK_SUCCESS)
+  })
+
+  it(`should dispatch ${FETCH_ONE_RANK} successfully`, async () => {
+    const commit = sinon.spy()
+
+    await actions[FETCH_ONE_RANK]({ commit }, 'quis')
+
+    assert.match(commit.getCall(0).args[0], FETCH_ONE_RANK)
+    assert.match(commit.getCall(1).args[0], FETCH_ONE_RANK_SUCCESS)
   })
 })
