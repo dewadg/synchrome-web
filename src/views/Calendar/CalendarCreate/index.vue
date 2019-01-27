@@ -10,6 +10,7 @@
 <script>
 import CalendarForm from '@/components/Forms/CalendarForm'
 import { mapGetters, mapActions } from 'vuex'
+import { GET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendar'
 
 export default {
   name: 'CalendarCreate',
@@ -26,7 +27,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      form: 'Calendar/getForm'
+      form: GET_CALENDAR_FORM
     }),
 
     payload () {
@@ -44,7 +45,7 @@ export default {
 
   methods: {
     ...mapActions({
-      storeCalendar: 'Calendar/store'
+      storeCalendar: STORE_CALENDAR
     }),
 
     async submitHandler (payload) {

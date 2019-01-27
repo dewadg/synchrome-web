@@ -16,6 +16,7 @@ import {
 } from '../types/calendar'
 import { normalize } from 'normalizr'
 import { CALENDAR_LIST_SCHEMA } from '../schema/calendar'
+import moment from 'moment'
 
 export default {
   [FETCH_ALL_CALENDARS] (state) {
@@ -32,13 +33,6 @@ export default {
   [FETCH_ALL_CALENDARS_ERROR] (state, err) {
     state.loading = false
     state.error = err
-  },
-
-  [SET_CALENDAR_FORM] (state, payload) {
-    state.form = {
-      ...state.form,
-      ...payload
-    }
   },
 
   [STORE_CALENDAR] (state) {
@@ -86,11 +80,18 @@ export default {
     state.error = err
   },
 
+  [SET_CALENDAR_FORM](state, payload) {
+    state.form = {
+      ...state.form,
+      ...payload
+    }
+  },
+
   [RESET_CALENDAR_FORM] (state) {
     state.form.id = null
     state.form.name = ''
-    state.form.start = ''
-    state.form.end = ''
+    state.form.start = moment().startOf('year').format('YYYY-MM-DD')
+    state.form.end = moment().endOf('year').format('YYYY-MM-DD')
     state.form.published = false
     state.form.events = []
   }

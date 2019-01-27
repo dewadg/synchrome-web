@@ -68,6 +68,7 @@
 <script>
 import CalendarControl from '@/components/Renderless/CalendarControl'
 import { mapActions } from 'vuex'
+import { DESTROY_CALENDAR } from '@/stores/types/calendar'
 
 export default {
   name: 'CalendarIndex',
@@ -117,7 +118,7 @@ export default {
 
   methods: {
     ...mapActions({
-      deleteCalendar: 'Calendar/delete'
+      deleteCalendar: DESTROY_CALENDAR
     }),
 
     refreshTable () {

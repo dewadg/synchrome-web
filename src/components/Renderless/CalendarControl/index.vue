@@ -9,19 +9,18 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import moment from 'moment'
+import { GET_CALENDAR_DATA, FETCH_ALL_CALENDARS } from '@/stores/types/calendar'
 
 export default {
-  data () {
-    return {
-      loading: true
-    }
-  },
-
   computed: {
+    ...mapState({
+      loading: state => state.Calendar.loading
+    }),
+
     calendars () {
-      return this.$store.getters['Calendar/getData']
+      return this.$store.getters[GET_CALENDAR_DATA]
     },
 
     items () {
@@ -34,13 +33,11 @@ export default {
 
   methods: {
     ...mapActions({
-      fetchCalendars: 'Calendar/fetchAll'
+      fetchCalendars: FETCH_ALL_CALENDARS
     }),
 
     async fetch () {
-      this.loading = true
       await this.fetchCalendars()
-      this.loading = false
     }
   },
 

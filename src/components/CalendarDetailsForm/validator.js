@@ -5,11 +5,11 @@ import {
 } from '@/helpers/validator'
 
 export default {
-  start: {
+  calendarStart: {
     required,
     isBeforeEnd: isDateBefore('end')
   },
-  end: {
+  calendarEnd: {
     required,
     isAfterStart: isDateAfter('start')
   }
