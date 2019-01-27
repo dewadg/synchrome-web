@@ -9,30 +9,27 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { GET_ATTENDANCE_TYPE_DATA, FETCH_ALL_ATTENDANCE_TYPES } from '@/stores/types/attendanceType'
 
 export default {
-  data () {
-    return {
-      loading: true
-    }
-  },
-
   computed: {
+    ...mapState({
+      loading: state => state.AttendanceType.loading
+    }),
+
     items () {
-      return this.$store.getters['AttendanceType/getData']
+      return this.$store.getters[GET_ATTENDANCE_TYPE_DATA]
     }
   },
 
   methods: {
     ...mapActions({
-      fetchAttendanceTypes: 'AttendanceType/fetchAll'
+      fetchAttendanceTypes: FETCH_ALL_ATTENDANCE_TYPES
     }),
 
     async fetch () {
-      this.loading = true
       await this.fetchAttendanceTypes()
-      this.loading = false
     }
   },
 
