@@ -3,7 +3,10 @@ import {
   FETCH_ALL_CALENDARS_SUCCESS,
   FETCH_ALL_CALENDARS_ERROR,
   SET_CALENDAR_FORM,
-  RESET_CALENDAR_FORM
+  RESET_CALENDAR_FORM,
+  STORE_CALENDAR,
+  STORE_CALENDAR_SUCCESS,
+  STORE_CALENDAR_ERROR
 } from '../types/calendar'
 import { normalize } from 'normalizr'
 import { CALENDAR_LIST_SCHEMA } from '../schema/calendar'
@@ -30,6 +33,21 @@ export default {
       ...state.form,
       ...payload
     }
+  },
+
+  [STORE_CALENDAR] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [STORE_CALENDAR_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [STORE_CALENDAR_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
   },
 
   [RESET_CALENDAR_FORM] (state) {

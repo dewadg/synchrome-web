@@ -3,8 +3,12 @@ import sinon, { assert } from 'sinon'
 import { authService } from '@/services'
 import {
   FETCH_ALL_CALENDARS,
-  FETCH_ALL_CALENDARS_SUCCESS
+  FETCH_ALL_CALENDARS_SUCCESS,
+  STORE_CALENDAR,
+  STORE_CALENDAR_SUCCESS
 } from '../../../src/stores/types/calendar'
+import faker from 'faker'
+import moment from 'moment';
 
 describe('Calendar Store', () => {
   before(async () => {
@@ -21,5 +25,27 @@ describe('Calendar Store', () => {
 
     assert.match(commit.getCall(0).args[0], FETCH_ALL_CALENDARS)
     assert.match(commit.getCall(1).args[0], FETCH_ALL_CALENDARS_SUCCESS)
+  }),
+
+  it(`should dispatch ${STORE_CALENDAR} successfully`, async () => {
+    const commit = sinon.spy()
+
+    await actions[STORE_CALENDAR]({ commit }, {
+      name: faker.lorem.word(),
+      start: moment().startOf('year').format('YYYY-MM-DD'),
+      end: moment().endOf('year').format('YYYY-MM-DD'),
+      published: false,
+      events: [
+        {
+          title: faker.lorem.word(),
+          start: moment().startOf('year').format('YYYY-MM-DD'),
+          end: null,
+          attendanceTypeId: 'L'
+        }
+      ]
+    })
+
+    assert.match(commit.getCall(0).args[0], STORE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], STORE_CALENDAR_SUCCESS)
   })
 })
