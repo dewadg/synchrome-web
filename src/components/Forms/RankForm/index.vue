@@ -92,6 +92,12 @@ export default {
         this.$emit('input', !this.$v.$invalid)
       }
     }
+  },
+
+  methods: {
+    resetValidations() {
+      this.$v.$reset()
+    }
   }
 }
 </script>

@@ -7,7 +7,10 @@
     <UtilityCard :title="title">
       <VCardText>
         <ErrorBoundary ref="errorBoundary">
-          <RankForm v-model="isFormValid" />
+          <RankForm
+            ref="rankForm"
+            v-model="isFormValid"
+          />
         </ErrorBoundary>
       </VCardText>
       <VCardActions>
@@ -111,6 +114,7 @@ export default {
         }
 
         this.close()
+        this.$refs.rankForm.resetValidations()
         this.$emit('submit')
       } catch (err) {
         this.$refs.errorBoundary.trigger(err)
