@@ -9,30 +9,29 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import { FETCH_ALL_RANKS, GET_RANK_DATA } from '@/stores/types/rank'
 
 export default {
-  data () {
-    return {
-      loading: true
-    }
-  },
+  name: 'RankControl',
 
   computed: {
+    ...mapState({
+      loading: state => state.Rank.loading
+    }),
+
     items () {
-      return this.$store.getters['Rank/getData']
+      return this.$store.getters[GET_RANK_DATA]
     }
   },
 
   methods: {
     ...mapActions({
-      fetchRanks: 'Rank/fetchAll'
+      fetchRanks: FETCH_ALL_RANKS
     }),
 
     async fetch () {
-      this.loading = true
       await this.fetchRanks()
-      this.loading = false
     }
   },
 
