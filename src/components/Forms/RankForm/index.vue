@@ -95,7 +95,7 @@ export default {
   },
 
   methods: {
-    resetValidations() {
+    resetValidations () {
       this.$v.$reset()
     }
   }
