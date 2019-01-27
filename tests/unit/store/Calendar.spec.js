@@ -7,7 +7,9 @@ import {
   STORE_CALENDAR,
   STORE_CALENDAR_SUCCESS,
   FETCH_ONE_CALENDAR,
-  FETCH_ONE_CALENDAR_SUCCESS
+  FETCH_ONE_CALENDAR_SUCCESS,
+  DESTROY_CALENDAR,
+  DESTROY_CALENDAR_SUCCESS
 } from '../../../src/stores/types/calendar'
 import faker from 'faker'
 import moment from 'moment';
@@ -59,5 +61,16 @@ describe('Calendar Store', () => {
     assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
     assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_SUCCESS)
     assert.match(calendar.id, id)
+  })
+
+  it(`should dispatch ${DESTROY_CALENDAR} successfully`, async () => {
+    const id = 11
+    const commit = sinon.spy()
+    await actions[DESTROY_CALENDAR]({
+      commit
+    }, id)
+
+    assert.match(commit.getCall(0).args[0], DESTROY_CALENDAR)
+    assert.match(commit.getCall(1).args[0], DESTROY_CALENDAR_SUCCESS)
   })
 })

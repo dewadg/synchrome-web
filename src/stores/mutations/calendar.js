@@ -9,7 +9,10 @@ import {
   STORE_CALENDAR_ERROR,
   FETCH_ONE_CALENDAR,
   FETCH_ONE_CALENDAR_SUCCESS,
-  FETCH_ONE_CALENDAR_ERROR
+  FETCH_ONE_CALENDAR_ERROR,
+  DESTROY_CALENDAR,
+  DESTROY_CALENDAR_SUCCESS,
+  DESTROY_CALENDAR_ERROR
 } from '../types/calendar'
 import { normalize } from 'normalizr'
 import { CALENDAR_LIST_SCHEMA } from '../schema/calendar'
@@ -64,6 +67,21 @@ export default {
   },
 
   [FETCH_ONE_CALENDAR_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [DESTROY_CALENDAR] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [DESTROY_CALENDAR_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [DESTROY_CALENDAR_ERROR] (state, err) {
     state.loading = false
     state.error = err
   },

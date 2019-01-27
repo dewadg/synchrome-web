@@ -7,7 +7,10 @@ import {
   STORE_CALENDAR_ERROR,
   FETCH_ONE_CALENDAR,
   FETCH_ONE_CALENDAR_SUCCESS,
-  FETCH_ONE_CALENDAR_ERROR
+  FETCH_ONE_CALENDAR_ERROR,
+  DESTROY_CALENDAR,
+  DESTROY_CALENDAR_SUCCESS,
+  DESTROY_CALENDAR_ERROR
 } from '../types/calendar'
 import {
   calendarService
@@ -53,6 +56,19 @@ export default {
       return calendar
     } catch (err) {
       commit(FETCH_ONE_CALENDAR_ERROR)
+    }
+  },
+
+  async [DESTROY_CALENDAR] ({
+    commit
+  }, id) {
+    commit(DESTROY_CALENDAR)
+
+    try {
+      await calendarService.delete(id)
+      commit(DESTROY_CALENDAR_SUCCESS)
+    } catch (err) {
+      commit(DESTROY_CALENDAR_ERROR, err)
     }
   }
 }
