@@ -1,4 +1,8 @@
-import { FETCH_ALL_ATTENDANCE_TYPES, FETCH_ALL_ATTENDANCE_TYPES_SUCCESS, FETCH_ALL_ATTENDANCE_TYPES_ERROR } from '../types/attendanceType'
+import {
+  FETCH_ALL_ATTENDANCE_TYPES,
+  FETCH_ALL_ATTENDANCE_TYPES_SUCCESS,
+  FETCH_ALL_ATTENDANCE_TYPES_ERROR
+} from '../types/attendanceType'
 import { ATTENDANCE_TYPE_LIST_SCHEMA } from '../schema/attendanceType'
 import { normalize } from 'normalizr'
 
