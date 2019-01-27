@@ -1,6 +1,6 @@
-import { FETCH_ALL_RANKS_SUCCESS, FETCH_ALL_RANKS, FETCH_ALL_RANKS_ERROR, FETCH_ONE_RANK, FETCH_ONE_RANK_SUCCESS, FETCH_ONE_RANK_ERROR, STORE_RANK } from "../types/rank";
+import { FETCH_ALL_RANKS_SUCCESS, FETCH_ALL_RANKS, FETCH_ALL_RANKS_ERROR, FETCH_ONE_RANK, FETCH_ONE_RANK_SUCCESS, FETCH_ONE_RANK_ERROR, STORE_RANK, UPDATE_RANK, UPDATE_RANK_SUCCESS, UPDATE_RANK_ERROR, DESTROY_RANK, DESTROY_RANK_SUCCESS, DESTROY_RANK_ERROR, STORE_RANK_ERROR, STORE_RANK_SUCCESS, SET_RANK_FORM, RESET_RANK_FORM } from '../types/rank'
 import { RANK_LIST_SCHEMA } from '../schema/rank'
-import { normalize } from "normalizr";
+import { normalize } from 'normalizr'
 
 export default {
   [FETCH_ALL_RANKS] (state) {
@@ -47,5 +47,47 @@ export default {
   [STORE_RANK_ERROR] (state, err) {
     state.loading = false
     state.error = err
+  },
+
+  [UPDATE_RANK] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [UPDATE_RANK_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [UPDATE_RANK_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [DESTROY_RANK] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [DESTROY_RANK_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [DESTROY_RANK_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [SET_RANK_FORM] (state, payload) {
+    state.form = {
+      ...state.form,
+      ...payload
+    }
+  },
+
+  [RESET_RANK_FORM] (state) {
+    state.form.id = null
+    state.form.name = ''
   }
 }
