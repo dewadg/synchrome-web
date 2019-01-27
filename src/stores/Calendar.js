@@ -1,9 +1,9 @@
 import { calendarService } from '../services'
 import { schema, normalize, denormalize } from 'normalizr'
-import { attendanceTypeSchema } from './AttendanceType'
+import { ATTENDANCE_TYPE_SCHEMA } from './schema/attendanceType'
 
 export const eventSchema = new schema.Entity('events', {
-  attendanceType: attendanceTypeSchema
+  attendanceType: ATTENDANCE_TYPE_SCHEMA
 })
 export const eventListSchema = [ eventSchema ]
 
