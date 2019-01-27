@@ -8,7 +8,7 @@ import {
   FETCH_ONE_RANK_SUCCESS,
   STORE_RANK,
   STORE_RANK_SUCCESS
-} from '../../../src/stores/types/rank';
+} from '../../../src/stores/types/rank'
 import faker from 'faker'
 
 describe('Rank Store', () => {
