@@ -4,7 +4,10 @@ import {
   FETCH_ALL_CALENDARS_ERROR,
   STORE_CALENDAR,
   STORE_CALENDAR_SUCCESS,
-  STORE_CALENDAR_ERROR
+  STORE_CALENDAR_ERROR,
+  FETCH_ONE_CALENDAR,
+  FETCH_ONE_CALENDAR_SUCCESS,
+  FETCH_ONE_CALENDAR_ERROR
 } from '../types/calendar'
 import {
   calendarService
@@ -35,6 +38,21 @@ export default {
       return calendar
     } catch (err) {
       commit(STORE_CALENDAR_ERROR, err)
+    }
+  },
+
+  async [FETCH_ONE_CALENDAR] ({
+    commit
+  }, id) {
+    commit(FETCH_ONE_CALENDAR)
+
+    try {
+      const calendar = await calendarService.find(id)
+      commit(FETCH_ONE_CALENDAR_SUCCESS)
+
+      return calendar
+    } catch (err) {
+      commit(FETCH_ONE_CALENDAR_ERROR)
     }
   }
 }

@@ -5,7 +5,9 @@ import {
   FETCH_ALL_CALENDARS,
   FETCH_ALL_CALENDARS_SUCCESS,
   STORE_CALENDAR,
-  STORE_CALENDAR_SUCCESS
+  STORE_CALENDAR_SUCCESS,
+  FETCH_ONE_CALENDAR,
+  FETCH_ONE_CALENDAR_SUCCESS
 } from '../../../src/stores/types/calendar'
 import faker from 'faker'
 import moment from 'moment';
@@ -47,5 +49,15 @@ describe('Calendar Store', () => {
 
     assert.match(commit.getCall(0).args[0], STORE_CALENDAR)
     assert.match(commit.getCall(1).args[0], STORE_CALENDAR_SUCCESS)
+  })
+
+  it(`should dispatch ${FETCH_ONE_CALENDAR} successfully`, async () => {
+    const id = 1
+    const commit = sinon.spy()
+    const calendar = await actions[FETCH_ONE_CALENDAR]({ commit }, id)
+
+    assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_SUCCESS)
+    assert.match(calendar.id, id)
   })
 })
