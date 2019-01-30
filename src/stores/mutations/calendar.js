@@ -80,7 +80,7 @@ export default {
     state.error = err
   },
 
-  [SET_CALENDAR_FORM](state, payload) {
+  [SET_CALENDAR_FORM] (state, payload) {
     state.form = {
       ...state.form,
       ...payload

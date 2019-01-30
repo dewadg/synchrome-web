@@ -12,7 +12,7 @@ import {
   DESTROY_CALENDAR_SUCCESS
 } from '../../../src/stores/types/calendar'
 import faker from 'faker'
-import moment from 'moment';
+import moment from 'moment'
 
 describe('Calendar Store', () => {
   before(async () => {
@@ -29,7 +29,7 @@ describe('Calendar Store', () => {
 
     assert.match(commit.getCall(0).args[0], FETCH_ALL_CALENDARS)
     assert.match(commit.getCall(1).args[0], FETCH_ALL_CALENDARS_SUCCESS)
-  }),
+  })
 
   it(`should dispatch ${STORE_CALENDAR} successfully`, async () => {
     const commit = sinon.spy()
