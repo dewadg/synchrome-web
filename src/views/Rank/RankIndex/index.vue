@@ -68,6 +68,7 @@
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from '@/components/Modals/RankModal'
 import { mapActions } from 'vuex'
+import { DESTROY_RANK } from '@/stores/types/rank'
 
 export default {
   name: 'RankIndex',
@@ -103,7 +104,7 @@ export default {
 
   methods: {
     ...mapActions({
-      deleteRank: 'Rank/delete'
+      deleteRank: DESTROY_RANK
     }),
 
     refreshTable () {
