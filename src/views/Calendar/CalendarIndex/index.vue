@@ -35,23 +35,20 @@
             :items="items"
             :search="query"
           >
-            <template
-              slot="items"
-              slot-scope="props"
-            >
-              <td v-html="props.item.id" />
-              <td v-html="props.item.name" />
-              <td v-html="props.item.dateRange" />
-              <td v-html="props.item.published ? 'Publik' : 'Draft'" />
+            <template v-slot:items="{ item }">
+              <td v-html="item.id" />
+              <td v-html="item.name" />
+              <td v-html="item.dateRange" />
+              <td v-html="item.published ? 'Publik' : 'Draft'" />
               <td class="text-xs-right">
                 <VBtn
-                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
+                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
                   small
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(props.item.id)"
+                  @click="deleteHandler(item.id)"
                   small
                 >
                   Hapus
