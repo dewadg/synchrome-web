@@ -1,15 +1,15 @@
-import { authService } from './services'
+import store from '@/store'
+import { getSession } from '@/helpers/session'
+import { TOKEN_SESSION } from '@/constants/session'
+import { FETCH_LOGGED_USER } from '@/stores/types/loggedUser'
 
 export async function auth (to, from, next) {
-  if (!authService.check) {
+  if (!getSession(TOKEN_SESSION)) {
     next({ name: 'login' })
   } else {
-    try {
-      await authService.refresh()
-      next()
-    } catch (err) {
-      next({ name: 'login' })
-    }
+    await store.dispatch(FETCH_LOGGED_USER)
+
+    next()
   }
 }
 

@@ -1,23 +1,10 @@
-import store from '../store'
-import router from '../router'
-import Cookies from 'js-cookie'
-import {
-  SET_LOGGED_USER,
-  RESET_LOGGED_USER
-} from '@/stores/types/loggedUser'
+import { removeDataNamespace } from '@/helpers/data'
 
 export default class Auth {
   _http = null
 
   constructor (httpService) {
     this._http = httpService
-  }
-
-  /**
-   * Check if is logged in.
-   */
-  get check () {
-    return typeof Cookies.get('accessToken') !== 'undefined'
   }
 
   /**
@@ -31,19 +18,12 @@ export default class Auth {
     }
 
     try {
-      const resp = await this._http.post('auth', {
-        name,
-        password
-      })
-      const accessToken = {
-        username: resp.data.username,
-        password: resp.data.password
+      const { data } = await this._http.post('auth', { name, password })
+
+      return {
+        username: data.username,
+        password: data.password
       }
-
-      this._http.authData = accessToken
-      Cookies.set('accessToken', accessToken)
-
-      store.commit(SET_LOGGED_USER, await this.whoami())
     } catch (err) {
       throw new Error('Nama pengguna/kata sandi salah')
     }
@@ -60,35 +40,9 @@ export default class Auth {
     try {
       const resp = await this._http.get('whoami')
 
-      return resp.data.data
+      return removeDataNamespace(resp.data.data)
     } catch (err) {
-      if (err.response.status === 401) {
-        router.push({ name: 'login' })
-      } else {
-        throw new Error('Failed while fetching authenticated user')
-      }
+      throw new Error('Failed while fetching authenticated user')
     }
-  }
-
-  /**
-   * Refresh the user data.
-   */
-  async refresh () {
-    const accessToken = Cookies.get('accessToken')
-
-    if (typeof accessToken === 'undefined') {
-      throw new Error('Access token does not exist')
-    }
-
-    this._http.authData = JSON.parse(accessToken)
-    store.commit(SET_LOGGED_USER, await this.whoami())
-  }
-
-  /**
-   * Log out the user.
-   */
-  logout () {
-    Cookies.remove('accessToken')
-    store.commit(RESET_LOGGED_USER)
   }
 }

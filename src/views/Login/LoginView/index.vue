@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import { AUTHENTICATE } from '@/stores/types/loggedUser'
+
 export default {
   name: 'LoginView',
 
@@ -71,7 +73,7 @@ export default {
   methods: {
     async submitHandler () {
       try {
-        await this.$auth.authenticate(this.form)
+        await this.$store.dispatch(AUTHENTICATE, this.form)
 
         this.$router.push({ name: 'dashboard' })
       } catch (err) {

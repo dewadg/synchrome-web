@@ -38,8 +38,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { authService } from '@/services'
-import { GET_LOGGED_USER_NAME } from '@/stores/types/loggedUser'
+import { GET_LOGGED_USER_NAME, LOGOUT } from '@/stores/types/loggedUser'
 
 export default {
   props: {
@@ -65,7 +64,7 @@ export default {
     },
 
     logoutHandler () {
-      authService.logout()
+      this.$store.commit(LOGOUT)
       this.$router.push({ name: 'login' })
     }
   }

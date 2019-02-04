@@ -1,15 +1,61 @@
 import {
+  AUTHENTICATE,
+  AUTHENTICATE_SUCCESS,
+  AUTHENTICATE_ERROR,
   SET_LOGGED_USER,
-  RESET_LOGGED_USER
-} from '@/stores/types/loggedUser'
-import freshState from '@/stores/states/loggedUser'
+  RESET_LOGGED_USER,
+  FETCH_LOGGED_USER,
+  FETCH_LOGGED_USER_SUCCESS,
+  FETCH_LOGGED_USER_ERROR, LOGOUT
+} from '../types/loggedUser';
+import { clearSession } from '@/helpers/session'
+import { TOKEN_SESSION, USER_SESSION } from '@/constants/session'
 
 export default {
-  [SET_LOGGED_USER]: (state, data) => {
+  [AUTHENTICATE] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [AUTHENTICATE_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+  
+  [AUTHENTICATE_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [FETCH_LOGGED_USER] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [FETCH_LOGGED_USER_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [FETCH_LOGGED_USER_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [LOGOUT] () {
+    clearSession(TOKEN_SESSION)
+    clearSession(USER_SESSION)
+  },
+
+  [SET_LOGGED_USER] (state, data) {
     state.user = data
   },
 
-  [RESET_LOGGED_USER]: (state) => {
-    state = freshState
+  [RESET_LOGGED_USER] (state) {
+    state.user.id = null
+    state.user.name = '',
+    state.user.role.id = null
+    state.user.role.name = ''
+    state.user.generatedAt = null
   }
 }
