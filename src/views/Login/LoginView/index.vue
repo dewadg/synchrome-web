@@ -14,21 +14,37 @@
         <VCard class="elevation-8">
           <VToolbar flat>
             <VToolbarTitle>Masuk ke Synchrome</VToolbarTitle>
+            <VSpacer />
+            <VProgressCircular
+              v-if="loading"
+              :indeterminate="true"
+              :size="28"
+            />
           </VToolbar>
           <VCardText>
-            <ErrorBoundary ref="errorBoundary">
-              <form @submit="submitHandler">
-                <VTextField
-                  label="Nama Pengguna"
-                  v-model="form.name"
-                />
-                <VTextField
-                  type="password"
-                  label="Kata Sandi"
-                  v-model="form.password"
-                />
-              </form>
-            </ErrorBoundary>
+            <VAlert
+              v-if="error"
+              :value="true"
+              type="error"
+              v-html="error.message"
+              class="mb-4"
+            />
+            <form
+              @submit="submitHandler"
+              @keypress.enter="submitHandler"
+            >
+              <VTextField
+                label="Nama Pengguna"
+                v-model="form.name"
+                :disabled="loading"
+              />
+              <VTextField
+                type="password"
+                label="Kata Sandi"
+                v-model="form.password"
+                :disabled="loading"
+              />
+            </form>
           </VCardText>
           <VCardActions>
             <VBtn
@@ -36,6 +52,7 @@
               color="primary"
               large
               block
+              :disabled="loading"
             >
               Masuk
             </VBtn>
@@ -47,7 +64,8 @@
 </template>
 
 <script>
-import { AUTHENTICATE } from '@/stores/types/loggedUser'
+import { mapState } from 'vuex'
+import { AUTHENTICATE, RESET_LOGGED_USER_ERROR } from '@/stores/types/loggedUser'
 
 export default {
   name: 'LoginView',
@@ -61,23 +79,28 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      error: state => state.LoggedUser.error,
+      loading: state => state.LoggedUser.loading
+    })
+  },
+
   watch: {
     form: {
       deep: true,
-      handler (val) {
-        this.$refs.errorBoundary.reset()
+      handler () {
+        this.$store.commit(RESET_LOGGED_USER_ERROR)
       }
     }
   },
 
   methods: {
     async submitHandler () {
-      try {
-        await this.$store.dispatch(AUTHENTICATE, this.form)
+      await this.$store.dispatch(AUTHENTICATE, this.form)
 
+      if (!this.error) {
         this.$router.push({ name: 'dashboard' })
-      } catch (err) {
-        this.$refs.errorBoundary.trigger(err)
       }
     }
   }

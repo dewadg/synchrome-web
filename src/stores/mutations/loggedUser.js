@@ -6,7 +6,9 @@ import {
   RESET_LOGGED_USER,
   FETCH_LOGGED_USER,
   FETCH_LOGGED_USER_SUCCESS,
-  FETCH_LOGGED_USER_ERROR, LOGOUT
+  FETCH_LOGGED_USER_ERROR,
+  LOGOUT,
+  RESET_LOGGED_USER_ERROR
 } from '../types/loggedUser';
 import { clearSession } from '@/helpers/session'
 import { TOKEN_SESSION, USER_SESSION } from '@/constants/session'
@@ -57,5 +59,9 @@ export default {
     state.user.role.id = null
     state.user.role.name = ''
     state.user.generatedAt = null
+  },
+
+  [RESET_LOGGED_USER_ERROR] (state) {
+    state.error = null
   }
 }

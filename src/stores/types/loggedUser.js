@@ -11,6 +11,7 @@ export const LOGOUT = 'LOGOUT'
 
 export const SET_LOGGED_USER = 'SET_LOGGED_USER'
 export const RESET_LOGGED_USER = 'RESET_LOGGED_USER'
+export const RESET_LOGGED_USER_ERROR = 'RESET_LOGGED_USER_ERROR'
 
 // Getters
 export const GET_LOGGED_USER = 'GET_LOGGED_USER'
