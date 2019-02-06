@@ -1,6 +1,6 @@
 import actions from '@/stores/actions/attendanceType'
 import sinon, { assert } from 'sinon'
-import { authService } from '@/services'
+import { httpService, authService } from '@/services'
 import {
   FETCH_ALL_ATTENDANCE_TYPES,
   FETCH_ALL_ATTENDANCE_TYPES_SUCCESS
@@ -8,10 +8,12 @@ import {
 
 describe('AttendanceType Store', () => {
   before(async () => {
-    await authService.authenticate({
+    const token = await authService.authenticate({
       name: process.env.VUE_APP_AUTH_USERNAME,
       password: process.env.VUE_APP_AUTH_PASSWORD
     })
+
+    httpService.authData = token
   })
 
   it(`should dispatch ${FETCH_ALL_ATTENDANCE_TYPES} successfully`, async () => {

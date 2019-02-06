@@ -1,6 +1,6 @@
 import actions from '@/stores/actions/workshift'
 import sinon, { assert } from 'sinon'
-import { authService } from '@/services'
+import { httpService, authService } from '@/services'
 import {
   FETCH_ALL_WORKSHIFTS,
   FETCH_ALL_WORKSHIFTS_SUCCESS
@@ -8,10 +8,12 @@ import {
 
 describe('Workshift Store', () => {
   before(async () => {
-    await authService.authenticate({
+    const token = await authService.authenticate({
       name: process.env.VUE_APP_AUTH_USERNAME,
       password: process.env.VUE_APP_AUTH_PASSWORD
     })
+
+    httpService.authData = token
   })
 
   it(`should dispatch ${FETCH_ALL_WORKSHIFTS} successfully`, async () => {
