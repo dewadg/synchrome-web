@@ -10,8 +10,10 @@ import {
   STORE_CALENDAR_SUCCESS,
   FETCH_ONE_CALENDAR,
   FETCH_ONE_CALENDAR_SUCCESS,
+  FETCH_ONE_CALENDAR_ERROR,
   DESTROY_CALENDAR,
-  DESTROY_CALENDAR_SUCCESS
+  DESTROY_CALENDAR_SUCCESS,
+  DESTROY_CALENDAR_ERROR
 } from '@/stores/types/calendarTypes'
 
 let calendar
@@ -65,11 +67,27 @@ describe('Calendar Store', () => {
     assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_SUCCESS)
   })
 
+  it(`should faild when dispatching ${FETCH_ONE_CALENDAR} with undefined ID`, async () => {
+    const commit = sinon.spy()
+    await actions[FETCH_ONE_CALENDAR]({ commit }, null)
+
+    assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_ERROR)
+  })
+
   it(`should dispatch ${DESTROY_CALENDAR} successfully`, async () => {
     const commit = sinon.spy()
     await actions[DESTROY_CALENDAR]({ commit }, calendar.id)
 
     assert.match(commit.getCall(0).args[0], DESTROY_CALENDAR)
     assert.match(commit.getCall(1).args[0], DESTROY_CALENDAR_SUCCESS)
+  })
+
+  it(`should faild when dispatching ${DESTROY_CALENDAR} with undefined ID`, async () => {
+    const commit = sinon.spy()
+    await actions[DESTROY_CALENDAR]({ commit }, null)
+
+    assert.match(commit.getCall(0).args[0], DESTROY_CALENDAR)
+    assert.match(commit.getCall(1).args[0], DESTROY_CALENDAR_ERROR)
   })
 })

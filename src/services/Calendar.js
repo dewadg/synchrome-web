@@ -41,6 +41,10 @@ export default class Calendar {
 
       return calendar
     } catch (err) {
+      if (err.response.status === 404) {
+        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
+      }
+
       throw new Error(`Gagal mengambil data kalender kerja ${id}`)
     }
   }
@@ -51,6 +55,10 @@ export default class Calendar {
 
       return removeDataNamespace(res.data)
     } catch (err) {
+      if (err.response.status === 404) {
+        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
+      }
+
       throw new Error(`Gagal memperbarui data kalender kerja ${id}`)
     }
   }
@@ -59,6 +67,10 @@ export default class Calendar {
     try {
       await this._http.delete(`calendars/${id}`)
     } catch (err) {
+      if (err.response.status === 404) {
+        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
+      }
+
       throw new Error(`Gagal menghapus data kalender kerja ${id}`)
     }
   }
