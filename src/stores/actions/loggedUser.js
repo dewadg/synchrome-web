@@ -20,7 +20,7 @@ export default {
 
       httpService.authData = token
       setSession(TOKEN_SESSION, JSON.stringify(token))
-      
+
       commit(AUTHENTICATE_SUCCESS)
     } catch (err) {
       commit(AUTHENTICATE_ERROR, err)
@@ -41,7 +41,7 @@ export default {
         setSession(USER_SESSION, JSON.stringify(user))
         commit(SET_LOGGED_USER, user)
       }
-      
+
       commit(FETCH_LOGGED_USER_SUCCESS)
     } catch (err) {
       commit(FETCH_LOGGED_USER_ERROR, err)

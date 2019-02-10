@@ -1,7 +1,9 @@
 <template>
   <VCard>
     <VCardTitle>
-      <span class="headline">Pembayaran TPP</span>
+      <span class="headline">
+        Pembayaran TPP
+      </span>
     </VCardTitle>
     <VCardText>
       <div class="chart" />

@@ -1,8 +1,8 @@
 <template>
   <PageWrapper>
     <CalendarForm
-      edit
       v-model="isFormValid"
+      edit
       @submit="submitHandler(payload)"
     />
   </PageWrapper>

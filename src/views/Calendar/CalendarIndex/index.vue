@@ -9,8 +9,8 @@
           <VIcon>refresh</VIcon>
         </VBtn>
         <UtilityCardSearchBar
-          placeholder="Pencarian"
           v-model="query"
+          placeholder="Pencarian"
         />
         <UtilityCardMenu>
           <VListTile :to="{ name: 'calendars.create' }">
@@ -42,14 +42,14 @@
               <td v-html="item.published ? 'Publik' : 'Draft'" />
               <td class="text-xs-right">
                 <VBtn
-                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
                   small
+                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(item.id)"
                   small
+                  @click="deleteHandler(item.id)"
                 >
                   Hapus
                 </VBtn>

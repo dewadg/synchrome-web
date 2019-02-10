@@ -14,17 +14,19 @@
       </VToolbar>
       <VCardText>
         <DatePicker
-          label="Tanggal Mulai"
           v-model="calendarStart"
+          label="Tanggal Mulai"
         />
         <DatePicker
-          label="Tanggal Berakhir"
           v-model="calendarEnd"
+          label="Tanggal Berakhir"
         />
       </VCardText>
       <VCardActions>
         <VSpacer />
-        <VBtn @click="close">Batal</VBtn>
+        <VBtn @click="close">
+          Batal
+        </VBtn>
         <VBtn
           :disabled="$v.$invalid"
           color="primary"

@@ -13,16 +13,16 @@
       <VCardActions>
         <VSpacer />
         <VBtn
-          @click="cancel"
           color="red"
           flat
+          @click="cancel"
         >
           Batal
         </VBtn>
         <VBtn
-          @click="ok"
           color="green"
           flat
+          @click="ok"
         >
           Lanjutkan
         </VBtn>

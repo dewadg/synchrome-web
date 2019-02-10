@@ -36,7 +36,6 @@ moment.locale('id')
 new Vue({
   router,
   store,
-  render: h => h(App),
 
   created () {
     document.title = process.env.VUE_APP_APP_NAME
@@ -46,5 +45,6 @@ new Vue({
     } catch (err) {
       // Do nothing :))
     }
-  }
+  },
+  render: h => h(App)
 }).$mount('#app')

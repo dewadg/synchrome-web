@@ -9,8 +9,8 @@
           <VIcon>refresh</VIcon>
         </VBtn>
         <UtilityCardSearchBar
-          placeholder="Pencarian"
           v-model="query"
+          placeholder="Pencarian"
         />
         <UtilityCardMenu>
           <VListTile @click="showModal(false, null)">
@@ -40,14 +40,14 @@
               <td v-html="item.name" />
               <td class="text-xs-right">
                 <VBtn
-                  @click="showModal(true, item.id)"
                   small
+                  @click="showModal(true, item.id)"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(item.id)"
                   small
+                  @click="deleteHandler(item.id)"
                 >
                   Hapus
                 </VBtn>

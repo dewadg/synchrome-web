@@ -22,10 +22,10 @@
           <VSpacer />
           {{ formattedStartDate }} - {{ formattedEndDate }}
           <VBtn
-            @click="showCalendarForm"
             color="primary"
             small
             class="ml-4"
+            @click="showCalendarForm"
           >
             Ubah
           </VBtn>
@@ -56,8 +56,8 @@
         </VToolbar>
         <VCardText>
           <VSelect
-            label="Status"
             v-model="calendarPublished"
+            label="Status"
             :items="publicationTypes"
             item-value="id"
             item-text="name"
@@ -66,9 +66,9 @@
         <VCardActions>
           <VBtn
             :disabled="$v.$invalid"
-            @click="submit"
             color="primary"
             block
+            @click="submit"
           >
             Simpan
           </VBtn>

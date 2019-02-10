@@ -1,16 +1,16 @@
 <template>
   <form>
     <VTextField
-      label="Kode"
       v-model="rankId"
-      @input="$v.rankId.$touch"
+      label="Kode"
       :error-messages="rankIdErrors"
+      @input="$v.rankId.$touch"
     />
     <VTextField
-      label="Golongan"
       v-model="rankName"
-      @input="$v.rankName.$touch"
+      label="Golongan"
       :error-messages="rankNameErrors"
+      @input="$v.rankName.$touch"
     />
   </form>
 </template>

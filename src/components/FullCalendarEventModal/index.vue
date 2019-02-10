@@ -13,16 +13,16 @@
       </VToolbar>
       <VCardText>
         <VTextField
-          label="Nama Event"
           v-model="value.title"
+          label="Nama Event"
         />
         <DatePicker
-          label="Tanggal Mulai"
           v-model="value.start"
+          label="Tanggal Mulai"
         />
         <DatePicker
-          label="Tanggal Berakhir"
           v-model="value.end"
+          label="Tanggal Berakhir"
         />
         <AttendanceTypeControl>
           <template slot-scope="{ items, loading }">
@@ -32,8 +32,8 @@
             />
             <VSelect
               v-if="!loading"
-              label="Jenis Absensi/Presensi"
               v-model="value.attendanceTypeId"
+              label="Jenis Absensi/Presensi"
               :items="filterAttendanceTypes(items)"
               item-value="id"
               item-text="name"
@@ -43,11 +43,13 @@
       </VCardText>
       <VCardActions>
         <VSpacer />
-        <VBtn @click="close">Batal</VBtn>
+        <VBtn @click="close">
+          Batal
+        </VBtn>
         <VBtn
-          @click="deleteHandler"
           color="red"
           dark
+          @click="deleteHandler"
         >
           Hapus
         </VBtn>

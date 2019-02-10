@@ -7,15 +7,15 @@
     :nudge-right="-250"
   >
     <VBtn
-      icon
       slot="activator"
+      icon
     >
       <VIcon>search</VIcon>
     </VBtn>
     <VTextField
+      v-model="keyword"
       solo
       small
-      v-model="keyword"
       class="mt-0"
       hide-details
       :placeholder="placeholder"

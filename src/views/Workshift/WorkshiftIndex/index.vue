@@ -9,8 +9,8 @@
           <VIcon>refresh</VIcon>
         </VBtn>
         <UtilityCardSearchBar
-          placeholder="Pencarian"
           v-model="query"
+          placeholder="Pencarian"
         />
         <UtilityCardMenu>
           <VListTile :to="{ name: 'workshifts.create' }">
@@ -43,14 +43,14 @@
               <td v-html="props.item.name" />
               <td class="text-xs-right">
                 <VBtn
-                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
                   small
+                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(props.item.id)"
                   small
+                  @click="deleteHandler(props.item.id)"
                 >
                   Hapus
                 </VBtn>

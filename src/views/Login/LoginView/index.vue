@@ -26,33 +26,33 @@
               v-if="error"
               :value="true"
               type="error"
-              v-html="error.message"
               class="mb-4"
+              v-html="error.message"
             />
             <form
               @submit="submitHandler"
               @keypress.enter="submitHandler"
             >
               <VTextField
-                label="Nama Pengguna"
                 v-model="form.name"
+                label="Nama Pengguna"
                 :disabled="loading"
               />
               <VTextField
+                v-model="form.password"
                 type="password"
                 label="Kata Sandi"
-                v-model="form.password"
                 :disabled="loading"
               />
             </form>
           </VCardText>
           <VCardActions>
             <VBtn
-              @click="submitHandler"
               color="primary"
               large
               block
               :disabled="loading"
+              @click="submitHandler"
             >
               Masuk
             </VBtn>

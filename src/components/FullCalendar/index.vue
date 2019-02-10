@@ -81,6 +81,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.initCalendar()
+  },
+
   methods: {
     initCalendar () {
       $(this.$refs.fullcalendar).fullCalendar('destroy')
@@ -156,10 +160,6 @@ export default {
       $(this.$refs.fullcalendar).fullCalendar('removeEvents', fcEvent.id)
       this.$emit('input', this.getFullCalendarEvents())
     }
-  },
-
-  mounted () {
-    this.initCalendar()
   }
 }
 </script>

@@ -9,7 +9,7 @@ import {
   FETCH_LOGGED_USER_ERROR,
   LOGOUT,
   RESET_LOGGED_USER_ERROR
-} from '../types/loggedUser';
+} from '../types/loggedUser'
 import { clearSession } from '@/helpers/session'
 import { TOKEN_SESSION, USER_SESSION } from '@/constants/session'
 
@@ -23,7 +23,7 @@ export default {
     state.loading = false
     state.error = null
   },
-  
+
   [AUTHENTICATE_ERROR] (state, err) {
     state.loading = false
     state.error = err

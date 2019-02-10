@@ -19,10 +19,12 @@
       offset-y
     >
       <VBtn
-        flat
         slot="activator"
+        flat
       >
-        <VIcon class="mr-2">account_circle</VIcon>
+        <VIcon class="mr-2">
+          account_circle
+        </VIcon>
         {{ userName }}
       </VBtn>
       <VList>
