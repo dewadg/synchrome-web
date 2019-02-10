@@ -2,7 +2,7 @@ import Vue from 'vue'
 import MessageBox from './components/MessageBox'
 
 const Plugin = {
-  install (target, options) {
+  install (target) {
     target.prototype.$confirm = (
       title = 'Are you sure?',
       description = 'Are you sure want to do this?',
