@@ -40,7 +40,7 @@ describe('Rank Store', () => {
     const commit = sinon.spy()
 
     rank = await actions[STORE_RANK]({ commit }, {
-      id: faker.lorem.word(),
+      id: `${faker.lorem.word()}-${Math.random()}`,
       name: faker.lorem.word()
     })
 
