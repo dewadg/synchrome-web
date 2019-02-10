@@ -39,8 +39,8 @@
               slot="items"
               slot-scope="props"
             >
-              <td v-html="props.item.id" />
-              <td v-html="props.item.name" />
+              <td>{{ props.item.id }}</td>
+              <td>{{ props.item.name }}</td>
               <td class="text-xs-right">
                 <VBtn
                   small

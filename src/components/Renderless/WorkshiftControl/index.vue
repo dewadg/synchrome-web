@@ -27,6 +27,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetch()
+  },
+
   methods: {
     ...mapActions({
       fetchWorkshifts: 'Workshift/fetchAll'
@@ -41,10 +45,6 @@ export default {
         this.$refs.errorBoundary.trigger(err)
       }
     }
-  },
-
-  async mounted () {
-    await this.fetch()
   }
 }
 </script>

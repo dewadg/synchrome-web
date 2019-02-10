@@ -36,10 +36,10 @@
             :search="query"
           >
             <template v-slot:items="{ item }">
-              <td v-html="item.id" />
-              <td v-html="item.name" />
-              <td v-html="item.dateRange" />
-              <td v-html="item.published ? 'Publik' : 'Draft'" />
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.dateRange }}</td>
+              <td>{{ item.published ? 'Publik' : 'Draft' }}</td>
               <td class="text-xs-right">
                 <VBtn
                   small

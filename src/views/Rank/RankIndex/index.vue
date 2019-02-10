@@ -36,8 +36,8 @@
             :search="query"
           >
             <template v-slot:items="{ item }">
-              <td v-html="item.id" />
-              <td v-html="item.name" />
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
               <td class="text-xs-right">
                 <VBtn
                   small

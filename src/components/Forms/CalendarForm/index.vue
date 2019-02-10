@@ -184,6 +184,10 @@ export default {
     form: validator
   },
 
+  created () {
+    this.resetForm()
+  },
+
   methods: {
     ...mapMutations({
       updateForm: SET_CALENDAR_FORM,
@@ -201,10 +205,6 @@ export default {
     submit () {
       this.$emit('submit')
     }
-  },
-
-  created () {
-    this.resetForm()
   }
 }
 </script>

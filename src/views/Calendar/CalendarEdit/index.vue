@@ -43,6 +43,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetchHandler()
+  },
+
   methods: {
     ...mapMutations({
       setCalendar: 'Calendar/setForm'
@@ -70,10 +74,6 @@ export default {
         console.log(err)
       }
     }
-  },
-
-  async mounted () {
-    await this.fetchHandler()
   }
 }
 </script>

@@ -5,11 +5,12 @@
     max-width="480px"
   >
     <VCard>
-      <VCardTitle
-        class="headline"
-        v-html="title"
-      />
-      <VCardText v-html="description" />
+      <VCardTitle class="headline">
+        {{ title }}
+      </VCardTitle>
+      <VCardText>
+        {{ description }}
+      </VCardText>
       <VCardActions>
         <VSpacer />
         <VBtn

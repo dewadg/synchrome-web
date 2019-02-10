@@ -8,10 +8,9 @@
     <VToolbarSideIcon @click.native="toggleDrawer">
       <VIcon>menu</VIcon>
     </VToolbarSideIcon>
-    <span
-      class="title ml-3 mr-5"
-      v-html="appName"
-    />
+    <span class="title ml-3 mr-5">
+      {{ appName }}
+    </span>
     <VSpacer />
     <VMenu
       open-on-hover

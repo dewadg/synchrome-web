@@ -25,6 +25,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetch()
+  },
+
   methods: {
     ...mapActions({
       fetchRanks: FETCH_ALL_RANKS
@@ -33,10 +37,6 @@ export default {
     async fetch () {
       await this.fetchRanks()
     }
-  },
-
-  async mounted () {
-    await this.fetch()
   }
 }
 </script>

@@ -14,15 +14,18 @@
         <VSubheader
           v-else-if="menu.subheader"
           :key="index"
-          v-html="menu.subheader"
-        />
+        >
+          {{ menu.subheader }}
+        </VSubheader>
         <VListTile
           v-else
           :key="index"
           :to="{ name: menu.to }"
         >
           <VListTileAction class="grey--text text--darken-2">
-            <VIcon v-html="menu.icon" />
+            <VIcon>
+              {{ menu.icon }}
+            </VIcon>
           </VListTileAction>
           <VListTileContent>
             <VListTileTitle class="grey--text text--darken-2">

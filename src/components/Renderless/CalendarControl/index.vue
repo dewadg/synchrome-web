@@ -31,6 +31,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetch()
+  },
+
   methods: {
     ...mapActions({
       fetchCalendars: FETCH_ALL_CALENDARS
@@ -39,10 +43,6 @@ export default {
     async fetch () {
       await this.fetchCalendars()
     }
-  },
-
-  async mounted () {
-    await this.fetch()
   }
 }
 </script>

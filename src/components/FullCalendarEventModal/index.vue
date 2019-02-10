@@ -9,7 +9,9 @@
         card
         prominent
       >
-        <VToolbarTitle v-html="title" />
+        <VToolbarTitle>
+          {{ title }}
+        </VToolbarTitle>
       </VToolbar>
       <VCardText>
         <VTextField

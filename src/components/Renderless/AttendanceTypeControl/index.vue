@@ -23,6 +23,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetch()
+  },
+
   methods: {
     ...mapActions({
       fetchAttendanceTypes: FETCH_ALL_ATTENDANCE_TYPES
@@ -31,10 +35,6 @@ export default {
     async fetch () {
       await this.fetchAttendanceTypes()
     }
-  },
-
-  async mounted () {
-    await this.fetch()
   }
 }
 </script>

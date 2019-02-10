@@ -27,8 +27,9 @@
               :value="true"
               type="error"
               class="mb-4"
-              v-html="error.message"
-            />
+            >
+              {{ error.message }}
+            </VAlert>
             <form
               @submit="submitHandler"
               @keypress.enter="submitHandler"

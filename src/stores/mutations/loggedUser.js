@@ -55,7 +55,7 @@ export default {
 
   [RESET_LOGGED_USER] (state) {
     state.user.id = null
-    state.user.name = '',
+    state.user.name = ''
     state.user.role.id = null
     state.user.role.name = ''
     state.user.generatedAt = null
