@@ -1,6 +1,8 @@
-import actions from '@/stores/actions/calendar'
 import sinon, { assert } from 'sinon'
+import faker from 'faker'
+import moment from 'moment'
 import { httpService, authService } from '@/services'
+import actions from '@/stores/actions/calendarActions'
 import {
   FETCH_ALL_CALENDARS,
   FETCH_ALL_CALENDARS_SUCCESS,
@@ -10,9 +12,9 @@ import {
   FETCH_ONE_CALENDAR_SUCCESS,
   DESTROY_CALENDAR,
   DESTROY_CALENDAR_SUCCESS
-} from '../../../src/stores/types/calendar'
-import faker from 'faker'
-import moment from 'moment'
+} from '@/stores/types/calendarTypes'
+
+let calendar
 
 describe('Calendar Store', () => {
   before(async () => {
@@ -33,46 +35,41 @@ describe('Calendar Store', () => {
     assert.match(commit.getCall(1).args[0], FETCH_ALL_CALENDARS_SUCCESS)
   })
 
-  // it(`should dispatch ${STORE_CALENDAR} successfully`, async () => {
-  //   const commit = sinon.spy()
+  it(`should dispatch ${STORE_CALENDAR} successfully`, async () => {
+    const commit = sinon.spy()
 
-  //   await actions[STORE_CALENDAR]({ commit }, {
-  //     name: faker.lorem.word(),
-  //     start: moment().startOf('year').format('YYYY-MM-DD'),
-  //     end: moment().endOf('year').format('YYYY-MM-DD'),
-  //     published: false,
-  //     events: [
-  //       {
-  //         title: faker.lorem.word(),
-  //         start: moment().startOf('year').format('YYYY-MM-DD'),
-  //         end: null,
-  //         attendanceTypeId: 'L'
-  //       }
-  //     ]
-  //   })
+    calendar = await actions[STORE_CALENDAR]({ commit }, {
+      name: faker.lorem.word(),
+      start: moment().startOf('year').format('YYYY-MM-DD'),
+      end: moment().endOf('year').format('YYYY-MM-DD'),
+      published: false,
+      events: [
+        {
+          title: faker.lorem.word(),
+          start: moment().startOf('year').format('YYYY-MM-DD'),
+          end: null,
+          attendanceTypeId: 'L'
+        }
+      ]
+    })
 
-  //   assert.match(commit.getCall(0).args[0], STORE_CALENDAR)
-  //   assert.match(commit.getCall(1).args[0], STORE_CALENDAR_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], STORE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], STORE_CALENDAR_SUCCESS)
+  })
 
-  // it(`should dispatch ${FETCH_ONE_CALENDAR} successfully`, async () => {
-  //   const id = 1
-  //   const commit = sinon.spy()
-  //   const calendar = await actions[FETCH_ONE_CALENDAR]({ commit }, id)
+  it(`should dispatch ${FETCH_ONE_CALENDAR} successfully`, async () => {
+    const commit = sinon.spy()
+    await actions[FETCH_ONE_CALENDAR]({ commit }, calendar.id)
 
-  //   assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
-  //   assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_SUCCESS)
-  //   assert.match(calendar.id, id)
-  // })
+    assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_SUCCESS)
+  })
 
-  // it(`should dispatch ${DESTROY_CALENDAR} successfully`, async () => {
-  //   const id = 11
-  //   const commit = sinon.spy()
-  //   await actions[DESTROY_CALENDAR]({
-  //     commit
-  //   }, id)
+  it(`should dispatch ${DESTROY_CALENDAR} successfully`, async () => {
+    const commit = sinon.spy()
+    await actions[DESTROY_CALENDAR]({ commit }, calendar.id)
 
-  //   assert.match(commit.getCall(0).args[0], DESTROY_CALENDAR)
-  //   assert.match(commit.getCall(1).args[0], DESTROY_CALENDAR_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], DESTROY_CALENDAR)
+    assert.match(commit.getCall(1).args[0], DESTROY_CALENDAR_SUCCESS)
+  })
 })
