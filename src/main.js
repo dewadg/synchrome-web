@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './plugins/vue-router'
+import './plugins/vuex'
 import './plugins/font-icon'
 import './plugins/vuetify'
 import './plugins/vuelidate'
