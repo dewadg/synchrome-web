@@ -1,10 +1,10 @@
-import actions from '@/stores/actions/workshift'
+import actions from '@/stores/actions/workshiftActions'
 import sinon, { assert } from 'sinon'
 import { httpService, authService } from '@/services'
 import {
   FETCH_ALL_WORKSHIFTS,
   FETCH_ALL_WORKSHIFTS_SUCCESS
-} from '@/stores/types/workshift'
+} from '@/stores/types/workshiftTypes'
 
 describe('Workshift Store', () => {
   before(async () => {
