@@ -9,7 +9,7 @@ import {
   FETCH_LOGGED_USER_ERROR,
   SET_LOGGED_USER,
   FETCH_LOGGED_USER_SUCCESS
-} from '../types/loggedUser'
+} from '../types/loggedUserTypes'
 
 export default {
   async [AUTHENTICATE] ({ commit }, data) {

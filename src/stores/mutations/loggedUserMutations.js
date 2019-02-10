@@ -1,3 +1,5 @@
+import { clearSession } from '@/helpers/session'
+import { TOKEN_SESSION, USER_SESSION } from '@/constants/session'
 import {
   AUTHENTICATE,
   AUTHENTICATE_SUCCESS,
@@ -9,9 +11,7 @@ import {
   FETCH_LOGGED_USER_ERROR,
   LOGOUT,
   RESET_LOGGED_USER_ERROR
-} from '../types/loggedUser'
-import { clearSession } from '@/helpers/session'
-import { TOKEN_SESSION, USER_SESSION } from '@/constants/session'
+} from '../types/loggedUserTypes'
 
 export default {
   [AUTHENTICATE] (state) {
