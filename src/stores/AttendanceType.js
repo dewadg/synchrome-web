@@ -1,7 +1,7 @@
-import state from './states/attendanceType'
-import getters from './getters/attendanceType'
-import mutations from './mutations/attendanceType'
-import actions from './actions/attendanceType'
+import state from './states/attendanceTypeState'
+import getters from './getters/attendanceTypeGetters'
+import mutations from './mutations/attendanceTypeMutations'
+import actions from './actions/attendanceTypeActions'
 
 export default {
   state,
