@@ -1,56 +1,24 @@
 import Router from 'vue-router'
+
 import baseRoutes from '@/routes/baseRoutes'
+import rankRoutes from '@/routes/rankRoutes'
+import calendarRoutes from '@/routes/calendarRoutes'
+import workshiftRoutes from '@/routes/workshiftRoutes'
 
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    ...baseRoutes
+    ...baseRoutes,
 
-    // // Ranks
-    // {
-    //   path: '/ranks',
-    //   name: 'ranks',
-    //   component: () => import('@/views/Rank/RankIndex'),
-    //   beforeEnter: chainMiddlewares([
-    //     auth
-    //   ])
-    // },
+    // Ranks
+    ...rankRoutes,
 
-    // // Calendars
-    // {
-    //   path: '/calendars',
-    //   name: 'calendars',
-    //   component: () => import('@/views/Calendar/CalendarIndex'),
-    //   beforeEnter: chainMiddlewares([
-    //     auth
-    //   ])
-    // },
-    // {
-    //   path: '/calendars/new',
-    //   name: 'calendars.create',
-    //   component: () => import('@/views/Calendar/CalendarCreate'),
-    //   beforeEnter: chainMiddlewares([
-    //     auth
-    //   ])
-    // },
-    // {
-    //   path: '/calendars/:id',
-    //   name: 'calendars.edit',
-    //   component: () => import('@/views/Calendar/CalendarEdit'),
-    //   beforeEnter: chainMiddlewares([
-    //     auth
-    //   ])
-    // },
+    // Calendars
+    ...calendarRoutes,
 
-    // {
-    //   path: '/workshifts',
-    //   name: 'workshifts.index',
-    //   component: () => import('@/views/Workshift/WorkshiftIndex'),
-    //   beforeEnter: chainMiddlewares([
-    //     auth
-    //   ])
-    // }
+    // Workshifts
+    ...workshiftRoutes
   ]
 })
 
