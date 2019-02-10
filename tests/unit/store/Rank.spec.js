@@ -14,8 +14,10 @@ import {
   DESTROY_RANK,
   DESTROY_RANK_SUCCESS
 } from '@/stores/types/rankTypes'
+import { STORE_RANK_ERROR } from '../../../src/stores/types/rankTypes';
 
 let rank
+const expectedDuplicateId = `${faker.lorem.word()}-${Math.random()}`
 
 describe('Rank Store', () => {
   before(async () => {
@@ -40,12 +42,24 @@ describe('Rank Store', () => {
     const commit = sinon.spy()
 
     rank = await actions[STORE_RANK]({ commit }, {
-      id: `${faker.lorem.word()}-${Math.random()}`,
+      id: expectedDuplicateId,
       name: faker.lorem.word()
     })
 
     assert.match(commit.getCall(0).args[0], STORE_RANK)
     assert.match(commit.getCall(1).args[0], STORE_RANK_SUCCESS)
+  })
+
+  it(`should fail when dispatching ${STORE_RANK} with duplicate ID`, async () => {
+    const commit = sinon.spy()
+
+    await actions[STORE_RANK]({ commit }, {
+      id: expectedDuplicateId,
+      name: faker.lorem.word()
+    })
+
+    assert.match(commit.getCall(0).args[0], STORE_RANK)
+    assert.match(commit.getCall(1).args[0], STORE_RANK_ERROR)
   })
 
   it(`should dispatch ${FETCH_ONE_RANK} successfully`, async () => {
