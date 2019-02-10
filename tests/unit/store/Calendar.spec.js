@@ -15,7 +15,7 @@ import {
   DESTROY_CALENDAR_SUCCESS,
   DESTROY_CALENDAR_ERROR
 } from '@/stores/types/calendarTypes'
-import { UPDATE_CALENDAR, UPDATE_CALENDAR_SUCCESS, UPDATE_CALENDAR_ERROR } from '../../../src/stores/types/calendarTypes';
+import { UPDATE_CALENDAR, UPDATE_CALENDAR_SUCCESS, UPDATE_CALENDAR_ERROR } from '../../../src/stores/types/calendarTypes'
 
 let calendar
 

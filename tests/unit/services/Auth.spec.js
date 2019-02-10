@@ -1,4 +1,3 @@
-import { assert } from 'chai'
 import { httpService, authService } from '@/services'
 
 describe('Auth Service', () => {
@@ -10,7 +9,7 @@ describe('Auth Service', () => {
           password: 'blublublu'
         })
 
-        reject()
+        reject(new Error('Invalid credentials'))
       } catch (err) {
         resolve()
       }
@@ -23,7 +22,7 @@ describe('Auth Service', () => {
     return new Promise(async (resolve, reject) => {
       try {
         await authService.whoami()
-        reject()
+        reject(new Error('No HTTP client is set'))
       } catch (err) {
         authService._http = httpService
         resolve()
