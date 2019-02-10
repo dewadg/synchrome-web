@@ -1,6 +1,7 @@
-import actions from '@/stores/actions/rank'
 import sinon, { assert } from 'sinon'
+import faker from 'faker'
 import { httpService, authService } from '@/services'
+import actions from '@/stores/actions/rankActions'
 import {
   FETCH_ALL_RANKS,
   FETCH_ALL_RANKS_SUCCESS,
@@ -12,8 +13,9 @@ import {
   UPDATE_RANK_SUCCESS,
   DESTROY_RANK,
   DESTROY_RANK_SUCCESS
-} from '../../../src/stores/types/rank'
-import faker from 'faker'
+} from '@/stores/types/rankTypes'
+
+let rank
 
 describe('Rank Store', () => {
   before(async () => {
@@ -34,47 +36,47 @@ describe('Rank Store', () => {
     assert.match(commit.getCall(1).args[0], FETCH_ALL_RANKS_SUCCESS)
   })
 
-  // it(`should dispatch ${STORE_RANK} successfully`, async () => {
-  //   const commit = sinon.spy()
+  it(`should dispatch ${STORE_RANK} successfully`, async () => {
+    const commit = sinon.spy()
 
-  //   await actions[STORE_RANK]({ commit }, {
-  //     id: faker.lorem.word(),
-  //     name: faker.lorem.word()
-  //   })
+    rank = await actions[STORE_RANK]({ commit }, {
+      id: faker.lorem.word(),
+      name: faker.lorem.word()
+    })
 
-  //   assert.match(commit.getCall(0).args[0], STORE_RANK)
-  //   assert.match(commit.getCall(1).args[0], STORE_RANK_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], STORE_RANK)
+    assert.match(commit.getCall(1).args[0], STORE_RANK_SUCCESS)
+  })
 
-  // it(`should dispatch ${FETCH_ONE_RANK} successfully`, async () => {
-  //   const commit = sinon.spy()
+  it(`should dispatch ${FETCH_ONE_RANK} successfully`, async () => {
+    const commit = sinon.spy()
 
-  //   await actions[FETCH_ONE_RANK]({ commit }, 'quis')
+    await actions[FETCH_ONE_RANK]({ commit }, rank.id)
 
-  //   assert.match(commit.getCall(0).args[0], FETCH_ONE_RANK)
-  //   assert.match(commit.getCall(1).args[0], FETCH_ONE_RANK_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], FETCH_ONE_RANK)
+    assert.match(commit.getCall(1).args[0], FETCH_ONE_RANK_SUCCESS)
+  })
 
-  // it(`should dispatch ${UPDATE_RANK} successfully`, async () => {
-  //   const commit = sinon.spy()
+  it(`should dispatch ${UPDATE_RANK} successfully`, async () => {
+    const commit = sinon.spy()
 
-  //   await actions[UPDATE_RANK]({ commit }, {
-  //     id: '1A',
-  //     data: {
-  //       name: faker.lorem.word()
-  //     }
-  //   })
+    await actions[UPDATE_RANK]({ commit }, {
+      id: rank.id,
+      data: {
+        name: faker.lorem.word()
+      }
+    })
 
-  //   assert.match(commit.getCall(0).args[0], UPDATE_RANK)
-  //   assert.match(commit.getCall(1).args[0], UPDATE_RANK_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], UPDATE_RANK)
+    assert.match(commit.getCall(1).args[0], UPDATE_RANK_SUCCESS)
+  })
 
-  // it(`should dispatch ${DESTROY_RANK} successfully`, async () => {
-  //   const commit = sinon.spy()
+  it(`should dispatch ${DESTROY_RANK} successfully`, async () => {
+    const commit = sinon.spy()
 
-  //   await actions[DESTROY_RANK]({ commit }, '1B')
+    await actions[DESTROY_RANK]({ commit }, rank.id)
 
-  //   assert.match(commit.getCall(0).args[0], DESTROY_RANK)
-  //   assert.match(commit.getCall(1).args[0], DESTROY_RANK_SUCCESS)
-  // })
+    assert.match(commit.getCall(0).args[0], DESTROY_RANK)
+    assert.match(commit.getCall(1).args[0], DESTROY_RANK_SUCCESS)
+  })
 })
