@@ -1,10 +1,10 @@
+import { normalize } from 'normalizr'
 import {
   FETCH_ALL_WORKSHIFTS,
   FETCH_ALL_WORKSHIFTS_SUCCESS,
   FETCH_ALL_WORKSHIFTS_ERROR
-} from '../types/workshift'
-import { WORKSHIFT_LIST_SCHEMA } from '../schema/workshift'
-import { normalize } from 'normalizr'
+} from '../types/workshiftTypes'
+import { WORKSHIFT_LIST_SCHEMA } from '../schema/workshiftSchema'
 
 export default {
   [FETCH_ALL_WORKSHIFTS] (state) {

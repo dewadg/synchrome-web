@@ -1,9 +1,9 @@
+import { workshiftService } from '@/services'
 import {
   FETCH_ALL_WORKSHIFTS,
   FETCH_ALL_WORKSHIFTS_SUCCESS,
   FETCH_ALL_WORKSHIFTS_ERROR
-} from '../types/workshift'
-import { workshiftService } from '@/services'
+} from '../types/workshiftTypes'
 
 export default {
   async [FETCH_ALL_WORKSHIFTS] ({ commit }) {
