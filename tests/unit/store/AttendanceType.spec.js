@@ -1,10 +1,10 @@
-import actions from '@/stores/actions/attendanceType'
 import sinon, { assert } from 'sinon'
 import { httpService, authService } from '@/services'
+import actions from '@/stores/actions/attendanceTypeActions'
 import {
   FETCH_ALL_ATTENDANCE_TYPES,
   FETCH_ALL_ATTENDANCE_TYPES_SUCCESS
-} from '../../../src/stores/types/attendanceType'
+} from '@/stores/types/attendanceTypeTypes'
 
 describe('AttendanceType Store', () => {
   before(async () => {
