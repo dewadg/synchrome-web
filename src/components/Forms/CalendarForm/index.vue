@@ -94,7 +94,7 @@
 <script>
 import moment from 'moment'
 import FullCalendar from '@/components/FullCalendar'
-import CalendarDetailsForm from '@/components/CalendarDetailsForm'
+import CalendarDetailsForm from '@/components/Forms/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
 import validator from './validator'
 import { mapGetters, mapMutations } from 'vuex'
