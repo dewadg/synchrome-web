@@ -7,11 +7,11 @@ import './plugins/messageBox'
 import './plugins/moment'
 import './plugins/components'
 import './plugins/services'
+import './plugins/serviceWorker'
 
 import App from './App'
 import router from './router'
 import store from './store'
-import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
