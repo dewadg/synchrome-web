@@ -17,15 +17,11 @@ export default class Auth {
       throw new Error('HTTP client is not set')
     }
 
-    try {
-      const { data } = await this._http.post('auth', { name, password })
+    const { data } = await this._http.post('auth', { name, password })
 
-      return {
-        username: data.username,
-        password: data.password
-      }
-    } catch (err) {
-      throw new Error('Nama pengguna/kata sandi salah')
+    return {
+      username: data.username,
+      password: data.password
     }
   }
 
@@ -37,12 +33,8 @@ export default class Auth {
       throw new Error('HTTP client is not set')
     }
 
-    try {
-      const resp = await this._http.get('whoami')
+    const resp = await this._http.get('whoami')
 
-      return removeDataNamespace(resp.data.data)
-    } catch (err) {
-      throw new Error('Failed while fetching authenticated user')
-    }
+    return removeDataNamespace(resp.data.data)
   }
 }

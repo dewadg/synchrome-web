@@ -9,69 +9,37 @@ export default class Calendar {
   }
 
   async get () {
-    try {
-      const res = await this._http.get('calendars')
+    const res = await this._http.get('calendars')
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error('Gagal mengambil data kalender kerja')
-    }
+    return removeDataNamespace(res.data)
   }
 
   async create (payload) {
-    try {
-      const res = await this._http.post('calendars', payload)
+    const res = await this._http.post('calendars', payload)
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error('Gagal menyimpan data kalender kerja')
-    }
+    return removeDataNamespace(res.data)
   }
 
   async find (id) {
-    try {
-      const res = await this._http.get(`calendars/${id}`)
-      const calendar = removeDataNamespace(res.data)
+    const res = await this._http.get(`calendars/${id}`)
+    const calendar = removeDataNamespace(res.data)
 
-      calendar.events = calendar.events.map(item => ({
-        ...item,
-        ...EVENT_COLORS[item.attendanceType.id],
-        attendanceTypeId: item.attendanceType.id
-      }))
+    calendar.events = calendar.events.map(item => ({
+      ...item,
+      ...EVENT_COLORS[item.attendanceType.id],
+      attendanceTypeId: item.attendanceType.id
+    }))
 
-      return calendar
-    } catch (err) {
-      if (err.response.status === 404) {
-        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
-      }
-
-      throw new Error(`Gagal mengambil data kalender kerja ${id}`)
-    }
+    return calendar
   }
 
   async update (id, payload) {
-    try {
-      const res = await this._http.patch(`calendars/${id}`, payload)
+    const res = await this._http.patch(`calendars/${id}`, payload)
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      if (err.response.status === 404) {
-        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
-      }
-
-      throw new Error(`Gagal memperbarui data kalender kerja ${id}`)
-    }
+    return removeDataNamespace(res.data)
   }
 
   async delete (id) {
-    try {
-      await this._http.delete(`calendars/${id}`)
-    } catch (err) {
-      if (err.response.status === 404) {
-        throw new Error(`Kalender kerja ${id} tidak ditemukan`)
-      }
-
-      throw new Error(`Gagal menghapus data kalender kerja ${id}`)
-    }
+    await this._http.delete(`calendars/${id}`)
   }
 }

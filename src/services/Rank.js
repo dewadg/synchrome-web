@@ -8,54 +8,30 @@ export default class Rank {
   }
 
   async get () {
-    try {
-      const res = await this._http.get('ranks')
+    const res = await this._http.get('ranks')
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error('Gagal mengambil data golongan')
-    }
+    return removeDataNamespace(res.data)
   }
 
   async create (payload) {
-    try {
-      const res = await this._http.post('ranks', payload)
+    const res = await this._http.post('ranks', payload)
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      if (err.response.status === 422 && err.response.data.id) {
-        throw new Error('Kode golongan sudah terdaftar')
-      }
-
-      throw new Error('Gagal menyimpan data golongan')
-    }
+    return removeDataNamespace(res.data)
   }
 
   async find (id) {
-    try {
-      const res = await this._http.get(`ranks/${id}`)
+    const res = await this._http.get(`ranks/${id}`)
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error(`Gagal mengambil data golongan ${id}`)
-    }
+    return removeDataNamespace(res.data)
   }
 
   async update (id, payload) {
-    try {
-      const res = await this._http.patch(`ranks/${id}`, payload)
+    const res = await this._http.patch(`ranks/${id}`, payload)
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error(`Gagal memperbarui data golongan ${id}`)
-    }
+    return removeDataNamespace(res.data)
   }
 
   async delete (id) {
-    try {
-      await this._http.delete(`ranks/${id}`)
-    } catch (err) {
-      throw new Error(`Gagal menghapus data golongan ${id}`)
-    }
+    await this._http.delete(`ranks/${id}`)
   }
 }
