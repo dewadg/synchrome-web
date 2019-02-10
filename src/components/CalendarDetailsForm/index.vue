@@ -14,17 +14,19 @@
       </VToolbar>
       <VCardText>
         <DatePicker
+          v-model="calendarStart"
           label="Tanggal Mulai"
-          v-model="value.start"
         />
         <DatePicker
+          v-model="calendarEnd"
           label="Tanggal Berakhir"
-          v-model="value.end"
         />
       </VCardText>
       <VCardActions>
         <VSpacer />
-        <VBtn @click="close">Batal</VBtn>
+        <VBtn @click="close">
+          Batal
+        </VBtn>
         <VBtn
           :disabled="$v.$invalid"
           color="primary"
@@ -39,25 +41,44 @@
 
 <script>
 import moment from 'moment'
-import validator from './validator'
+import validations from './validator'
+import { mapGetters, mapMutations } from 'vuex'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM } from '@/stores/types/calendarTypes'
 
 export default {
-  props: {
-    value: {
-      type: Object,
-      required: true
-    }
-  },
-
   data () {
     return {
       displayed: false
     }
   },
 
-  validations: {
-    value: validator
+  computed: {
+    ...mapGetters({
+      form: GET_CALENDAR_FORM
+    }),
+
+    calendarStart: {
+      get () {
+        return this.form.start
+      },
+
+      set (start) {
+        this.updateForm({ start })
+      }
+    },
+
+    calendarEnd: {
+      get () {
+        return this.form.end
+      },
+
+      set (end) {
+        this.updateForm({ end })
+      }
+    }
   },
+
+  validations,
 
   watch: {
     value: {
@@ -66,18 +87,22 @@ export default {
       }
     },
 
-    'value.start': {
+    calendarStart: {
       handler (val) {
         const currentStart = moment(val)
 
-        if (currentStart.isAfter(moment(this.value.end))) {
-          this.value.end = currentStart.endOf('year').format('YYYY-MM-DD')
+        if (currentStart.isAfter(moment(this.calendarEnd))) {
+          this.calendarEnd = currentStart.endOf('year').format('YYYY-MM-DD')
         }
       }
     }
   },
 
   methods: {
+    ...mapMutations({
+      updateForm: SET_CALENDAR_FORM
+    }),
+
     show () {
       this.displayed = true
     },

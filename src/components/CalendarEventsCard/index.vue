@@ -8,11 +8,11 @@
       <VSpacer />
       <VBtn
         :disabled="value.length === 0"
-        @click="clearEvents"
         :dark="value.length > 0"
         color="red"
         small
         class="ml-2"
+        @click="clearEvents"
       >
         Kosongkan Event
       </VBtn>

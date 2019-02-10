@@ -9,8 +9,8 @@
           <VIcon>refresh</VIcon>
         </VBtn>
         <UtilityCardSearchBar
-          placeholder="Pencarian"
           v-model="query"
+          placeholder="Pencarian"
         />
         <UtilityCardMenu>
           <VListTile :to="{ name: 'calendars.create' }">
@@ -35,24 +35,21 @@
             :items="items"
             :search="query"
           >
-            <template
-              slot="items"
-              slot-scope="props"
-            >
-              <td v-html="props.item.id" />
-              <td v-html="props.item.name" />
-              <td v-html="props.item.dateRange" />
-              <td v-html="props.item.published ? 'Publik' : 'Draft'" />
+            <template v-slot:items="{ item }">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.dateRange }}</td>
+              <td>{{ item.published ? 'Publik' : 'Draft' }}</td>
               <td class="text-xs-right">
                 <VBtn
-                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
                   small
+                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(props.item.id)"
                   small
+                  @click="deleteHandler(item.id)"
                 >
                   Hapus
                 </VBtn>
@@ -68,6 +65,7 @@
 <script>
 import CalendarControl from '@/components/Renderless/CalendarControl'
 import { mapActions } from 'vuex'
+import { DESTROY_CALENDAR } from '@/stores/types/calendarTypes'
 
 export default {
   name: 'CalendarIndex',
@@ -117,7 +115,7 @@ export default {
 
   methods: {
     ...mapActions({
-      deleteCalendar: 'Calendar/delete'
+      deleteCalendar: DESTROY_CALENDAR
     }),
 
     refreshTable () {

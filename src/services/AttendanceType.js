@@ -8,12 +8,8 @@ export default class AttendanceType {
   }
 
   async get () {
-    try {
-      const res = await this._http.get('attendance-types')
+    const res = await this._http.get('attendance-types')
 
-      return removeDataNamespace(res.data)
-    } catch (err) {
-      throw new Error('Gagal mengambil data jenis absensi')
-    }
+    return removeDataNamespace(res.data)
   }
 }

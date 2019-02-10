@@ -1,8 +1,8 @@
 <template>
   <div>
     <VAlert
-      type="error"
       v-model="error"
+      type="error"
       dismissible
       outline
       class="mb-4"

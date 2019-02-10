@@ -1,19 +1,10 @@
-import store from '../store'
-import router from '../router'
-import Cookies from 'js-cookie'
+import { removeDataNamespace } from '@/helpers/data'
 
 export default class Auth {
   _http = null
 
   constructor (httpService) {
     this._http = httpService
-  }
-
-  /**
-   * Check if is logged in.
-   */
-  get check () {
-    return typeof Cookies.get('accessToken') !== 'undefined'
   }
 
   /**
@@ -26,22 +17,11 @@ export default class Auth {
       throw new Error('HTTP client is not set')
     }
 
-    try {
-      const resp = await this._http.post('auth', {
-        name,
-        password
-      })
-      const accessToken = {
-        username: resp.data.username,
-        password: resp.data.password
-      }
+    const { data } = await this._http.post('auth', { name, password })
 
-      this._http.authData = accessToken
-      Cookies.set('accessToken', accessToken)
-
-      store.commit('LoggedUser/set', await this.whoami())
-    } catch (err) {
-      throw new Error('Nama pengguna/kata sandi salah')
+    return {
+      username: data.username,
+      password: data.password
     }
   }
 
@@ -53,38 +33,8 @@ export default class Auth {
       throw new Error('HTTP client is not set')
     }
 
-    try {
-      const resp = await this._http.get('whoami')
+    const resp = await this._http.get('whoami')
 
-      return resp.data.data
-    } catch (err) {
-      if (err.response.status === 401) {
-        router.push({ name: 'login' })
-      } else {
-        throw new Error('Failed while fetching authenticated user')
-      }
-    }
-  }
-
-  /**
-   * Refresh the user data.
-   */
-  async refresh () {
-    const accessToken = Cookies.get('accessToken')
-
-    if (typeof accessToken === 'undefined') {
-      throw new Error('Access token does not exist')
-    }
-
-    this._http.authData = JSON.parse(accessToken)
-    store.commit('LoggedUser/set', await this.whoami())
-  }
-
-  /**
-   * Log out the user.
-   */
-  logout () {
-    Cookies.remove('accessToken')
-    store.commit('LoggedUser/reset')
+    return removeDataNamespace(resp.data.data)
   }
 }

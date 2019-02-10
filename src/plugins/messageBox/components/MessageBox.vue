@@ -5,24 +5,25 @@
     max-width="480px"
   >
     <VCard>
-      <VCardTitle
-        class="headline"
-        v-html="title"
-      />
-      <VCardText v-html="description" />
+      <VCardTitle class="headline">
+        {{ title }}
+      </VCardTitle>
+      <VCardText>
+        {{ description }}
+      </VCardText>
       <VCardActions>
         <VSpacer />
         <VBtn
-          @click="cancel"
           color="red"
           flat
+          @click="cancel"
         >
           Batal
         </VBtn>
         <VBtn
-          @click="ok"
           color="green"
           flat
+          @click="ok"
         >
           Lanjutkan
         </VBtn>

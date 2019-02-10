@@ -5,7 +5,9 @@
       card
       prominent
     >
-      <VToolbarTitle v-html="title" />
+      <VToolbarTitle>
+        {{ title }}
+      </VToolbarTitle>
       <VSpacer />
       <slot name="toolbar" />
     </VToolbar>

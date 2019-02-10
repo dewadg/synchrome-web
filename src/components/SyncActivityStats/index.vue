@@ -1,7 +1,9 @@
 <template>
   <VCard>
     <VCardTitle>
-      <span class="headline">Aktivitas Sinkronisasi Data</span>
+      <span class="headline">
+        Aktivitas Sinkronisasi Data
+      </span>
     </VCardTitle>
     <VCardText>
       <div class="chart" />

@@ -1,7 +1,9 @@
 <template>
   <VCard>
     <VCardTitle>
-      <span class="headline">Statistik Kehadiran</span>
+      <span class="headline">
+        Statistik Kehadiran
+      </span>
     </VCardTitle>
     <VCardText>
       <div class="chart" />

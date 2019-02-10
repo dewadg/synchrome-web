@@ -8,10 +8,9 @@
     <VToolbarSideIcon @click.native="toggleDrawer">
       <VIcon>menu</VIcon>
     </VToolbarSideIcon>
-    <span
-      class="title ml-3 mr-5"
-      v-html="appName"
-    />
+    <span class="title ml-3 mr-5">
+      {{ appName }}
+    </span>
     <VSpacer />
     <VMenu
       open-on-hover
@@ -19,10 +18,12 @@
       offset-y
     >
       <VBtn
-        flat
         slot="activator"
+        flat
       >
-        <VIcon class="mr-2">account_circle</VIcon>
+        <VIcon class="mr-2">
+          account_circle
+        </VIcon>
         {{ userName }}
       </VBtn>
       <VList>
@@ -38,7 +39,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { authService } from '@/services'
+import { GET_LOGGED_USER_NAME, LOGOUT } from '@/stores/types/loggedUserTypes'
 
 export default {
   props: {
@@ -50,7 +51,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      userName: 'LoggedUser/name'
+      userName: GET_LOGGED_USER_NAME
     }),
 
     appName () {
@@ -64,7 +65,7 @@ export default {
     },
 
     logoutHandler () {
-      authService.logout()
+      this.$store.commit(LOGOUT)
       this.$router.push({ name: 'login' })
     }
   }

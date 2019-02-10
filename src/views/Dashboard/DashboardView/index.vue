@@ -15,7 +15,9 @@
           class="mb-4"
         >
           <VCardTitle>
-            <span class="headline">ASN</span>
+            <span class="headline">
+              ASN
+            </span>
           </VCardTitle>
           <VCardText>
             125.000 orang
@@ -34,7 +36,9 @@
           class="mb-4"
         >
           <VCardTitle>
-            <span class="headline">OPD</span>
+            <span class="headline">
+              OPD
+            </span>
           </VCardTitle>
           <VCardText>
             50 OPD
@@ -53,7 +57,9 @@
           class="mb-4"
         >
           <VCardTitle>
-            <span class="headline">Keterlambatan</span>
+            <span class="headline">
+              Keterlambatan
+            </span>
           </VCardTitle>
           <VCardText>
             25% / November
@@ -71,7 +77,9 @@
           class="mb-4"
         >
           <VCardTitle>
-            <span class="headline">Denda Tertinggi</span>
+            <span class="headline">
+              Denda Tertinggi
+            </span>
           </VCardTitle>
           <VCardText>
             Rp 560.000 - Michael Alan, S.T.

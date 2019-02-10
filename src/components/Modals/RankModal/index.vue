@@ -7,7 +7,10 @@
     <UtilityCard :title="title">
       <VCardText>
         <ErrorBoundary ref="errorBoundary">
-          <RankForm v-model="isFormValid" />
+          <RankForm
+            ref="rankForm"
+            v-model="isFormValid"
+          />
         </ErrorBoundary>
       </VCardText>
       <VCardActions>
@@ -30,6 +33,14 @@
 <script>
 import RankForm from '@/components/Forms/RankForm'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
+import {
+  GET_RANK_FORM,
+  SET_RANK_FORM,
+  RESET_RANK_FORM,
+  STORE_RANK,
+  UPDATE_RANK,
+  FETCH_ONE_RANK
+} from '@/stores/types/rankTypes'
 
 export default {
   components: {
@@ -47,7 +58,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      form: 'Rank/getForm'
+      form: GET_RANK_FORM
     }),
 
     title () {
@@ -67,14 +78,14 @@ export default {
 
   methods: {
     ...mapMutations({
-      clearForm: 'Rank/clearForm',
-      setForm: 'Rank/setForm'
+      clearForm: RESET_RANK_FORM,
+      setForm: SET_RANK_FORM
     }),
 
     ...mapActions({
-      storeRank: 'Rank/store',
-      fetchRank: 'Rank/fetch',
-      updateRank: 'Rank/update'
+      storeRank: STORE_RANK,
+      fetchRank: FETCH_ONE_RANK,
+      updateRank: UPDATE_RANK
     }),
 
     close () {
@@ -110,6 +121,7 @@ export default {
         }
 
         this.close()
+        this.$refs.rankForm.resetValidations()
         this.$emit('submit')
       } catch (err) {
         this.$refs.errorBoundary.trigger(err)

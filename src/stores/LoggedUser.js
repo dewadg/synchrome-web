@@ -1,42 +1,11 @@
-function emptyUser () {
-  return {
-    id: null,
-    name: '',
-    role: {
-      id: null,
-      name: ''
-    },
-    generatedAt: null
-  }
-}
-
-const state = {
-  user: emptyUser()
-}
-
-const mutations = {
-  reset (state) {
-    state.user = emptyUser()
-  },
-
-  set (state, data) {
-    state.user = data
-  }
-}
-
-const getters = {
-  get (state) {
-    return state.user
-  },
-
-  name (state) {
-    return state.user.name
-  }
-}
+import state from './states/loggedUserState'
+import getters from './getters/loggedUserGetters'
+import mutations from './mutations/loggedUserMutations'
+import actions from './actions/loggedUserActions'
 
 export default {
-  namespaced: true,
   state,
+  getters,
   mutations,
-  getters
+  actions
 }

@@ -13,7 +13,7 @@
           prominent
         >
           <VTextField
-            v-model="form.name"
+            v-model="calendarName"
             class="pt-2"
             placeholder="Nama kalender"
             solo
@@ -22,23 +22,20 @@
           <VSpacer />
           {{ formattedStartDate }} - {{ formattedEndDate }}
           <VBtn
-            @click="showCalendarForm"
             color="primary"
             small
             class="ml-4"
+            @click="showCalendarForm"
           >
             Ubah
           </VBtn>
         </VToolbar>
         <div class="pt-1 pr-4 pb-4 pl-4">
-          <CalendarDetailsForm
-            ref="calendarForm"
-            v-model="form"
-          />
+          <CalendarDetailsForm ref="calendarForm" />
           <FullCalendar
-            v-model="form.events"
-            :start="form.start"
-            :end="form.end"
+            v-model="calendarEvents"
+            :start="calendarStart"
+            :end="calendarEnd"
           />
         </div>
       </VCard>
@@ -59,8 +56,8 @@
         </VToolbar>
         <VCardText>
           <VSelect
+            v-model="calendarPublished"
             label="Status"
-            v-model="form.published"
             :items="publicationTypes"
             item-value="id"
             item-text="name"
@@ -69,9 +66,9 @@
         <VCardActions>
           <VBtn
             :disabled="$v.$invalid"
-            @click="submit"
             color="primary"
             block
+            @click="submit"
           >
             Simpan
           </VBtn>
@@ -100,6 +97,8 @@ import FullCalendar from '@/components/FullCalendar'
 import CalendarDetailsForm from '@/components/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
 import validator from './validator'
+import { mapGetters, mapMutations } from 'vuex'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, RESET_CALENDAR_FORM } from '@/stores/types/calendarTypes'
 
 export default {
   name: 'CalendarForm',
@@ -123,18 +122,46 @@ export default {
   },
 
   computed: {
-    form: {
+    ...mapGetters({
+      form: GET_CALENDAR_FORM
+    }),
+
+    calendarName: {
       get () {
-        return this.$store.getters['Calendar/getForm']
+        return this.form.name
       },
 
-      set (val) {
-        this.$store.commit('Calendar/setForm', val)
+      set (name) {
+        this.updateForm({ name })
       }
     },
 
-    calendarName () {
-      return this.form.name === '' ? 'Tambah Kalender Kerja' : this.form.name
+    calendarStart () {
+      return this.form.start
+    },
+
+    calendarEnd () {
+      return this.form.end
+    },
+
+    calendarPublished: {
+      get () {
+        return this.form.published
+      },
+
+      set (published) {
+        this.updateForm({ published })
+      }
+    },
+
+    calendarEvents: {
+      get () {
+        return this.form.events
+      },
+
+      set (events) {
+        this.updateForm({ events })
+      }
     },
 
     formattedStartDate () {
@@ -157,7 +184,16 @@ export default {
     form: validator
   },
 
+  created () {
+    this.resetForm()
+  },
+
   methods: {
+    ...mapMutations({
+      updateForm: SET_CALENDAR_FORM,
+      resetForm: RESET_CALENDAR_FORM
+    }),
+
     showCalendarForm () {
       this.$refs.calendarForm.show()
     },
@@ -166,23 +202,9 @@ export default {
       this.form.events = []
     },
 
-    resetForm () {
-      this.form = {
-        name: '',
-        start: moment().startOf('year').format('YYYY-MM-DD'),
-        end: moment().endOf('year').format('YYYY-MM-DD'),
-        published: false,
-        events: []
-      }
-    },
-
     submit () {
       this.$emit('submit')
     }
-  },
-
-  created () {
-    this.resetForm()
   }
 }
 </script>

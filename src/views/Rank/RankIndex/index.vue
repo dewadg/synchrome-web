@@ -9,8 +9,8 @@
           <VIcon>refresh</VIcon>
         </VBtn>
         <UtilityCardSearchBar
-          placeholder="Pencarian"
           v-model="query"
+          placeholder="Pencarian"
         />
         <UtilityCardMenu>
           <VListTile @click="showModal(false, null)">
@@ -35,22 +35,19 @@
             :items="items"
             :search="query"
           >
-            <template
-              slot="items"
-              slot-scope="props"
-            >
-              <td v-html="props.item.id" />
-              <td v-html="props.item.name" />
+            <template v-slot:items="{ item }">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
               <td class="text-xs-right">
                 <VBtn
-                  @click="showModal(true, props.item.id)"
                   small
+                  @click="showModal(true, item.id)"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
-                  @click="deleteHandler(props.item.id)"
                   small
+                  @click="deleteHandler(item.id)"
                 >
                   Hapus
                 </VBtn>
@@ -71,6 +68,7 @@
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from '@/components/Modals/RankModal'
 import { mapActions } from 'vuex'
+import { DESTROY_RANK } from '@/stores/types/rankTypes'
 
 export default {
   name: 'RankIndex',
@@ -106,7 +104,7 @@ export default {
 
   methods: {
     ...mapActions({
-      deleteRank: 'Rank/delete'
+      deleteRank: DESTROY_RANK
     }),
 
     refreshTable () {

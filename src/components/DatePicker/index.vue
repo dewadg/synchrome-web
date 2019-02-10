@@ -1,8 +1,8 @@
 <template>
   <VMenu
     ref="menu"
-    :close-on-content-click="false"
     v-model="menu"
+    :close-on-content-click="false"
     :nudge-right="40"
     lazy
     transition="scale-transition"
@@ -49,6 +49,7 @@ export default {
       default: null
     },
     value: {
+      type: [String, Object],
       default: null
     }
   },
