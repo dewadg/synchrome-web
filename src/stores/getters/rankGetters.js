@@ -1,10 +1,10 @@
 import {
   GET_RANK_DATA,
   GET_RANK_FORM
-} from '../types/rank'
+} from '../types/rankTypes'
 import {
   RANK_LIST_SCHEMA
-} from '../schema/rank'
+} from '../schema/rankSchema'
 import {
   denormalize
 } from 'normalizr'

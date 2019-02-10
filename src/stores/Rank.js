@@ -1,7 +1,7 @@
-import state from './states/rank'
-import getters from './getters/rank'
-import mutations from './mutations/rank'
-import actions from './actions/rank'
+import state from './states/rankState'
+import getters from './getters/rankGetters'
+import mutations from './mutations/rankMutations'
+import actions from './actions/rankActions'
 
 export default {
   state,

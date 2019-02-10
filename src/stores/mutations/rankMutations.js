@@ -16,10 +16,10 @@ import {
   STORE_RANK_SUCCESS,
   SET_RANK_FORM,
   RESET_RANK_FORM
-} from '../types/rank'
+} from '../types/rankTypes'
 import {
   RANK_LIST_SCHEMA
-} from '../schema/rank'
+} from '../schema/rankSchema'
 import {
   normalize
 } from 'normalizr'

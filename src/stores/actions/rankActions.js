@@ -12,8 +12,9 @@ import {
   UPDATE_RANK_ERROR,
   DESTROY_RANK,
   DESTROY_RANK_SUCCESS,
-  DESTROY_RANK_ERROR
-} from '../types/rank'
+  DESTROY_RANK_ERROR,
+  FETCH_ONE_RANK_ERROR
+} from '../types/rankTypes'
 import {
   rankService
 } from '@/services'
@@ -42,7 +43,7 @@ export default {
 
       return rank
     } catch (err) {
-      commit(FETCH_ALL_RANKS_ERROR)
+      commit(FETCH_ONE_RANK_ERROR)
     }
   },
 
