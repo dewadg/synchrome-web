@@ -14,7 +14,7 @@ import {
   DESTROY_RANK,
   DESTROY_RANK_SUCCESS
 } from '@/stores/types/rankTypes'
-import { STORE_RANK_ERROR, FETCH_ONE_RANK_ERROR, UPDATE_RANK_ERROR, DESTROY_RANK_ERROR } from '../../../src/stores/types/rankTypes';
+import { STORE_RANK_ERROR, FETCH_ONE_RANK_ERROR, UPDATE_RANK_ERROR, DESTROY_RANK_ERROR } from '../../../src/stores/types/rankTypes'
 
 let rank
 const expectedDuplicateId = `${faker.lorem.word()}-${Math.random()}`
