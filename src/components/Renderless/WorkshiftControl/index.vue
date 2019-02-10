@@ -1,29 +1,27 @@
 <template>
-  <ErrorBoundary ref="errorBoundary">
-    <template slot-scope="{ error }">
-      <slot
-        :items="items"
-        :loading="loading"
-        :fetch="fetch"
-        :error="error"
-      />
-    </template>
-  </ErrorBoundary>
+  <div>
+    <slot
+      :items="items"
+      :loading="loading"
+      :fetch="fetch"
+      :error="error"
+    />
+  </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
+import { FETCH_ALL_WORKSHIFTS, GET_WORKSHIFT_DATA } from '@/stores/types/workshiftTypes'
 
 export default {
-  data () {
-    return {
-      loading: true
-    }
-  },
-
   computed: {
+    ...mapState({
+      loading: state => state.Workshift.loading,
+      error: state => state.Workshift.error
+    }),
+
     items () {
-      return this.$store.getters['Workshift/getData']
+      return this.$store.getters[GET_WORKSHIFT_DATA]
     }
   },
 
@@ -32,18 +30,8 @@ export default {
   },
 
   methods: {
-    ...mapActions({
-      fetchWorkshifts: 'Workshift/fetchAll'
-    }),
-
     async fetch () {
-      try {
-        this.loading = true
-        await this.fetchWorkshifts()
-        this.loading = false
-      } catch (err) {
-        this.$refs.errorBoundary.trigger(err)
-      }
+      await this.$store.dispatch(FETCH_ALL_WORKSHIFTS)
     }
   }
 }
