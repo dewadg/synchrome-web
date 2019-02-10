@@ -1,3 +1,4 @@
+import { calendarService } from '@/services'
 import {
   FETCH_ALL_CALENDARS,
   FETCH_ALL_CALENDARS_SUCCESS,
@@ -11,15 +12,10 @@ import {
   DESTROY_CALENDAR,
   DESTROY_CALENDAR_SUCCESS,
   DESTROY_CALENDAR_ERROR
-} from '../types/calendar'
-import {
-  calendarService
-} from '@/services'
+} from '../types/calendarTypes'
 
 export default {
-  async [FETCH_ALL_CALENDARS] ({
-    commit
-  }) {
+  async [FETCH_ALL_CALENDARS] ({ commit }) {
     commit(FETCH_ALL_CALENDARS)
 
     try {
@@ -29,9 +25,7 @@ export default {
     }
   },
 
-  async [STORE_CALENDAR] ({
-    commit
-  }, payload) {
+  async [STORE_CALENDAR] ({ commit }, payload) {
     commit(STORE_CALENDAR)
 
     try {
@@ -44,9 +38,7 @@ export default {
     }
   },
 
-  async [FETCH_ONE_CALENDAR] ({
-    commit
-  }, id) {
+  async [FETCH_ONE_CALENDAR] ({ commit }, id) {
     commit(FETCH_ONE_CALENDAR)
 
     try {
@@ -59,9 +51,7 @@ export default {
     }
   },
 
-  async [DESTROY_CALENDAR] ({
-    commit
-  }, id) {
+  async [DESTROY_CALENDAR] ({ commit }, id) {
     commit(DESTROY_CALENDAR)
 
     try {

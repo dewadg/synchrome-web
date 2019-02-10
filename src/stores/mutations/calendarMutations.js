@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr'
+import moment from 'moment'
 import {
   FETCH_ALL_CALENDARS,
   FETCH_ALL_CALENDARS_SUCCESS,
@@ -13,10 +15,8 @@ import {
   DESTROY_CALENDAR,
   DESTROY_CALENDAR_SUCCESS,
   DESTROY_CALENDAR_ERROR
-} from '../types/calendar'
-import { normalize } from 'normalizr'
-import { CALENDAR_LIST_SCHEMA } from '../schema/calendar'
-import moment from 'moment'
+} from '../types/calendarTypes'
+import { CALENDAR_LIST_SCHEMA } from '../schema/calendarSchema'
 
 export default {
   [FETCH_ALL_CALENDARS] (state) {
