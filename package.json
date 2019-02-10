@@ -53,7 +53,8 @@
   },
   "nyc": {
     "exclude": [
-      "dist"
+      "dist",
+      "src/services/Http.js"
     ],
     "reporter": [
       "html",
