@@ -14,7 +14,10 @@ import {
   FETCH_ONE_CALENDAR_ERROR,
   DESTROY_CALENDAR,
   DESTROY_CALENDAR_SUCCESS,
-  DESTROY_CALENDAR_ERROR
+  DESTROY_CALENDAR_ERROR,
+  UPDATE_CALENDAR,
+  UPDATE_CALENDAR_SUCCESS,
+  UPDATE_CALENDAR_ERROR
 } from '../types/calendarTypes'
 import { CALENDAR_LIST_SCHEMA } from '../schema/calendarSchema'
 
@@ -61,6 +64,21 @@ export default {
   },
 
   [FETCH_ONE_CALENDAR_ERROR] (state, err) {
+    state.loading = false
+    state.error = err
+  },
+
+  [UPDATE_CALENDAR] (state) {
+    state.loading = true
+    state.error = null
+  },
+
+  [UPDATE_CALENDAR_SUCCESS] (state) {
+    state.loading = false
+    state.error = null
+  },
+
+  [UPDATE_CALENDAR_ERROR] (state, err) {
     state.loading = false
     state.error = err
   },

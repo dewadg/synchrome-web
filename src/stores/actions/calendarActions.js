@@ -11,7 +11,10 @@ import {
   FETCH_ONE_CALENDAR_ERROR,
   DESTROY_CALENDAR,
   DESTROY_CALENDAR_SUCCESS,
-  DESTROY_CALENDAR_ERROR
+  DESTROY_CALENDAR_ERROR,
+  UPDATE_CALENDAR,
+  UPDATE_CALENDAR_SUCCESS,
+  UPDATE_CALENDAR_ERROR
 } from '../types/calendarTypes'
 
 export default {
@@ -48,6 +51,27 @@ export default {
       return calendar
     } catch (err) {
       commit(FETCH_ONE_CALENDAR_ERROR)
+    }
+  },
+
+  async [UPDATE_CALENDAR] ({ commit }, payload) {
+    commit(UPDATE_CALENDAR)
+
+    try {
+      const { id } = payload
+      const data = {
+        name: payload.name,
+        start: payload.start,
+        end: payload.end,
+        published: payload.published
+      }
+
+      const updatedCalendar = await calendarService.update(id, data)
+      commit(UPDATE_CALENDAR_SUCCESS)
+
+      return updatedCalendar
+    } catch (err) {
+      commit(UPDATE_CALENDAR_ERROR)
     }
   },
 

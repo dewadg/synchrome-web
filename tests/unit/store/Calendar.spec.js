@@ -15,6 +15,7 @@ import {
   DESTROY_CALENDAR_SUCCESS,
   DESTROY_CALENDAR_ERROR
 } from '@/stores/types/calendarTypes'
+import { UPDATE_CALENDAR, UPDATE_CALENDAR_SUCCESS, UPDATE_CALENDAR_ERROR } from '../../../src/stores/types/calendarTypes';
 
 let calendar
 
@@ -73,6 +74,36 @@ describe('Calendar Store', () => {
 
     assert.match(commit.getCall(0).args[0], FETCH_ONE_CALENDAR)
     assert.match(commit.getCall(1).args[0], FETCH_ONE_CALENDAR_ERROR)
+  })
+
+  it(`should dispatch ${UPDATE_CALENDAR} successfully`, async () => {
+    const commit = sinon.spy()
+
+    await actions[UPDATE_CALENDAR]({ commit }, {
+      id: calendar.id,
+      name: faker.lorem.word(),
+      start: moment().add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      end: moment().add(1, 'year').endOf('year').format('YYYY-MM-DD'),
+      published: false
+    })
+
+    assert.match(commit.getCall(0).args[0], UPDATE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], UPDATE_CALENDAR_SUCCESS)
+  })
+
+  it(`should fail when dispatching ${UPDATE_CALENDAR} with undefined ID`, async () => {
+    const commit = sinon.spy()
+
+    await actions[UPDATE_CALENDAR]({ commit }, {
+      id: null,
+      name: faker.lorem.word(),
+      start: moment().add(1, 'year').startOf('year').format('YYYY-MM-DD'),
+      end: moment().add(1, 'year').endOf('year').format('YYYY-MM-DD'),
+      published: false
+    })
+
+    assert.match(commit.getCall(0).args[0], UPDATE_CALENDAR)
+    assert.match(commit.getCall(1).args[0], UPDATE_CALENDAR_ERROR)
   })
 
   it(`should dispatch ${DESTROY_CALENDAR} successfully`, async () => {
