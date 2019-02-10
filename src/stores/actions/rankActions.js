@@ -20,9 +20,7 @@ import {
 } from '@/services'
 
 export default {
-  async [FETCH_ALL_RANKS] ({
-    commit
-  }) {
+  async [FETCH_ALL_RANKS] ({ commit }) {
     commit(FETCH_ALL_RANKS)
 
     try {
@@ -32,9 +30,7 @@ export default {
     }
   },
 
-  async [FETCH_ONE_RANK] ({
-    commit
-  }, id) {
+  async [FETCH_ONE_RANK] ({ commit }, id) {
     commit(FETCH_ONE_RANK)
 
     try {
@@ -47,9 +43,7 @@ export default {
     }
   },
 
-  async [STORE_RANK] ({
-    commit
-  }, payload) {
+  async [STORE_RANK] ({ commit }, payload) {
     commit(STORE_RANK)
 
     try {
