@@ -10,7 +10,7 @@
 <script>
 import CalendarForm from '@/components/Forms/CalendarForm'
 import { mapGetters, mapActions } from 'vuex'
-import { GET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendar'
+import { GET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendarTypes'
 
 export default {
   name: 'CalendarCreate',

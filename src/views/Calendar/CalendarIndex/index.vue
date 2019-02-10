@@ -65,7 +65,7 @@
 <script>
 import CalendarControl from '@/components/Renderless/CalendarControl'
 import { mapActions } from 'vuex'
-import { DESTROY_CALENDAR } from '@/stores/types/calendar'
+import { DESTROY_CALENDAR } from '@/stores/types/calendarTypes'
 
 export default {
   name: 'CalendarIndex',

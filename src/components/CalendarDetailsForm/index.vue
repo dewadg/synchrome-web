@@ -43,7 +43,7 @@
 import moment from 'moment'
 import validations from './validator'
 import { mapGetters, mapMutations } from 'vuex'
-import { GET_CALENDAR_FORM, SET_CALENDAR_FORM } from '@/stores/types/calendar'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM } from '@/stores/types/calendarTypes'
 
 export default {
   data () {

@@ -98,7 +98,7 @@ import CalendarDetailsForm from '@/components/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
 import validator from './validator'
 import { mapGetters, mapMutations } from 'vuex'
-import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, RESET_CALENDAR_FORM } from '@/stores/types/calendar'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, RESET_CALENDAR_FORM } from '@/stores/types/calendarTypes'
 
 export default {
   name: 'CalendarForm',

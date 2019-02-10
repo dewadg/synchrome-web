@@ -17,7 +17,7 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators'
-import { GET_RANK_FORM, SET_RANK_FORM } from '@/stores/types/rank'
+import { GET_RANK_FORM, SET_RANK_FORM } from '@/stores/types/rankTypes'
 
 export default {
   props: {

@@ -68,7 +68,7 @@
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from '@/components/Modals/RankModal'
 import { mapActions } from 'vuex'
-import { DESTROY_RANK } from '@/stores/types/rank'
+import { DESTROY_RANK } from '@/stores/types/rankTypes'
 
 export default {
   name: 'RankIndex',

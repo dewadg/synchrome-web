@@ -39,7 +39,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { GET_LOGGED_USER_NAME, LOGOUT } from '@/stores/types/loggedUser'
+import { GET_LOGGED_USER_NAME, LOGOUT } from '@/stores/types/loggedUserTypes'
 
 export default {
   props: {

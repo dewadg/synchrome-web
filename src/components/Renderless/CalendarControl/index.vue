@@ -11,7 +11,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import moment from 'moment'
-import { GET_CALENDAR_DATA, FETCH_ALL_CALENDARS } from '@/stores/types/calendar'
+import { GET_CALENDAR_DATA, FETCH_ALL_CALENDARS } from '@/stores/types/calendarTypes'
 
 export default {
   computed: {

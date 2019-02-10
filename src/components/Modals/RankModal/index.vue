@@ -33,7 +33,14 @@
 <script>
 import RankForm from '@/components/Forms/RankForm'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
-import { GET_RANK_FORM, SET_RANK_FORM, RESET_RANK_FORM, STORE_RANK, UPDATE_RANK, FETCH_ONE_RANK } from '@/stores/types/rank'
+import {
+  GET_RANK_FORM,
+  SET_RANK_FORM,
+  RESET_RANK_FORM,
+  STORE_RANK,
+  UPDATE_RANK,
+  FETCH_ONE_RANK
+} from '@/stores/types/rankTypes'
 
 export default {
   components: {

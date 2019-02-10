@@ -10,7 +10,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { FETCH_ALL_RANKS, GET_RANK_DATA } from '@/stores/types/rank'
+import { FETCH_ALL_RANKS, GET_RANK_DATA } from '@/stores/types/rankTypes'
 
 export default {
   name: 'RankControl',
