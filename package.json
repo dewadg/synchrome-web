@@ -54,7 +54,10 @@
   "nyc": {
     "exclude": [
       "dist",
-      "src/services/Http.js"
+      "tests",
+      "src/services/Http.js",
+      "babel.config.js",
+      "vue.config.js"
     ],
     "reporter": [
       "html",
