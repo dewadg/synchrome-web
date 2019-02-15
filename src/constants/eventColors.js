@@ -1,4 +1,4 @@
-export const EVENT_COLORS = {
+export default {
   L: {
     backgroundColor: '#e74c3c',
     borderColor: '#e74c3c',
