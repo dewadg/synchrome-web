@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <UtilityCard title="Daftar Golongan">
       <template slot="toolbar">
         <VBtn
@@ -80,6 +80,17 @@ export default {
 
   data () {
     return {
+      breadcrumbs: [
+        {
+          text: 'Dashboard',
+          to: { name: 'dashboard' },
+          exact: true
+        },
+        {
+          text: 'Golongan',
+          disabled: true
+        }
+      ],
       query: '',
       tableHeaders: [
         {
