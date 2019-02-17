@@ -14,7 +14,8 @@ import {
   UPDATE_WORKSHIFT_ERROR,
   DESTROY_WORKSHIFT,
   DESTROY_WORKSHIFT_SUCCESS,
-  DESTROY_WORKSHIFT_ERROR
+  DESTROY_WORKSHIFT_ERROR,
+  SET_WORKSHIFT_FORM
 } from '../types/workshiftTypes'
 import { WORKSHIFT_LIST_SCHEMA } from '../schema/workshiftSchema'
 
@@ -84,5 +85,12 @@ export default {
 
   [DESTROY_WORKSHIFT_ERROR] (state, err) {
     // Do nothing for now
+  },
+
+  [SET_WORKSHIFT_FORM] (state, data) {
+    state.form = {
+      ...state.form,
+      ...data
+    }
   }
 }
