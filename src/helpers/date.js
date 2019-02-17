@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export function dayByIndex (value) {
   switch (value) {
     case 1:
@@ -15,4 +17,18 @@ export function dayByIndex (value) {
     case 7:
       return 'Minggu'
   }
+}
+
+export function timeIsBefore (a, b) {
+  const first = moment(a, 'HH:mm')
+  const second = moment(b, 'HH:mm')
+
+  return first.isBefore(second)
+}
+
+export function timeIsAfter (a, b) {
+  const first = moment(a, 'HH:mm')
+  const second = moment(b, 'HH:mm')
+
+  return first.isAfter(second)
 }
