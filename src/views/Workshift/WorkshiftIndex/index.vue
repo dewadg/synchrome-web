@@ -41,7 +41,7 @@
               <td class="text-xs-right">
                 <VBtn
                   small
-                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
+                  @click="$router.push({ name: 'workshifts.edit', params: { id: item.id } })"
                 >
                   Sunting
                 </VBtn>
