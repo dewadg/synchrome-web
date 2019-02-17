@@ -9,5 +9,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/workshifts/new',
+    name: 'workshifts.create',
+    component: () => import('@/views/Workshift/WorkshiftCreate'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
