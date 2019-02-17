@@ -17,5 +17,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/workshifts/:id',
+    name: 'workshifts.edit',
+    component: () => import('@/views/Workshift/WorkshiftEdit'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
