@@ -24,7 +24,7 @@
       v-model="time"
       format="24hr"
       full-width
-      @click:minute="$refs.menu.save(time)"
+      @click:minute="$refs.menu.save(`${time}:00`)"
       @input="updateHandler"
     >
       <VSpacer />
@@ -79,7 +79,7 @@ export default {
 
   methods: {
     updateHandler () {
-      this.$refs.menu.save(this.time)
+      this.$refs.menu.save(`${this.time}:00`)
     },
 
     clearHandler () {
