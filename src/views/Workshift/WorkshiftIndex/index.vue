@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <UtilityCard title="Daftar Shift Kerja">
       <template slot="toolbar">
         <VBtn
@@ -74,13 +74,19 @@ export default {
 
   data () {
     return {
-      query: ''
-    }
-  },
-
-  computed: {
-    tableHeaders () {
-      return [
+      breadcrumbs: [
+        {
+          text: 'Dashboard',
+          to: { name: 'dashboard' },
+          exact: true
+        },
+        {
+          text: 'Shift Kerja',
+          disabled: true
+        }
+      ],
+      query: '',
+      tableHeaders: [
         {
           value: 'id',
           text: 'Kode',

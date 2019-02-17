@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <UtilityCard title="Tambah Shift Kerja">
       <template v-slot:toolbar>
         <VBtn
@@ -44,6 +44,22 @@ export default {
 
   data () {
     return {
+      breadcrumbs: [
+        {
+          text: 'Dashboard',
+          to: { name: 'dashboard' },
+          exact: true
+        },
+        {
+          text: 'Shift Kerja',
+          to: { name: 'workshifts' },
+          exact: true
+        },
+        {
+          text: 'Tambah Shift Kerja',
+          disabled: true
+        }
+      ],
       isFormValid: false
     }
   },
