@@ -60,9 +60,7 @@ export default {
 
   methods: {
     async submitHandler () {
-      if (!this.isFormValid) {
-        return
-      }
+      if (!this.isFormValid) return
 
       await this.$store.dispatch(STORE_WORKSHIFT, this.stateForm)
       
