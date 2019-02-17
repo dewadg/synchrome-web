@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <UtilityCard title="Daftar Kalender Kerja">
       <template slot="toolbar">
         <VBtn
@@ -76,6 +76,17 @@ export default {
 
   data () {
     return {
+      breadcrumbs: [
+        {
+          text: 'Dashboard',
+          to: { name: 'dashboard' },
+          exact: true
+        },
+        {
+          text: 'Kalender Kerja',
+          disabled: true
+        }
+      ],
       query: ''
     }
   },

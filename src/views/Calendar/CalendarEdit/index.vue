@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <CalendarForm
       v-model="isFormValid"
       edit
@@ -21,6 +21,22 @@ export default {
 
   data () {
     return {
+      breadcrumbs: [
+        {
+          text: 'Dashboard',
+          to: { name: 'dashboard' },
+          exact: true
+        },
+        {
+          text: 'Kalender Kerja',
+          to: { name: 'calendars' },
+          exact: true
+        },
+        {
+          text: 'Sunting Kalender Kerja',
+          disabled: true
+        }
+      ],
       isFormValid: false
     }
   },
