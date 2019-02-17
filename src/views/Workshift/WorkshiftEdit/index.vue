@@ -1,6 +1,6 @@
 <template>
   <PageWrapper>
-    <UtilityCard title="Tambah Shift Kerja">
+    <UtilityCard title="Sunting Shift Kerja">
       <template v-slot:toolbar>
         <VBtn
           :disabled="!isFormValid"
