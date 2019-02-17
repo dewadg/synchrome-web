@@ -3,12 +3,12 @@
     <VLayout
       row
       wrap
+      justify-center
     >
       <VFlex
-        lg10
+        lg11
         md12
         xs12
-        offset-lg1
       >
         <slot />
       </VFlex>
