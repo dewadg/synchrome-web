@@ -1,6 +1,12 @@
 <template>
   <form>
+    <VProgressLinear
+      v-if="loading"
+      :indeterminate="true"
+      class="mb-4"
+    />
     <VTextField
+      v-else
       label="Nama Shift Kerja"
       v-model="workshiftName"
     />
@@ -8,6 +14,7 @@
       v-for="details in workshiftDetails"
       :key="details.id"
       :value="details"
+      :loading="loading"
       @input="detailsChangeHandler"
     />
   </form>
@@ -26,6 +33,10 @@ export default {
     value: {
       type: Boolean,
       required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
 
