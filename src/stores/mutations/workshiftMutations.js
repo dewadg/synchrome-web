@@ -1,4 +1,5 @@
 import { normalize } from 'normalizr'
+import { generateDetails } from '@/helpers/workshift'
 import {
   FETCH_ALL_WORKSHIFTS,
   FETCH_ALL_WORKSHIFTS_SUCCESS,
@@ -15,7 +16,8 @@ import {
   DESTROY_WORKSHIFT,
   DESTROY_WORKSHIFT_SUCCESS,
   DESTROY_WORKSHIFT_ERROR,
-  SET_WORKSHIFT_FORM
+  SET_WORKSHIFT_FORM,
+  RESET_WORKSHIFT_FORM
 } from '../types/workshiftTypes'
 import { WORKSHIFT_LIST_SCHEMA } from '../schema/workshiftSchema'
 
@@ -91,6 +93,14 @@ export default {
     state.form = {
       ...state.form,
       ...data
+    }
+  },
+
+  [RESET_WORKSHIFT_FORM] (state) {
+    state.form = {
+      id: null,
+      name: '',
+      details: generateDetails()
     }
   }
 }
