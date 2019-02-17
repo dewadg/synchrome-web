@@ -35,22 +35,19 @@
             :items="items"
             :search="query"
           >
-            <template
-              slot="items"
-              slot-scope="props"
-            >
-              <td>{{ props.item.id }}</td>
-              <td>{{ props.item.name }}</td>
+            <template v-slot:items="{ item }">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
               <td class="text-xs-right">
                 <VBtn
                   small
-                  @click="$router.push({ name: 'calendars.edit', params: { id: props.item.id } })"
+                  @click="$router.push({ name: 'calendars.edit', params: { id: item.id } })"
                 >
                   Sunting
                 </VBtn>
                 <VBtn
                   small
-                  @click="deleteHandler(props.item.id)"
+                  @click="deleteHandler(item.id)"
                 >
                   Hapus
                 </VBtn>
@@ -64,8 +61,9 @@
 </template>
 
 <script>
-import WorkshiftControl from '@/components/Renderless/WorkshiftControl'
 import { mapActions } from 'vuex'
+import WorkshiftControl from '@/components/Renderless/WorkshiftControl'
+import { DESTROY_WORKSHIFT } from '@/stores/types/workshiftTypes'
 
 export default {
   name: 'WorkshiftIndex',
@@ -105,7 +103,7 @@ export default {
 
   methods: {
     ...mapActions({
-      deleteWorkshift: 'Workshift/delete'
+      deleteWorkshift: DESTROY_WORKSHIFT
     }),
 
     refreshTable () {
@@ -117,8 +115,8 @@ export default {
         'Hapus Shift Kerja',
         'Apakah anda yakin ingin menghapus data shift kerja ini ini?',
         async () => {
-          await this.deleteCalendar(id)
-          await this.$refs.calendarControl.fetch()
+          await this.deleteWorkshift(id)
+          await this.$refs.workshiftControl.fetch()
         }
       )
     }
