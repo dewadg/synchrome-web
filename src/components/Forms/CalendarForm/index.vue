@@ -23,10 +23,14 @@
           {{ formattedStartDate }} - {{ formattedEndDate }}
           <VBtn
             color="primary"
-            small
             class="ml-4"
+            flat
             @click="showCalendarForm"
           >
+            <VIcon
+              class="mr-2"
+              small
+            >edit</VIcon>
             Ubah
           </VBtn>
         </VToolbar>
