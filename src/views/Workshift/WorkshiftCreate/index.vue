@@ -1,9 +1,12 @@
 <template>
   <PageWrapper :breadcrumbs="breadcrumbs">
-    <UtilityCard title="Tambah Shift Kerja">
-      <template v-slot:toolbar>
+    <UtilityCard
+      :loading="loading"
+      title="Tambah Shift Kerja"
+    >
+      <template #toolbar>
         <VBtn
-          :disabled="!isFormValid"
+          :disabled="!isFormValid || loading"
           color="primary"
           flat
           @click="submitHandler"
@@ -32,6 +35,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
 import WorkshiftForm from '@/components/Forms/WorkshiftForm'
 import { GET_WORKSHIFT_FORM, RESET_WORKSHIFT_FORM, STORE_WORKSHIFT } from '@/stores/types/workshiftTypes'
 
@@ -65,9 +69,14 @@ export default {
   },
 
   computed: {
-    stateForm () {
-      return this.$store.getters[GET_WORKSHIFT_FORM]
-    }
+    ...mapState({
+      loading: ({ Workshift }) => Workshift.isStoring,
+      error: ({ Workshift }) => Workshift.error
+    }),
+
+    ...mapGetters({
+      stateForm: GET_WORKSHIFT_FORM,
+    })
   },
 
   destroyed () {
@@ -80,7 +89,7 @@ export default {
 
       await this.$store.dispatch(STORE_WORKSHIFT, this.stateForm)
       
-      this.$router.push({ name: 'workshifts' })
+      if (!this.error) this.$router.push({ name: 'workshifts' })
     }
   }
 }
