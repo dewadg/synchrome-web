@@ -16,7 +16,7 @@ import { FETCH_ALL_WORKSHIFTS, GET_WORKSHIFT_DATA } from '@/stores/types/workshi
 export default {
   computed: {
     ...mapState({
-      loading: state => state.Workshift.loading,
+      loading: state => state.Workshift.isFetching,
       error: state => state.Workshift.error
     }),
 

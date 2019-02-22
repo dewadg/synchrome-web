@@ -16,7 +16,7 @@ import { GET_CALENDAR_DATA, FETCH_ALL_CALENDARS } from '@/stores/types/calendarT
 export default {
   computed: {
     ...mapState({
-      loading: state => state.Calendar.loading
+      loading: state => state.Calendar.isFetching
     }),
 
     calendars () {
