@@ -3,14 +3,15 @@
     <CalendarForm
       v-model="isFormValid"
       edit
-      @submit="submitHandler(payload)"
+      @submit="submitForm"
     />
   </PageWrapper>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import CalendarForm from '@/components/Forms/CalendarForm'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, FETCH_ONE_CALENDAR, UPDATE_CALENDAR } from '@/stores/types/calendarTypes'
 import breadcrumbs from './breadcrumbs'
 
 export default {
@@ -28,19 +29,16 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      form: 'Calendar/getForm'
+    ...mapState({
+      error: ({ Calendar }) => Calendar.error
     }),
 
-    payload () {
-      return {
-        ...this.form,
-        events: this.form.events.map(item => ({
-          title: item.title,
-          start: item.start,
-          end: item.end,
-          attendanceTypeId: item.attendanceTypeId
-        }))
+    form: {
+      get() {
+        return this.$store.getters[GET_CALENDAR_FORM]
+      },
+      set(form) {
+        this.$store.commit(SET_CALENDAR_FORM, form)
       }
     }
   },
@@ -50,31 +48,19 @@ export default {
   },
 
   methods: {
-    ...mapMutations({
-      setCalendar: 'Calendar/setForm'
-    }),
-
     ...mapActions({
-      fetchCalendar: 'Calendar/fetch',
-      updateCalendar: 'Calendar/update'
+      fetchCalendar: FETCH_ONE_CALENDAR,
+      updateCalendar: UPDATE_CALENDAR
     }),
 
     async fetchHandler () {
-      const calendar = await this.fetchCalendar(this.$route.params.id)
-      this.setCalendar(calendar)
+      this.form = await this.fetchCalendar(this.$route.params.id)
     },
 
-    async submitHandler (payload) {
-      try {
-        await this.updateCalendar({
-          id: this.$route.params.id,
-          data: this.payload
-        })
+    async submitForm () {
+      await this.updateCalendar(this.form)
 
-        this.$router.push({ name: 'calendars' })
-      } catch (err) {
-        console.log(err)
-      }
+      if (!this.error) this.$router.push({ name: 'calendars' })
     }
   }
 }

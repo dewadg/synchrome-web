@@ -71,7 +71,7 @@ export default {
 
       return updatedCalendar
     } catch (err) {
-      commit(UPDATE_CALENDAR_ERROR)
+      commit(UPDATE_CALENDAR_ERROR, err)
     }
   },
 

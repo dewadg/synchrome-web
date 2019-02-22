@@ -96,13 +96,13 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
 import moment from 'moment'
 import FullCalendar from '@/components/FullCalendar'
 import CalendarDetailsForm from '@/components/Forms/CalendarDetailsForm'
 import CalendarEventsCard from '@/components/CalendarEventsCard'
-import validator from './validator'
-import { mapGetters, mapMutations } from 'vuex'
 import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, RESET_CALENDAR_FORM } from '@/stores/types/calendarTypes'
+import validator from './validator'
 
 export default {
   name: 'CalendarForm',
@@ -164,7 +164,14 @@ export default {
       },
 
       set (events) {
-        this.updateForm({ events })
+        const payload = events.map(item => ({
+          title: item.title,
+          start: item.start,
+          end: item.end,
+          attendanceTypeId: item.attendanceTypeId
+        }))
+
+        this.updateForm({ events: payload })
       }
     },
 
