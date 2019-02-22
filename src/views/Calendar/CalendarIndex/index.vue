@@ -19,7 +19,7 @@
         </UtilityCardMenu>
       </template>
       <CalendarControl ref="calendarControl">
-        <template slot-scope="{ items, loading }">
+        <template #default="{ items, loading }">
           <VCardText
             v-if="loading"
             class="text-xs-center"
@@ -35,7 +35,7 @@
             :items="items"
             :search="query"
           >
-            <template v-slot:items="{ item }">
+            <template #items="{ item }">
               <td>{{ item.id }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.dateRange }}</td>
@@ -63,9 +63,10 @@
 </template>
 
 <script>
-import CalendarControl from '@/components/Renderless/CalendarControl'
 import { mapActions } from 'vuex'
+import CalendarControl from '@/components/Renderless/CalendarControl'
 import { DESTROY_CALENDAR } from '@/stores/types/calendarTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'CalendarIndex',
@@ -76,24 +77,9 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Kalender Kerja',
-          disabled: true
-        }
-      ],
-      query: ''
-    }
-  },
-
-  computed: {
-    tableHeaders () {
-      return [
+      breadcrumbs,
+      query: '',
+      tableHeaders: [
         {
           value: 'id',
           text: 'Kode',

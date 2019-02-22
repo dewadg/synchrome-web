@@ -8,9 +8,10 @@
 </template>
 
 <script>
-import CalendarForm from '@/components/Forms/CalendarForm'
 import { mapGetters, mapActions } from 'vuex'
+import CalendarForm from '@/components/Forms/CalendarForm'
 import { GET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendarTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'CalendarCreate',
@@ -21,22 +22,7 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Kalender Kerja',
-          to: { name: 'calendars' },
-          exact: true
-        },
-        {
-          text: 'Tambah Kalender Kerja',
-          disabled: true
-        }
-      ],
+      breadcrumbs,
       isFormValid: false
     }
   },
