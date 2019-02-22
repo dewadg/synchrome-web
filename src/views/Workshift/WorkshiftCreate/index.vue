@@ -38,6 +38,7 @@
 import { mapState, mapGetters } from 'vuex'
 import WorkshiftForm from '@/components/Forms/WorkshiftForm'
 import { GET_WORKSHIFT_FORM, RESET_WORKSHIFT_FORM, STORE_WORKSHIFT } from '@/stores/types/workshiftTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'WorkshiftCreate',
@@ -48,22 +49,7 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Shift Kerja',
-          to: { name: 'workshifts' },
-          exact: true
-        },
-        {
-          text: 'Tambah Shift Kerja',
-          disabled: true
-        }
-      ],
+      breadcrumbs,
       isFormValid: false
     }
   },

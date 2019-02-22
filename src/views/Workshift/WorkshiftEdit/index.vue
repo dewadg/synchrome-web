@@ -47,6 +47,7 @@ import {
   RESET_WORKSHIFT_FORM,
   UPDATE_WORKSHIFT
 } from '@/stores/types/workshiftTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'WorkshiftEdit',
@@ -57,22 +58,7 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Shift Kerja',
-          to: { name: 'workshifts' },
-          exact: true
-        },
-        {
-          text: 'Sunting Shift Kerja',
-          disabled: true
-        }
-      ],
+      breadcrumbs,
       isFormValid: false
     }
   },

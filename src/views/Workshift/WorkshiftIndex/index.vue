@@ -19,7 +19,7 @@
         </UtilityCardMenu>
       </template>
       <WorkshiftControl ref="workshiftControl">
-        <template slot-scope="{ items, loading }">
+        <template #default="{ items, loading }">
           <VCardText
             v-if="loading"
             class="text-xs-center"
@@ -35,7 +35,7 @@
             :items="items"
             :search="query"
           >
-            <template v-slot:items="{ item }">
+            <template #items="{ item }">
               <td>{{ item.id }}</td>
               <td>{{ item.name }}</td>
               <td class="text-xs-right">
@@ -64,6 +64,7 @@
 import { mapActions } from 'vuex'
 import WorkshiftControl from '@/components/Renderless/WorkshiftControl'
 import { DESTROY_WORKSHIFT } from '@/stores/types/workshiftTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'WorkshiftIndex',
@@ -74,17 +75,7 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Shift Kerja',
-          disabled: true
-        }
-      ],
+      breadcrumbs,
       query: '',
       tableHeaders: [
         {
