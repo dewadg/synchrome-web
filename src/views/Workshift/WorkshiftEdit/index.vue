@@ -1,9 +1,12 @@
 <template>
   <PageWrapper :breadcrumbs="breadcrumbs">
-    <UtilityCard title="Sunting Shift Kerja">
+    <UtilityCard
+      :loading="loading"
+      title="Sunting Shift Kerja"
+    >
       <template v-slot:toolbar>
         <VBtn
-          :disabled="!isFormValid"
+          :disabled="!isFormValid || loading"
           color="primary"
           flat
           @click="submitHandler"
@@ -25,7 +28,7 @@
           <VCardText>
             <WorkshiftForm
               v-model="isFormValid"
-              :loading="loading"
+              :disabled="loading"
             />
           </VCardText>
         </VFlex>
@@ -35,7 +38,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import WorkshiftForm from '@/components/Forms/WorkshiftForm'
 import {
   GET_WORKSHIFT_FORM,
@@ -70,23 +73,23 @@ export default {
           disabled: true
         }
       ],
-      loading: false,
       isFormValid: false
     }
   },
 
   computed: {
-    ...mapGetters({
-      getStateForm: GET_WORKSHIFT_FORM
+    ...mapState({
+      loading: ({ Workshift }) => Workshift.isFetchingOne || Workshift.isUpdating,
+      error: ({ Workshift }) => Workshift.error
     }),
 
     stateForm: {
       get () {
-        return this.getStateForm
+        return this.$store.getters[GET_WORKSHIFT_FORM]
       },
 
-      set (val) {
-        this.setStateForm(val)
+      set (form) {
+        this.$store.commit(SET_WORKSHIFT_FORM, form)
       }
     }
   },
@@ -95,27 +98,20 @@ export default {
     this.$store.commit(RESET_WORKSHIFT_FORM)
   },
 
-  mounted () {
-    this.fetchDataHandler()
+  async mounted () {
+    await this.fetchDataHandler()
   },
 
   methods: {
-    ...mapMutations({
-      setStateForm: SET_WORKSHIFT_FORM
-    }),
-
     ...mapActions({
       fetchOneWorkshift: FETCH_ONE_WORKSHIFT
     }),
 
     async fetchDataHandler () {
-      this.loading = true
-      const data = await this.fetchOneWorkshift(this.$route.params.id)
       this.stateForm = {
         ...this.stateForm,
-        ...data
+        ...await this.fetchOneWorkshift(this.$route.params.id)
       }
-      this.loading = false
     },
 
     async submitHandler () {
@@ -123,7 +119,7 @@ export default {
 
       await this.$store.dispatch(UPDATE_WORKSHIFT, this.stateForm)
       
-      this.$router.push({ name: 'workshifts' })
+      if (!this.error) this.$router.push({ name: 'workshifts' })
     }
   }
 }
