@@ -52,6 +52,8 @@
 import moment from 'moment'
 
 export default {
+  name: 'CalendarEventsCard',
+
   props: {
     value: {
       type: Array,

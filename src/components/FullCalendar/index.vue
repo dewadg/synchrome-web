@@ -19,6 +19,8 @@ import FullCalendarEventModal from '@/components/Modals/FullCalendarEventModal'
 import EVENT_COLORS from '@/constants/eventColors'
 
 export default {
+  name: 'FullCalendar',
+
   components: {
     FullCalendarEventModal
   },

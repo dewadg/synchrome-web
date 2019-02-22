@@ -118,7 +118,6 @@ export default {
       type: Boolean,
       required: true
     },
-
     edit: {
       type: Boolean,
       default: false
@@ -134,7 +133,6 @@ export default {
       get () {
         return this.form.name
       },
-
       set (name) {
         this.updateForm({ name })
       }
@@ -152,7 +150,6 @@ export default {
       get () {
         return this.form.published
       },
-
       set (published) {
         this.updateForm({ published })
       }
@@ -162,7 +159,6 @@ export default {
       get () {
         return this.form.events
       },
-
       set (events) {
         const payload = events.map(item => ({
           title: item.title,

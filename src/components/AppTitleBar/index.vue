@@ -42,6 +42,8 @@ import { mapGetters } from 'vuex'
 import { GET_LOGGED_USER_NAME, LOGOUT } from '@/stores/types/loggedUserTypes'
 
 export default {
+  name: 'AppTitleBar',
+
   props: {
     value: {
       type: Boolean,

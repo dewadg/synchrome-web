@@ -48,7 +48,6 @@ export default {
       get () {
         return this.stateForm.name
       },
-
       set (name) {
         this.setStateForm({ name })
       }
@@ -58,7 +57,6 @@ export default {
       get () {
         return this.stateForm.details
       },
-
       set (details) {
         this.setStateForm({ details })
       }

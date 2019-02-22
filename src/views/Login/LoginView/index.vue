@@ -69,7 +69,7 @@ import { mapState } from 'vuex'
 import { AUTHENTICATE, RESET_LOGGED_USER_ERROR } from '@/stores/types/loggedUserTypes'
 
 export default {
-  name: 'LoginView',
+  name: 'Login',
 
   data () {
     return {
