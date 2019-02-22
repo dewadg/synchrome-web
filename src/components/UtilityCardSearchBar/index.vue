@@ -1,7 +1,8 @@
 <template>
   <VMenu
-    :close-on-content-click="false"
     offset-y
+    :close-on-content-click="false"
+    :close-on-click="false"
     :nudge-width="250"
     :nudge-bottom="5"
     :nudge-right="-250"
@@ -9,6 +10,7 @@
     <VBtn
       slot="activator"
       icon
+      @click="clear"
     >
       <VIcon>search</VIcon>
     </VBtn>
@@ -19,7 +21,6 @@
       class="mt-0"
       hide-details
       :placeholder="placeholder"
-      @blur="clear"
     />
   </VMenu>
 </template>
