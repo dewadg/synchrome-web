@@ -19,7 +19,7 @@
         </UtilityCardMenu>
       </template>
       <RankControl ref="rankControl">
-        <template slot-scope="{ items, loading }">
+        <template #default="{ items, loading }">
           <VCardText
             v-if="loading"
             class="text-xs-center"
@@ -35,7 +35,7 @@
             :items="items"
             :search="query"
           >
-            <template v-slot:items="{ item }">
+            <template #items="{ item }">
               <td>{{ item.id }}</td>
               <td>{{ item.name }}</td>
               <td class="text-xs-right">
@@ -65,10 +65,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import RankControl from '@/components/Renderless/RankControl'
 import RankModal from '@/components/Modals/RankModal'
-import { mapActions } from 'vuex'
 import { DESTROY_RANK } from '@/stores/types/rankTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'RankIndex',
@@ -80,17 +81,7 @@ export default {
 
   data () {
     return {
-      breadcrumbs: [
-        {
-          text: 'Dashboard',
-          to: { name: 'dashboard' },
-          exact: true
-        },
-        {
-          text: 'Golongan',
-          disabled: true
-        }
-      ],
+      breadcrumbs,
       query: '',
       tableHeaders: [
         {
