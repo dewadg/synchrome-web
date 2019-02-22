@@ -26,78 +26,78 @@ import {
 
 export default {
   [FETCH_ALL_RANKS] (state) {
-    state.loading = true
+    state.isFetching = true
     state.error = null
   },
 
   [FETCH_ALL_RANKS_SUCCESS] (state, data) {
-    state.loading = false
+    state.isFetching = false
     state.error = null
     state.data = normalize(data, RANK_LIST_SCHEMA)
   },
 
   [FETCH_ALL_RANKS_ERROR] (state, err) {
-    state.loading = false
+    state.isFetching = false
     state.error = err
   },
 
   [FETCH_ONE_RANK] (state) {
-    state.loading = true
+    state.isFetchingOne = true
     state.error = null
   },
 
   [FETCH_ONE_RANK_SUCCESS] (state) {
-    state.loading = false
+    state.isFetchingOne = false
     state.error = null
   },
 
   [FETCH_ONE_RANK_ERROR] (state, err) {
-    state.loading = false
+    state.isFetchingOne = false
     state.error = err
   },
 
   [STORE_RANK] (state) {
-    state.loading = true
+    state.isStoring = true
     state.error = null
   },
 
   [STORE_RANK_SUCCESS] (state) {
-    state.loading = false
+    state.isStoring = false
     state.error = null
   },
 
   [STORE_RANK_ERROR] (state, err) {
-    state.loading = false
+    state.isStoring = false
     state.error = err
   },
 
   [UPDATE_RANK] (state) {
-    state.loading = true
+    state.isUpdating = true
     state.error = null
   },
 
   [UPDATE_RANK_SUCCESS] (state) {
-    state.loading = false
+    state.isUpdating = false
     state.error = null
   },
 
   [UPDATE_RANK_ERROR] (state, err) {
-    state.loading = false
+    state.isUpdating = false
     state.error = err
   },
 
   [DESTROY_RANK] (state) {
-    state.loading = true
+    state.isDestroying = true
     state.error = null
   },
 
   [DESTROY_RANK_SUCCESS] (state) {
-    state.loading = false
+    state.isDestroying = false
     state.error = null
   },
 
   [DESTROY_RANK_ERROR] (state, err) {
-    state.loading = false
+    state.isDestroying = false
     state.error = err
   },
 
