@@ -39,6 +39,8 @@
 import moment from 'moment'
 
 export default {
+  name: 'DatePicker',
+
   props: {
     label: {
       type: String,

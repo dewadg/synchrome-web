@@ -43,7 +43,6 @@ export default {
       get () {
         return this.$store.getters[GET_RANK_FORM].id
       },
-
       set (val) {
         this.$store.commit(SET_RANK_FORM, { id: val })
       }
@@ -53,7 +52,6 @@ export default {
       get () {
         return this.$store.getters[GET_RANK_FORM].name
       },
-
       set (val) {
         this.$store.commit(SET_RANK_FORM, { name: val })
       }

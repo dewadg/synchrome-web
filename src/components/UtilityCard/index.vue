@@ -22,6 +22,8 @@
 
 <script>
 export default {
+  name: 'UtilityCard',
+
   props: {
     title: {
       type: String,

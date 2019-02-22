@@ -14,6 +14,8 @@ import moment from 'moment'
 import { GET_CALENDAR_DATA, FETCH_ALL_CALENDARS } from '@/stores/types/calendarTypes'
 
 export default {
+  name: 'CalendarControl',
+
   computed: {
     ...mapState({
       loading: state => state.Calendar.isFetching

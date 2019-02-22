@@ -14,6 +14,8 @@ import { mapState, mapGetters } from 'vuex'
 import { FETCH_ALL_WORKSHIFTS, GET_WORKSHIFT_DATA } from '@/stores/types/workshiftTypes'
 
 export default {
+  name: 'WorkshiftControl',
+
   computed: {
     ...mapState({
       loading: state => state.Workshift.isFetching,

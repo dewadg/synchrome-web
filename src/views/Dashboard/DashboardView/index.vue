@@ -115,6 +115,8 @@ import TppStats from '@/components/TppStats'
 import SyncActivityStats from '@/components/SyncActivityStats'
 
 export default {
+  name: 'Dashboard',
+
   components: {
     AttendanceStats,
     TppStats,

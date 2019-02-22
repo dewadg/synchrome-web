@@ -42,6 +42,8 @@
 import menus from '@/constants/menus'
 
 export default {
+  name: 'AppNav',
+
   props: {
     value: {
       type: Boolean,

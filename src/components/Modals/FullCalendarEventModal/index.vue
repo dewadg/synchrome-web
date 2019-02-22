@@ -72,6 +72,8 @@ import AttendanceTypeControl from '@/components/Renderless/AttendanceTypeControl
 import validator from './validator'
 
 export default {
+  name: 'FullCalendarEventModal',
+
   components: {
     AttendanceTypeControl
   },

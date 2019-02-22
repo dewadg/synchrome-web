@@ -61,7 +61,6 @@ export default {
       get () {
         return this.form.start
       },
-
       set (start) {
         this.updateForm({ start })
       }
@@ -71,7 +70,6 @@ export default {
       get () {
         return this.form.end
       },
-
       set (end) {
         this.updateForm({ end })
       }
