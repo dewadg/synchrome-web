@@ -1,5 +1,10 @@
 export default () => ({
-  loading: false,
+  isFetching: false,
+  isFetchingOne: false,
+  isStoring: false,
+  isUpdating: false,
+  isDestroying: false,
+
   error: null,
 
   data: {

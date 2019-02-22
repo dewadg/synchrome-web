@@ -15,8 +15,8 @@ import $ from 'jquery'
 import moment from 'moment'
 import 'fullcalendar'
 import 'fullcalendar/dist/locale/id'
-import FullCalendarEventModal from '@/components/FullCalendarEventModal'
-import { EVENT_COLORS } from '@/helpers/calendar'
+import FullCalendarEventModal from '@/components/Modals/FullCalendarEventModal'
+import EVENT_COLORS from '@/constants/eventColors'
 
 export default {
   components: {

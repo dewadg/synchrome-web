@@ -4,14 +4,16 @@
     max-width="640px"
     @close="close"
   >
-    <UtilityCard :title="title">
+    <UtilityCard
+      :title="title"
+      :loading="loading"
+    >
       <VCardText>
-        <ErrorBoundary ref="errorBoundary">
-          <RankForm
-            ref="rankForm"
-            v-model="isFormValid"
-          />
-        </ErrorBoundary>
+        <RankForm
+          ref="rankForm"
+          v-model="isFormValid"
+          :disabled="loading"
+        />
       </VCardText>
       <VCardActions>
         <VSpacer />
@@ -31,8 +33,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import RankForm from '@/components/Forms/RankForm'
-import { mapGetters, mapMutations, mapActions } from 'vuex'
 import {
   GET_RANK_FORM,
   SET_RANK_FORM,
@@ -43,6 +45,8 @@ import {
 } from '@/stores/types/rankTypes'
 
 export default {
+  name: 'RankModal',
+
   components: {
     RankForm
   },
@@ -57,31 +61,26 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      form: GET_RANK_FORM
+    ...mapState({
+      loading: ({ Rank }) => Rank.isStoring || Rank.isFetchingOne || Rank.isUpdating,
+      error: ({ Rank }) => Rank.error
     }),
+
+    form: {
+      get() {
+        return this.$store.getters[GET_RANK_FORM]
+      },
+      set(form) {
+        this.$store.commit(SET_RANK_FORM, form)
+      }
+    },
 
     title () {
       return !this.editMode ? 'Tambah Golongan' : 'Edit Golongan'
     }
   },
 
-  watch: {
-    showDialog: {
-      handler (val) {
-        if (!val) {
-          this.$refs.errorBoundary.reset()
-        }
-      }
-    }
-  },
-
   methods: {
-    ...mapMutations({
-      clearForm: RESET_RANK_FORM,
-      setForm: SET_RANK_FORM
-    }),
-
     ...mapActions({
       storeRank: STORE_RANK,
       fetchRank: FETCH_ONE_RANK,
@@ -89,19 +88,17 @@ export default {
     }),
 
     close () {
-      this.clearForm()
-      this.$refs.errorBoundary.reset()
+      this.$store.commit(RESET_RANK_FORM)
       this.showDialog = false
     },
 
     async open (editMode = false, id = null) {
-      this.clearForm()
+      this.$store.commit(RESET_RANK_FORM)
       this.editMode = editMode
       this.id = id
 
       if (this.editMode) {
-        const rank = await this.fetchRank(this.id)
-        this.setForm(rank)
+        this.form = await this.fetchRank(this.id)
       }
 
       this.showDialog = true
@@ -110,21 +107,19 @@ export default {
     async submit () {
       if (!this.isFormValid) return
 
-      try {
-        if (!this.editMode) {
-          await this.storeRank(this.form)
-        } else {
-          await this.updateRank({
-            id: this.id,
-            data: this.form
-          })
-        }
+      if (!this.editMode) {
+        await this.storeRank(this.form)
+      } else {
+        await this.updateRank({
+          id: this.id,
+          data: this.form
+        })
+      }
 
+      if (!this.error) {
         this.close()
         this.$refs.rankForm.resetValidations()
         this.$emit('submit')
-      } catch (err) {
-        this.$refs.errorBoundary.trigger(err)
       }
     }
   }

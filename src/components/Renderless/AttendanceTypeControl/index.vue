@@ -15,7 +15,7 @@ import { GET_ATTENDANCE_TYPE_DATA, FETCH_ALL_ATTENDANCE_TYPES } from '@/stores/t
 export default {
   computed: {
     ...mapState({
-      loading: state => state.AttendanceType.loading
+      loading: state => state.AttendanceType.isFetching
     }),
 
     items () {

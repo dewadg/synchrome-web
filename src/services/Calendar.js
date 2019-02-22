@@ -1,5 +1,5 @@
 import { removeDataNamespace } from '@/helpers/data'
-import { EVENT_COLORS } from '@/helpers/calendar'
+import EVENT_COLORS from '@/constants/eventColors'
 
 export default class Calendar {
   _http = null

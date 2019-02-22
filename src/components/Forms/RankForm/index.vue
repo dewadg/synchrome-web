@@ -2,14 +2,16 @@
   <form>
     <VTextField
       v-model="rankId"
-      label="Kode"
+      :disabled="disabled"
       :error-messages="rankIdErrors"
+      label="Kode"
       @input="$v.rankId.$touch"
     />
     <VTextField
       v-model="rankName"
-      label="Golongan"
+      :disabled="disabled"
       :error-messages="rankNameErrors"
+      label="Golongan"
       @input="$v.rankName.$touch"
     />
   </form>
@@ -24,6 +26,10 @@ export default {
     value: {
       type: Boolean,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 

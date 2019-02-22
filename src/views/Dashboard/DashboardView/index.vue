@@ -20,7 +20,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            125.000 orang
+            125K <small>orang</small>
           </VCardText>
         </VCard>
       </VFlex>
@@ -41,7 +41,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            50 OPD
+            50 <small>OPD</small>
           </VCardText>
         </VCard>
       </VFlex>
@@ -62,7 +62,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            25% / November
+            25% <small>/ November</small>
           </VCardText>
         </VCard>
       </VFlex>
@@ -82,7 +82,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            Rp 560.000 - Michael Alan, S.T.
+            Rp 560.000 - <small>Michael Alan, S.T.</small>
           </VCardText>
         </VCard>
       </VFlex>

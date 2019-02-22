@@ -8,6 +8,11 @@
       <VToolbarTitle>
         {{ title }}
       </VToolbarTitle>
+      <VProgressCircular
+        v-if="loading"
+        :indeterminate="loading"
+        class="ml-3"
+      />
       <VSpacer />
       <slot name="toolbar" />
     </VToolbar>
@@ -21,6 +26,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 }

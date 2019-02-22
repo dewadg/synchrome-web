@@ -23,78 +23,78 @@ import { CALENDAR_LIST_SCHEMA } from '../schema/calendarSchema'
 
 export default {
   [FETCH_ALL_CALENDARS] (state) {
-    state.loading = true
+    state.isFetching = true
     state.error = null
   },
 
   [FETCH_ALL_CALENDARS_SUCCESS] (state, data) {
-    state.loading = false
+    state.isFetching = false
     state.error = null
     state.data = normalize(data, CALENDAR_LIST_SCHEMA)
   },
 
   [FETCH_ALL_CALENDARS_ERROR] (state, err) {
-    state.loading = false
+    state.isFetching = false
     state.error = err
   },
 
   [STORE_CALENDAR] (state) {
-    state.loading = true
+    state.isStoring = true
     state.error = null
   },
 
   [STORE_CALENDAR_SUCCESS] (state) {
-    state.loading = false
+    state.isStoring = false
     state.error = null
   },
 
   [STORE_CALENDAR_ERROR] (state, err) {
-    state.loading = false
+    state.isStoring = false
     state.error = err
   },
 
   [FETCH_ONE_CALENDAR] (state) {
-    state.loading = true
+    state.isFetchingOne = true
     state.error = null
   },
 
   [FETCH_ONE_CALENDAR_SUCCESS] (state) {
-    state.loading = false
+    state.isFetchingOne = false
     state.error = null
   },
 
   [FETCH_ONE_CALENDAR_ERROR] (state, err) {
-    state.loading = false
+    state.isFetchingOne = false
     state.error = err
   },
 
   [UPDATE_CALENDAR] (state) {
-    state.loading = true
+    state.isUpdating = true
     state.error = null
   },
 
   [UPDATE_CALENDAR_SUCCESS] (state) {
-    state.loading = false
+    state.isUpdating = false
     state.error = null
   },
 
   [UPDATE_CALENDAR_ERROR] (state, err) {
-    state.loading = false
+    state.isUpdating = false
     state.error = err
   },
 
   [DESTROY_CALENDAR] (state) {
-    state.loading = true
+    state.isDestroying = true
     state.error = null
   },
 
   [DESTROY_CALENDAR_SUCCESS] (state) {
-    state.loading = false
+    state.isDestroying = false
     state.error = null
   },
 
   [DESTROY_CALENDAR_ERROR] (state, err) {
-    state.loading = false
+    state.isDestroying = false
     state.error = err
   },
 

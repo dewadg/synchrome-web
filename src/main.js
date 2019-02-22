@@ -7,6 +7,7 @@ import './plugins/vuelidate'
 import './plugins/messageBox'
 import './plugins/moment'
 import './plugins/components'
+import './plugins/tailwind'
 import './plugins/services'
 import './plugins/serviceWorker'
 

@@ -1,16 +1,17 @@
 <template>
-  <PageWrapper>
+  <PageWrapper :breadcrumbs="breadcrumbs">
     <CalendarForm
       v-model="isFormValid"
-      @submit="submitHandler(payload)"
+      @submit="submitForm"
     />
   </PageWrapper>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import CalendarForm from '@/components/Forms/CalendarForm'
-import { mapGetters, mapActions } from 'vuex'
-import { GET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendarTypes'
+import { GET_CALENDAR_FORM, SET_CALENDAR_FORM, STORE_CALENDAR } from '@/stores/types/calendarTypes'
+import breadcrumbs from './breadcrumbs'
 
 export default {
   name: 'CalendarCreate',
@@ -21,24 +22,22 @@ export default {
 
   data () {
     return {
+      breadcrumbs,
       isFormValid: false
     }
   },
 
   computed: {
-    ...mapGetters({
-      form: GET_CALENDAR_FORM
+    ...mapState({
+      error: ({ Calendar }) => Calendar.error
     }),
 
-    payload () {
-      return {
-        ...this.form,
-        events: this.form.events.map(item => ({
-          title: item.title,
-          start: item.start,
-          end: item.end,
-          attendanceTypeId: item.attendanceTypeId
-        }))
+    form: {
+      get() {
+        return this.$store.getters[GET_CALENDAR_FORM]
+      },
+      set(form) {
+        this.$store.commit(SET_CALENDAR_FORM, form)
       }
     }
   },
@@ -48,14 +47,10 @@ export default {
       storeCalendar: STORE_CALENDAR
     }),
 
-    async submitHandler (payload) {
-      try {
-        await this.storeCalendar(payload)
+    async submitForm () {
+      await this.storeCalendar(this.form)
 
-        this.$router.push({ name: 'calendars' })
-      } catch (err) {
-        console.log(err)
-      }
+      if (!this.error) this.$router.push({ name: 'calendars' })
     }
   }
 }

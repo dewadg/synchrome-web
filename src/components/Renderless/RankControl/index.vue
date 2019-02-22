@@ -17,7 +17,7 @@ export default {
 
   computed: {
     ...mapState({
-      loading: state => state.Rank.loading
+      loading: state => state.Rank.isFetching
     }),
 
     items () {
