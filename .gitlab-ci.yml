@@ -25,5 +25,5 @@ run_unit_tests:
     - echo VUE_APP_API_URL=$TEST_VUE_APP_API_URL >> .env
     - echo VUE_APP_AUTH_USERNAME=$TEST_VUE_APP_AUTH_USER_NAME >> .env
     - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env
-    - cat .env
+    - cat .env.test.local
     - yarn test:unit
