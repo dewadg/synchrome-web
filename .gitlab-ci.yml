@@ -25,4 +25,9 @@ run_unit_tests:
     VUE_APP_AUTH_USERNAME: $TEST_VUE_APP_AUTH_USER_NAME
     VUE_APP_AUTH_PASSWORD: $TEST_VUE_APP_AUTH_PASSWORD
   script:
+    - touch .env.test
+    - echo VUE_APP_APP_NAME=$TEST_VUE_APP_APP_NAME >> .env
+    - echo VUE_APP_API_URL=$TEST_VUE_APP_API_URL >> .env
+    - echo VUE_APP_AUTH_USERNAME=$TEST_VUE_APP_AUTH_USER_NAME >> .env
+    - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env
     - yarn test:unit
