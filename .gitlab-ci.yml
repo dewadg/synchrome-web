@@ -25,5 +25,26 @@ run_unit_tests:
     - echo VUE_APP_API_URL=$TEST_VUE_APP_API_URL >> .env.test.local
     - echo VUE_APP_AUTH_USERNAME=$TEST_VUE_APP_AUTH_USERNAME >> .env.test.local
     - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env.test.local
-    - cat .env.test.local
     - yarn test:unit
+
+deploy:
+  stage: deploy
+  before_script:
+    - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+    - eval $(ssh-agent -s)
+    - echo "$PROD_SERVER_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $PROD_SERVER_ADDRESS >> ~/.ssh/known_hosts
+  script:
+    - |
+      ssh $PROD_SERVER_USER@$PROD_SERVER_ADDRESS "
+        rm -Rf ~/service/synchrome-web;
+        mkdir -p ~/service/synchrome-web && cd ~/service/synchrome-web;
+        git clone http://$CI_DEPLOY_USER:$CI_DEPLOY_TOKEN@gitlab.com/dewadg/synchrome-web.git .;
+        touch .env.production.local;
+        echo VUE_APP_APP_NAME=$PROD_VUE_APP_APP_NAME >> .env.production.local;
+        echo VUE_APP_API_URL=$PROD_VUE_APP_API_URL >> .env.production.local;
+        docker-compose up --build -d;
+        exit;
+      "
