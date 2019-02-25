@@ -21,9 +21,9 @@ run_unit_tests:
   stage: test
   script:
     - touch .env.test.local
-    - echo VUE_APP_APP_NAME=$TEST_VUE_APP_APP_NAME >> .env
-    - echo VUE_APP_API_URL=$TEST_VUE_APP_API_URL >> .env
-    - echo VUE_APP_AUTH_USERNAME=$TEST_VUE_APP_AUTH_USER_NAME >> .env
-    - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env
+    - echo VUE_APP_APP_NAME=$TEST_VUE_APP_APP_NAME >> .env.test.local
+    - echo VUE_APP_API_URL=$TEST_VUE_APP_API_URL >> .env.test.local
+    - echo VUE_APP_AUTH_USERNAME=$TEST_VUE_APP_AUTH_USER_NAME >> .env.test.local
+    - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env.test.local
     - cat .env.test.local
     - yarn test:unit
