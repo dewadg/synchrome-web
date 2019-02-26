@@ -3,7 +3,12 @@ image: node:lts-alpine
 stages:
   - preparation
   - test
+  - build
   - deploy
+
+variables:
+  CONTAINER_REGISTRY: registry.gitlab.com/dewadg/synchrome-web
+  CONTAINER_NAME: synchrome-web
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -27,6 +32,21 @@ run_unit_tests:
     - echo VUE_APP_AUTH_PASSWORD=$TEST_VUE_APP_AUTH_PASSWORD >> .env.test.local
     - yarn test:unit
 
+build:
+  stage: build
+  image: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+  script:
+    - docker build . -t $CONTAINER_REGISTRY:latest
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker push $CONTAINER_REGISTRY:latest
+
 deploy:
   stage: deploy
   image: ubuntu
@@ -40,12 +60,11 @@ deploy:
   script:
     - |
       ssh $PROD_SERVER_USER@$PROD_SERVER_ADDRESS "
-        rm -Rf ~/service/synchrome-web;
-        mkdir -p ~/service/synchrome-web && cd ~/service/synchrome-web;
-        git clone http://$CI_DEPLOY_USER:$CI_DEPLOY_TOKEN@gitlab.com/dewadg/synchrome-web.git .;
-        touch .env.production.local;
-        echo VUE_APP_APP_NAME=$PROD_VUE_APP_APP_NAME >> .env.production.local;
-        echo VUE_APP_API_URL=$PROD_VUE_APP_API_URL >> .env.production.local;
-        docker-compose up --build -d;
+        docker rm -f $CONTAINER_NAME 2> /dev/null;
+        docker pull $CONTAINER_REGISTRY:latest;
+        docker create --name $CONTAINER_NAME \
+          -p 3000:80 \
+          $CONTAINER_REGISTRY;
+        docker start $CONTAINER_NAME;
         exit;
       "
