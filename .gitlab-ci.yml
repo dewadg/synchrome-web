@@ -15,14 +15,14 @@ cache:
   paths:
     - node_modules/
 
-run_yarn_install:
+yarn_install:
   stage: preparation
   before_script:
     - yarn -v
   script:
     - yarn
 
-run_unit_tests:
+unit_test:
   stage: test
   before_script:
     - touch .env.test.local
