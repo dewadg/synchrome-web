@@ -48,4 +48,21 @@ describe('Agency Store', () => {
     assert.match(commit.getCall(0).args[0], types.FETCH_ONE_AGENCY)
     assert.match(commit.getCall(1).args[0], types.FETCH_ONE_AGENCY_SUCCESS)
   })
+
+  it(`should dispatch ${types.UPDATE_AGENCY} successfully`, async () => {
+    const commit = sinon.spy()
+    const payload = {
+      name: faker.lorem.word() + '123',
+      phone: faker.lorem.word() + '123',
+      address: faker.lorem.word() + '123'
+    }
+
+    await actions[types.UPDATE_AGENCY]({ commit }, {
+      id: agency.id,
+      ...payload
+    })
+
+    assert.match(commit.getCall(0).args[0], types.UPDATE_AGENCY)
+    assert.match(commit.getCall(1).args[0], types.UPDATE_AGENCY_SUCCESS)
+  })
 })

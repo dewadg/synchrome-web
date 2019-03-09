@@ -47,5 +47,20 @@ export default {
   [types.STORE_AGENCY_ERROR] (state, err) {
     state.isStoring = false
     state.error = err
+  },
+
+  [types.UPDATE_AGENCY] (state) {
+    state.isUpdating = true
+    state.error = null
+  },
+
+  [types.UPDATE_AGENCY_SUCCESS] (state) {
+    state.isUpdating = false
+    state.error = null
+  },
+
+  [types.UPDATE_AGENCY_ERROR] (state, err) {
+    state.isUpdating = false
+    state.error = err
   }
 }
