@@ -8,7 +8,6 @@ export default {
     try {
       commit(types.FETCH_ALL_AGENCIES_SUCCESS, await agencyService.get())
     } catch (err) {
-      console.log(err)
       commit(types.FETCH_ALL_AGENCIES_ERROR, err)
     }
   }
