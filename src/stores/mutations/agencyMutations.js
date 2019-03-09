@@ -17,5 +17,20 @@ export default {
   [types.FETCH_ALL_AGENCIES_ERROR] (state, err) {
     state.isFetching = false
     state.error = err
+  },
+
+  [types.STORE_AGENCY] (state) {
+    state.isStoring = true
+    state.error = null
+  },
+
+  [types.STORE_AGENCY_SUCCESS] (state) {
+    state.isStoring = false
+    state.error = null
+  },
+
+  [types.STORE_AGENCY_ERROR] (state, err) {
+    state.isStoring = false
+    state.error = err
   }
 }
