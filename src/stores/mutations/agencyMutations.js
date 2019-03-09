@@ -62,5 +62,20 @@ export default {
   [types.UPDATE_AGENCY_ERROR] (state, err) {
     state.isUpdating = false
     state.error = err
+  },
+
+  [types.DESTROY_AGENCY] (state) {
+    state.isDestroying = true
+    state.error = null
+  },
+
+  [types.DESTROY_AGENCY_SUCCESS] (state) {
+    state.isDestroying = false
+    state.error = null
+  },
+
+  [types.DESTROY_AGENCY_ERROR] (state, err) {
+    state.isDestroying = false
+    state.error = err
   }
 }

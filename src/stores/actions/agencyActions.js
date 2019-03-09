@@ -53,5 +53,16 @@ export default {
     } catch (err) {
       commit(types.UPDATE_AGENCY_ERROR, err)
     }
+  },
+
+  async [types.DESTROY_AGENCY] ({ commit }, id) {
+    commit(types.DESTROY_AGENCY)
+
+    try {
+      await agencyService.delete(id)
+      commit(types.DESTROY_AGENCY_SUCCESS)
+    } catch (err) {
+      commit(types.DESTROY_AGENCY_ERROR, err)
+    }
   }
 }

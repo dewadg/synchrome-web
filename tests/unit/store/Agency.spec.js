@@ -65,4 +65,13 @@ describe('Agency Store', () => {
     assert.match(commit.getCall(0).args[0], types.UPDATE_AGENCY)
     assert.match(commit.getCall(1).args[0], types.UPDATE_AGENCY_SUCCESS)
   })
+
+  it(`should dispatch ${types.DESTROY_AGENCY} successfully`, async () => {
+    const commit = sinon.spy()
+
+    await actions[types.DESTROY_AGENCY]({ commit }, agency.id)
+
+    assert.match(commit.getCall(0).args[0], types.DESTROY_AGENCY)
+    assert.match(commit.getCall(1).args[0], types.DESTROY_AGENCY_SUCCESS)
+  })
 })
