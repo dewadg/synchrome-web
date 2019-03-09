@@ -19,6 +19,21 @@ export default {
     state.error = err
   },
 
+  [types.FETCH_ONE_AGENCY] (state) {
+    state.isFetchingOne = true
+    state.error = null
+  },
+
+  [types.FETCH_ONE_AGENCY_SUCCESS] (state) {
+    state.isFetchingOne = false
+    state.error = null
+  },
+
+  [types.FETCH_ONE_AGENCY_ERROR] (state, err) {
+    state.isFetchingOne = false
+    state.error = err
+  },
+
   [types.STORE_AGENCY] (state) {
     state.isStoring = true
     state.error = null

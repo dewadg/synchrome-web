@@ -23,5 +23,18 @@ export default {
     } catch (err) {
       commit(types.STORE_AGENCY_ERROR, err)
     }
+  },
+
+  async [types.FETCH_ONE_AGENCY] ({ commit }, id) {
+    commit(types.FETCH_ONE_AGENCY)
+
+    try {
+      const agency = await agencyService.find(id)
+      commit(types.FETCH_ONE_AGENCY_SUCCESS)
+
+      return agency
+    } catch (err) {
+      commit(types.FETCH_ONE_AGENCY_ERROR, err)
+    }
   }
 }
