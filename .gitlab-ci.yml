@@ -17,6 +17,8 @@ cache:
 
 yarn_install:
   stage: preparation
+  only:
+    - master
   before_script:
     - yarn -v
   script:
@@ -24,6 +26,8 @@ yarn_install:
 
 unit_test:
   stage: test
+  only:
+    - master
   before_script:
     - touch .env.test.local
     - echo VUE_APP_APP_NAME=$TEST_VUE_APP_APP_NAME >> .env.test.local
@@ -36,6 +40,8 @@ unit_test:
 build:
   stage: build
   image: docker
+  only:
+    - master
   variables:
     DOCKER_HOST: tcp://docker:2375/
     DOCKER_DRIVER: overlay2
@@ -54,6 +60,8 @@ build:
 deploy:
   stage: deploy
   image: ubuntu
+  only:
+    - master
   before_script:
     - which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
     - eval $(ssh-agent -s)
