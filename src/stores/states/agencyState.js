@@ -10,5 +10,12 @@ export default () => ({
   data: {
     entities: {},
     result: []
+  },
+
+  form: {
+    id: null,
+    name: '',
+    phone: '',
+    address: ''
   }
 })

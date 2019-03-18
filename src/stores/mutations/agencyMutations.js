@@ -77,5 +77,19 @@ export default {
   [types.DESTROY_AGENCY_ERROR] (state, err) {
     state.isDestroying = false
     state.error = err
+  },
+
+  [types.SET_AGENCY_FORM] (state, form) {
+    state.form = {
+      ...state.form,
+      ...form
+    }
+  },
+
+  [types.RESET_AGENCY_FORM](state, form) {
+    state.form.id = null
+    state.form.name = ''
+    state.form.phone = ''
+    state.form.address = ''
   }
 }

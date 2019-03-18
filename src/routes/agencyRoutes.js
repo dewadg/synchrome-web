@@ -9,5 +9,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/agencies/new',
+    name: 'agencies.create',
+    component: () => import('@/views/Agency/AgencyCreate'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
