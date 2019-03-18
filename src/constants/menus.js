@@ -13,7 +13,7 @@ export default [
     subheader: 'Data Utama'
   },
   {
-    to: 'opd',
+    to: 'agencies',
     label: 'OPD',
     icon: 'home'
   },
