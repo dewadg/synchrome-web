@@ -5,6 +5,7 @@ import rankRoutes from '@/routes/rankRoutes'
 import calendarRoutes from '@/routes/calendarRoutes'
 import workshiftRoutes from '@/routes/workshiftRoutes'
 import agencyRoutes from '@/routes/agencyRoutes'
+import echelonRoutes from '@/routes/echelonRoutes'
 
 const router = new Router({
   mode: 'history',
@@ -22,7 +23,10 @@ const router = new Router({
     ...workshiftRoutes,
 
     // Agencies
-    ...agencyRoutes
+    ...agencyRoutes,
+
+    // Echelons
+    ...echelonRoutes
   ]
 })
 

@@ -1,6 +1,6 @@
 import { removeDataNamespace } from '@/helpers/data'
 
-export default class Agency {
+export default class Echelon {
   _http = null
 
   constructor (httpService) {
