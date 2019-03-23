@@ -21,7 +21,7 @@ export default {
 
       return agency
     } catch (err) {
-      commit(types.STORE_AGENCY_ERROR, err)
+      commit(types.STORE_AGENCY_ERROR, { ...err })
     }
   },
 

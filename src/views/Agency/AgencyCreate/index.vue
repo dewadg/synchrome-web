@@ -26,6 +26,15 @@
           xs12
         >
           <VCardText>
+            <VAlert
+              v-if="error && error.response.data.id"
+              :value="true"
+              type="error"
+              class="mb-2"
+              dismissible
+            >
+              Kode OPD sudah terpakai
+            </VAlert>
             <AgencyForm v-model="isFormValid" />
           </VCardText>
         </VFlex>
@@ -37,7 +46,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import AgencyForm from '@/components/Forms/AgencyForm'
-import { GET_AGENCY_FORM, RESET_WORKSHIFT_FORM, STORE_AGENCY } from '@/stores/types/agencyTypes'
+import { GET_AGENCY_FORM, RESET_AGENCY_FORM, STORE_AGENCY } from '@/stores/types/agencyTypes'
 import breadcrumbs from './breadcrumbs'
 
 export default {
@@ -66,7 +75,7 @@ export default {
   },
 
   destroyed () {
-    this.$store.commit(RESET_WORKSHIFT_FORM)
+    this.$store.commit(RESET_AGENCY_FORM)
   },
 
   methods: {

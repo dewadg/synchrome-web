@@ -2,6 +2,11 @@
   <form>
     <VTextField
       :disabled="disabled"
+      label="Kode OPD"
+      v-model="agencyId"
+    />
+    <VTextField
+      :disabled="disabled"
       label="Nama OPD"
       v-model="agencyName"
     />
@@ -39,6 +44,15 @@ export default {
   validations: validator,
 
   computed: {
+    agencyId: {
+      get () {
+        return this.$store.getters[GET_AGENCY_FORM].id
+      },
+      set (id) {
+        this.$store.commit(SET_AGENCY_FORM, { id })
+      }
+    },
+  
     agencyName: {
       get () {
         return this.$store.getters[GET_AGENCY_FORM].name
@@ -68,6 +82,13 @@ export default {
   },
 
    watch: {
+    agencyId: {
+      deep: true,
+      handler () {
+        this.$emit('input', !this.$v.$invalid)
+      }
+    },
+
     agencyName: {
       deep: true,
       handler () {
