@@ -28,11 +28,6 @@ export default [
     icon: 'group'
   },
   {
-    to: 'functional-positions',
-    label: 'Jabatan Fungsional',
-    icon: 'work'
-  },
-  {
     to: 'asn',
     label: 'ASN',
     icon: 'group'
