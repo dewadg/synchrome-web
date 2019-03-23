@@ -13,6 +13,12 @@ export default class Agency {
     return removeDataNamespace(res.data)
   }
 
+  async getTypes () {
+    const res = await this._http.get('echelon-types')
+
+    return removeDataNamespace(res.data.data)
+  }
+
   async create (payload) {
     const res = await this._http.post('echelons', payload)
 

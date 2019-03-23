@@ -1,6 +1,5 @@
 import { schema } from 'normalizr'
-
-export const ECHELON_TYPE_SCHEMA = new schema.Entity('echelonTypes')
+import { ECHELON_TYPE_SCHEMA } from './echelonTypeSchema'
 
 export const ECHELON_SCHEMA = new schema.Entity('echelons', {
   type: ECHELON_TYPE_SCHEMA
