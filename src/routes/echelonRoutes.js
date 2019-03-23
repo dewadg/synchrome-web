@@ -9,5 +9,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/echelons/new',
+    name: 'echelons.create',
+    component: () => import('@/views/Echelon/EchelonCreate'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]

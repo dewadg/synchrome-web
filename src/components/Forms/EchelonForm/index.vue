@@ -10,28 +10,47 @@
       label="Nama Eselon"
       v-model="echelonName"
     />
-    <VSelect
-      :disabled="disabled"
-      label="Jenis"
-      v-model="echelonTypeId"
-      :items="echelonTypes"
-      item-value="id"
-      item-text="name"
-    />
-    <VSelect
-      :disabled="disabled"
-      label="Supervisor"
-      v-model="echelonSupervisorId"
-      :items="echelons"
-      item-value="id"
-      item-text="name"
-      autocomplete
-    />
+    <EchelonTypeControl>
+      <template #default="{ loading, items }">
+        <VProgressLinear
+          v-if="loading"
+          :indeterminate="true"
+        />
+        <VSelect
+          v-if="!loading"
+          :disabled="disabled"
+          label="Jenis"
+          v-model="echelonTypeId"
+          :items="items"
+          item-value="id"
+          item-text="name"
+        />
+      </template>
+    </EchelonTypeControl>
+    <EchelonControl>
+      <template #default="{ loading, items }">
+        <VProgressLinear
+          v-if="loading"
+          :indeterminate="true"
+        />
+        <VAutocomplete
+          v-if="!loading"
+          :disabled="disabled"
+          label="Supervisor"
+          v-model="echelonSupervisorId"
+          :items="[{ id: null, name: '--Tanpa Supervisor--' }, ...items]"
+          item-value="id"
+          item-text="name"
+          autocomplete
+        />
+      </template>
+    </EchelonControl>
   </form>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import EchelonTypeControl from '@/components/Renderless/EchelonTypeControl'
+import EchelonControl from '@/components/Renderless/EchelonControl'
 import { GET_ECHELON_TYPE_DATA } from '@/stores/types/echelonTypeTypes'
 import { GET_ECHELON_DATA, GET_ECHELON_FORM, SET_ECHELON_FORM } from '@/stores/types/echelonTypes'
 import validator from './validator'
@@ -54,14 +73,14 @@ export default {
     }
   },
 
+  components: {
+    EchelonTypeControl,
+    EchelonControl
+  },
+
   validations: validator,
 
   computed: {
-    ...mapGetters({
-      echelonTypes: GET_ECHELON_TYPE_DATA,
-      echelons: GET_ECHELON_DATA
-    }),
-
     echelonId: {
       get () {
         return this.$store.getters[GET_ECHELON_FORM].id
