@@ -17,5 +17,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/echelons/:id',
+    name: 'echelons.edit',
+    component: () => import('@/views/Echelon/EchelonEdit'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
