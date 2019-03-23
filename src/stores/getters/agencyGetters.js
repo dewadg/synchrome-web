@@ -1,5 +1,5 @@
-import * as types from '../types/agencyTypes'
-import { AGENCY_LIST_SCHEMA } from '../schema/agencySchema'
+import * as types from '../types/echelonTypes'
+import { AGENCY_LIST_SCHEMA } from '../schema/echelonSchema'
 import { denormalize } from 'normalizr'
 
 export default {

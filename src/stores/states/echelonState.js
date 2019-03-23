@@ -1,0 +1,21 @@
+export default () => ({
+  isFetching: false,
+  isFetchingOne: false,
+  isStoring: false,
+  isUpdating: false,
+  isDestroying: false,
+
+  error: null,
+
+  data: {
+    entities: {},
+    result: []
+  },
+
+  form: {
+    id: null,
+    name: '',
+    echelonTypeId: null,
+    supervisorId: null
+  }
+})
