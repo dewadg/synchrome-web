@@ -17,5 +17,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/agencies/:id',
+    name: 'agencies.edit',
+    component: () => import('@/views/Agency/AgencyEdit'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]

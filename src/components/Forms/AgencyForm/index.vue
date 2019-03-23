@@ -1,7 +1,7 @@
 <template>
   <form>
     <VTextField
-      :disabled="disabled"
+      :disabled="disabled || edit"
       label="Kode OPD"
       v-model="agencyId"
     />
@@ -36,6 +36,10 @@ export default {
       required: true
     },
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    edit: {
       type: Boolean,
       default: false
     }
