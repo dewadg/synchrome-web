@@ -43,6 +43,11 @@ export default [
     icon: 'schedule'
   },
   {
+    to: 'tpp',
+    label: 'TPP',
+    icon: 'card_giftcard'
+  },
+  {
     divider: true
   },
 
