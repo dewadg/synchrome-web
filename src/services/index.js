@@ -6,6 +6,7 @@ import Calendar from './Calendar'
 import Workshift from './Workshift'
 import Agency from './Agency'
 import Echelon from './Echelon'
+import Tpp from './Tpp'
 
 export const httpService = new Http()
 export const authService = new Auth(httpService)
@@ -15,4 +16,4 @@ export const calendarService = new Calendar(httpService)
 export const workshiftService = new Workshift(httpService)
 export const agencyService = new Agency(httpService)
 export const echelonService = new Echelon(httpService)
-
+export const tppService = new Tpp(httpService)
