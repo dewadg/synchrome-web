@@ -47,5 +47,35 @@ export default {
   [types.FETCH_ONE_TPP_ERROR] (state, err) {
     state.isFetchingOne = false
     state.error = err
+  },
+
+  [types.UPDATE_TPP] (state) {
+    state.isUpdating = true
+    state.error = null
+  },
+
+  [types.UPDATE_TPP_SUCCESS] (state) {
+    state.isUpdating = false
+    state.error = null
+  },
+
+  [types.UPDATE_TPP_ERROR](state, err) {
+    state.isUpdating = false
+    state.error = err
+  },
+
+  [types.DESTROY_TPP] (state) {
+    state.isDestroying = true
+    state.error = null
+  },
+
+  [types.DESTROY_TPP_SUCCESS] (state) {
+    state.isDestroying = false
+    state.error = null
+  },
+
+  [types.DESTROY_TPP_ERROR](state, err) {
+    state.isDestroying = false
+    state.error = err
   }
 }
