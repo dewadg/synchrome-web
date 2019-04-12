@@ -38,7 +38,7 @@
             <template #items="{ item }">
               <td>{{ item.id }}</td>
               <td>{{ item.name }}</td>
-              <td>{{ item.value }}</td>
+              <td>{{ item.value | rupiah }}</td>
               <td class="text-xs-right">
                 <VBtn
                   small
@@ -66,12 +66,17 @@ import { mapActions } from 'vuex'
 import TppControl from '@/components/Renderless/TppControl'
 import breadcrumbs from './breadcrumbs'
 import { DESTROY_TPP } from '@/stores/types/tppTypes'
+import { rupiah } from '@/filters/currency'
 
 export default {
   name: 'TppIndex',
 
   components: {
     TppControl
+  },
+
+  filters: {
+    rupiah
   },
 
   data () {
