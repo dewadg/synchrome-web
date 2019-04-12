@@ -74,8 +74,22 @@ export default {
     state.error = null
   },
 
-  [types.DESTROY_TPP_ERROR](state, err) {
+  [types.DESTROY_TPP_ERROR] (state, err) {
     state.isDestroying = false
     state.error = err
+  },
+
+  [types.SET_TPP_FORM] (state, form) {
+    state.form = {
+      ...state.form,
+      ...form
+    }
+  },
+
+  [types.RESET_TPP_FORM] (state) {
+    state.form = {
+      name: '',
+      value: 0
+    }
   }
 }

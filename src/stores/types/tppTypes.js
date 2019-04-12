@@ -19,3 +19,6 @@ export const DESTROY_TPP_SUCCESS = 'DESTROY_TPP_SUCCESS'
 export const DESTROY_TPP_ERROR = 'DESTROY_TPP_ERROR'
 
 export const GET_TPP_DATA = 'GET_TPP_DATA'
+export const GET_TPP_FORM = 'GET_TPP_FORM'
+export const SET_TPP_FORM = 'SET_TPP_FORM'
+export const RESET_TPP_FORM = 'RESET_TPP_FORM'

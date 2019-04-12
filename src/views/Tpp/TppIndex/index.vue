@@ -13,7 +13,7 @@
           placeholder="Pencarian"
         />
         <UtilityCardMenu>
-          <VListTile :to="{ name: 'tpp.create' }">
+          <VListTile @click="showModal(false, null)">
             <VListTileTitle>Tambah TPP</VListTileTitle>
           </VListTile>
         </UtilityCardMenu>
@@ -58,12 +58,14 @@
         </template>
       </TppControl>
     </UtilityCard>
+    <TppModal ref="tppModal" />
   </PageWrapper>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 import TppControl from '@/components/Renderless/TppControl'
+import TppModal from '@/components/Modals/TppModal'
 import breadcrumbs from './breadcrumbs'
 import { DESTROY_TPP } from '@/stores/types/tppTypes'
 import { rupiah } from '@/filters/currency'
@@ -72,7 +74,8 @@ export default {
   name: 'TppIndex',
 
   components: {
-    TppControl
+    TppControl,
+    TppModal
   },
 
   filters: {
@@ -116,6 +119,10 @@ export default {
 
     refreshTable () {
       this.$refs.tppControl.fetch()
+    },
+
+    showModal (editMode = false, id = null) {
+      this.$refs.tppModal.open(editMode, id)
     },
 
     deleteHandler (id) {

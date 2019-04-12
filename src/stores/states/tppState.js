@@ -10,5 +10,10 @@ export default () => ({
   data: {
     entities: {},
     result: []
+  },
+
+  form: {
+    name: '',
+    value: 0
   }
 })
