@@ -42,7 +42,7 @@
               <td class="text-xs-right">
                 <VBtn
                   small
-                  @click="$router.push({ name: 'tpp.edit', params: { id: item.id } })"
+                  @click="showModal(true, item.id)"
                 >
                   Sunting
                 </VBtn>
@@ -58,7 +58,10 @@
         </template>
       </TppControl>
     </UtilityCard>
-    <TppModal ref="tppModal" />
+    <TppModal
+      ref="tppModal"
+      @submit="refreshTable"
+    />
   </PageWrapper>
 </template>
 
