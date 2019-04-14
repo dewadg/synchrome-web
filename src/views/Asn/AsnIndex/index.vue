@@ -13,7 +13,7 @@
           placeholder="Pencarian"
         />
         <UtilityCardMenu>
-          <VListTile @click="showModal(false, null)">
+          <VListTile @click="$router.push({ name: 'asn.create' })">
             <VListTileTitle>Tambah ASN</VListTileTitle>
           </VListTile>
         </UtilityCardMenu>

@@ -9,5 +9,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/asn/new',
+    name: 'asn.create',
+    component: () => import('@/views/Asn/AsnCreate'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
