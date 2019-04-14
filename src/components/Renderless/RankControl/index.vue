@@ -4,6 +4,7 @@
       :items="items"
       :loading="loading"
       :fetch="fetch"
+      :error="error"
     />
   </div>
 </template>
@@ -17,7 +18,8 @@ export default {
 
   computed: {
     ...mapState({
-      loading: state => state.Rank.isFetching
+      loading: ({ Rank }) => Rank.isFetching,
+      error: ({ Rank }) => Rank.error
     }),
 
     items () {

@@ -4,6 +4,7 @@
       :items="items"
       :loading="loading"
       :fetch="fetch"
+      :error="error"
     />
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
 
   computed: {
     ...mapState({
-      loading: state => state.Calendar.isFetching
+      loading: ({ Calendar }) => Calendar.isFetching,
+      error: ({ Calendar }) => Calendar.error
     }),
 
     calendars () {

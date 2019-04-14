@@ -18,8 +18,8 @@ export default {
 
   computed: {
     ...mapState({
-      loading: state => state.EchelonType.isFetching,
-      error: state => state.EchelonType.error
+      loading: ({ EchelonType }) => EchelonType.isFetching,
+      error: ({ EchelonType }) => EchelonType.error
     }),
 
     items () {
