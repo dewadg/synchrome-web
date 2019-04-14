@@ -18,6 +18,20 @@ export default {
     state.error = err
   },
 
+  [types.STORE_ASN] (state) {
+    state.isStoring = true
+    state.error = null
+  },
+
+  [types.STORE_ASN_SUCCESS] (state) {
+    state.isStoring = false
+  },
+  
+  [types.STORE_ASN_ERROR] (state, err) {
+    state.isStoring = false
+    state.error = err
+  },
+
   [types.DESTROY_ASN] (state) {
     state.isDestroying = true
     state.error = null
@@ -30,5 +44,28 @@ export default {
   [types.DESTROY_ASN_ERROR] (state, err) {
     state.isDestroying = false
     state.error = err
+  },
+
+  [types.SET_ASN_FORM] (state, form) {
+    state.form = {
+      ...state.form,
+      ...form
+    }
+  },
+
+  [types.RESET_ASN_FORM] (state) {
+    state.form = {
+      id: '',
+      agencyId: null,
+      rankId: null,
+      echelonId: null,
+      tppId: null,
+      workshiftId: null,
+      calendarId: null,
+      pin: '',
+      name: '',
+      phone: '',
+      address: ''
+    }
   }
 }

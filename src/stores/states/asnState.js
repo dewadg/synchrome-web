@@ -13,6 +13,16 @@ export default () => ({
   },
 
   form: {
-    
+    id: '',
+    agencyId: null,
+    rankId: null,
+    echelonId: null,
+    tppId: null,
+    workshiftId: null,
+    calendarId: null,
+    pin: '',
+    name: '',
+    phone: '',
+    address: ''
   }
 })

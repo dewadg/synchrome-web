@@ -12,6 +12,19 @@ export default {
     }
   },
 
+  async [types.STORE_ASN] ({ commit }, payload) {
+    commit(types.STORE_ASN)
+
+    try {
+      const newAsn = await asnService.create(payload)
+      commit(types.STORE_ASN_SUCCESS)
+
+      return newAsn
+    } catch (err) {
+      commit(types.STORE_ASN_ERROR, err)
+    }
+  },
+
   async [types.DESTROY_ASN] ({ commit }, id) {
     commit(types.DESTROY_ASN)
 
