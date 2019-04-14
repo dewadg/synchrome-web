@@ -1,0 +1,5 @@
+export const FETCH_ALL_ASN = 'FETCH_ALL_ASN'
+export const FETCH_ALL_ASN_SUCCESS = 'FETCH_ALL_ASN_SUCCESS'
+export const FETCH_ALL_ASN_ERROR = 'FETCH_ALL_ASN_ERROR'
+
+export const GET_ASN_DATA = 'GET_ASN_DATA'
