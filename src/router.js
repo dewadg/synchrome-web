@@ -7,6 +7,7 @@ import workshiftRoutes from '@/routes/workshiftRoutes'
 import agencyRoutes from '@/routes/agencyRoutes'
 import echelonRoutes from '@/routes/echelonRoutes'
 import tppRoutes from '@/routes/tppRoutes'
+import asnRoutes from '@/routes/asnRoutes'
 
 const router = new Router({
   mode: 'history',
@@ -30,7 +31,10 @@ const router = new Router({
     ...echelonRoutes,
 
     // TPP
-    ...tppRoutes
+    ...tppRoutes,
+
+    // ASN
+    ...asnRoutes
   ]
 })
 
