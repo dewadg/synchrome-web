@@ -39,6 +39,22 @@
           </VCardText>
         </VFlex>
       </VLayout>
+      <VCardActions>
+        <VSpacer />
+        <VBtn
+          :disabled="!isFormValid || loading"
+          color="primary"
+          @click="submitHandler"
+        >
+          <VIcon
+            class="mr-2"
+            small
+          >
+            save
+          </VIcon>
+          Simpan
+        </VBtn>
+      </VCardActions>
     </UtilityCard>
   </PageWrapper>
 </template>
