@@ -13,8 +13,22 @@ export default {
     state.data = normalize(data, ASN_LIST_SCHEMA)
   },
 
-  [types.FETCH_ALL_ASN_SUCCESS] (state, err) {
+  [types.FETCH_ALL_ASN_ERROR] (state, err) {
     state.isFetching = false
+    state.error = err
+  },
+
+  [types.DESTROY_ASN] (state) {
+    state.isDestroying = true
+    state.error = null
+  },
+
+  [types.DESTROY_ASN_SUCCESS] (state) {
+    state.isDestroying = false
+  },
+
+  [types.DESTROY_ASN_ERROR] (state, err) {
+    state.isDestroying = false
     state.error = err
   }
 }
