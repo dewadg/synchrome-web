@@ -7,6 +7,7 @@ import Workshift from './Workshift'
 import Agency from './Agency'
 import Echelon from './Echelon'
 import Tpp from './Tpp'
+import Asn from './Asn'
 
 export const httpService = new Http()
 export const authService = new Auth(httpService)
@@ -17,3 +18,4 @@ export const workshiftService = new Workshift(httpService)
 export const agencyService = new Agency(httpService)
 export const echelonService = new Echelon(httpService)
 export const tppService = new Tpp(httpService)
+export const asnService = new Asn(httpService)
