@@ -32,6 +32,6 @@ export default class Asn {
   }
 
   async delete (id) {
-    await this._http.delete(`agencies/${id}`)
+    await this._http.delete(`asn/${id}`)
   }
 }

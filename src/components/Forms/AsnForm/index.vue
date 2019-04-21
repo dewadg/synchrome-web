@@ -3,6 +3,7 @@
     <div class="tw-flex">
       <div class="tw-w-1/4 tw-pr-2">
         <VTextField
+          :disabled="editMode"
           label="NIP"
           v-model="asnId"
           :error-messages="asnIdErrors"
