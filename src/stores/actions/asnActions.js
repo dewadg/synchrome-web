@@ -25,6 +25,30 @@ export default {
     }
   },
 
+  async [types.FETCH_ONE_ASN] ({ commit }, id) {
+    commit(types.FETCH_ONE_ASN)
+
+    try {
+      const asn = await asnService.find(id)
+      commit(types.FETCH_ONE_ASN_SUCCESS)
+
+      return asn
+    } catch (err) {
+      commit(types.FETCH_ONE_ASN_ERROR, err)
+    }
+  },
+
+  async [types.UPDATE_ASN] ({ commit }, { id, data }) {
+    commit(types.UPDATE_ASN)
+
+    try {
+      await asnService.update(id, data)
+      commit(types.UPDATE_ASN_SUCCESS)
+    } catch (err) {
+      commit(types.UPDATE_ASN_ERROR, err)
+    }
+  },
+
   async [types.DESTROY_ASN] ({ commit }, id) {
     commit(types.DESTROY_ASN)
 

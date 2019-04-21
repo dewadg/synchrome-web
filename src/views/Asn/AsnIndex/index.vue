@@ -42,6 +42,12 @@
               <td class="text-xs-right">
                 <VBtn
                   small
+                  @click="$router.push({
+                    name: 'asn.edit',
+                    params: {
+                      id: item.id
+                    }
+                  })"
                 >
                   Sunting
                 </VBtn>

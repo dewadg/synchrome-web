@@ -32,6 +32,34 @@ export default {
     state.error = err
   },
 
+  [types.FETCH_ONE_ASN] (state) {
+    state.isFetchingOne = true
+    state.error = null
+  },
+
+  [types.FETCH_ONE_ASN_SUCCESS] (state) {
+    state.isFetchingOne = false
+  },
+
+  [types.FETCH_ONE_ASN_ERROR] (state, err) {
+    state.isFetchingOne = false
+    state.error = err
+  },
+
+  [types.UPDATE_ASN] (state) {
+    state.isUpdating = true
+    state.error = null
+  },
+
+  [types.UPDATE_ASN_SUCCESS] (state) {
+    state.isUpdating = false
+  },
+
+  [types.UPDATE_ASN_ERROR] (state, err) {
+    state.isUpdating = false
+    state.error = err
+  },
+
   [types.DESTROY_ASN] (state) {
     state.isDestroying = true
     state.error = null

@@ -17,5 +17,13 @@ export default [
     beforeEnter: chainMiddlewares([
       auth
     ])
+  },
+  {
+    path: '/asn/:id',
+    name: 'asn.edit',
+    component: () => import('@/views/Asn/AsnEdit'),
+    beforeEnter: chainMiddlewares([
+      auth
+    ])
   }
 ]
