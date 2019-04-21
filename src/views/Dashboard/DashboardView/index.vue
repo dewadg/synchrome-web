@@ -20,7 +20,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            125K <small>orang</small>
+            {{ asn.length }} <small>orang</small>
           </VCardText>
         </VCard>
       </VFlex>
@@ -41,7 +41,7 @@
             </span>
           </VCardTitle>
           <VCardText>
-            50 <small>OPD</small>
+            {{ agencies.length }} <small>OPD</small>
           </VCardText>
         </VCard>
       </VFlex>
@@ -110,9 +110,12 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import AttendanceStats from '@/components/AttendanceStats'
 import TppStats from '@/components/TppStats'
 import SyncActivityStats from '@/components/SyncActivityStats'
+import { FETCH_ALL_ASN, GET_ASN_DATA } from '@/stores/types/asnTypes'
+import { FETCH_ALL_AGENCIES, GET_AGENCY_DATA } from '@/stores/types/agencyTypes'
 
 export default {
   name: 'Dashboard',
@@ -121,6 +124,28 @@ export default {
     AttendanceStats,
     TppStats,
     SyncActivityStats
+  },
+
+  computed: {
+    ...mapGetters({
+      asn: GET_ASN_DATA,
+      agencies: GET_AGENCY_DATA
+    })
+  },
+
+  async mounted () {
+    const fetchAsn = this.fetchAsn()
+    const fetchAgencies = this.fetchAgencies()
+
+    await fetchAsn
+    await fetchAgencies
+  },
+
+  methods: {
+    ...mapActions({
+      fetchAsn: FETCH_ALL_ASN,
+      fetchAgencies: FETCH_ALL_AGENCIES
+    })
   }
 }
 </script>
